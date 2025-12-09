@@ -32,6 +32,18 @@ if ! command -v yay &> /dev/null; then
     cd -
 fi
 
+# Bootloader & Snapshots (Btrfs)
+print_status "Installing bootloader & snapshot packages..."
+sudo pacman -S --needed --noconfirm \
+    limine \
+    snapper \
+    snap-pac \
+    btrfs-assistant
+
+yay -S --needed --noconfirm \
+    limine-mkinitcpio-hook \
+    limine-snapper-sync
+
 # Shell & Terminal
 print_status "Installing shell & terminal packages..."
 sudo pacman -S --needed --noconfirm \
@@ -183,6 +195,8 @@ print_status "Enabling services..."
 sudo systemctl enable --now docker
 sudo systemctl enable --now bluetooth
 sudo systemctl enable --now mullvad-daemon
+sudo systemctl enable --now snapper-timeline.timer
+sudo systemctl enable --now snapper-cleanup.timer
 sudo systemctl enable ufw
 sudo ufw enable
 
@@ -193,10 +207,32 @@ sudo usermod -aG docker $USER
 print_status "Creating config directories..."
 mkdir -p ~/.config/{hypr,waybar,rofi,mako,ghostty,zsh}
 
-# Setup Starship
-print_status "Setting up Starship..."
-echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
+# Setup Starship and Zoxide in Zsh
+print_status "Setting up Zsh..."
+cat > ~/.zshrc << 'ZSHEOF'
+# Gavin's Zsh Config
+
+# History
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+
+# Aliases
+alias ls='eza --icons'
+alias ll='eza -la --icons'
+alias cat='bat'
+alias cd='z'
+alias grep='rg'
+alias find='fd'
+
+# Init tools
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+
+# FZF keybinds
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+ZSHEOF
 
 print_status "=========================================="
 print_status "Installation complete!"
@@ -205,8 +241,8 @@ echo ""
 print_warning "Next steps:"
 echo "1. Log out and back in (for Zsh and docker group)"
 echo "2. Run 'gh auth login' to setup GitHub"
-echo "3. Copy configs from ~/dotfiles/reference/"
+echo "3. Copy monitor config: cp ~/dotfiles/reference/monitors.conf ~/.config/hypr/"
 echo "4. Set up Everforest theme"
 echo "5. Reboot to apply all changes"
 echo ""
-print_warning "Your monitor config is saved in ~/dotfiles/reference/monitors.conf"
+print_warning "Your configs are in ~/dotfiles/reference/"
