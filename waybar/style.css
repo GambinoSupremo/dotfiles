@@ -1,83 +1,65 @@
-@import "../omarchy/current/theme/waybar.css";
-
 * {
-  background-color: @background;
-  color: @foreground;
-
-  border: none;
-  border-radius: 0;
-  min-height: 0;
-  font-family: 'JetBrainsMono Nerd Font';
-  font-size: 12px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
 }
 
-.modules-left {
-  margin-left: 8px;
-}
-
-.modules-right {
-  margin-right: 8px;
+window#waybar {
+    background-color: rgba(45, 53, 59, 0.9);
+    color: #d3c6aa;
+    border-bottom: 2px solid #3d484d;
 }
 
 #workspaces button {
-  all: initial;
-  padding: 0 6px;
-  margin: 0 1.5px;
-  min-width: 9px;
+    padding: 0 8px;
+    color: #d3c6aa;
+    background: transparent;
+    border-radius: 4px;
+    margin: 4px 2px;
 }
 
-#workspaces button.empty {
-  opacity: 0.5;
+#workspaces button:hover {
+    background: #3d484d;
 }
 
-#cpu,
-#battery,
+#workspaces button.active {
+    background: #a7c080;
+    color: #2d353b;
+}
+
+#clock,
 #pulseaudio,
-#custom-omarchy,
-#custom-screenrecording-indicator,
-#custom-update {
-  min-width: 12px;
-  margin: 0 7.5px;
-}
-
+#network,
+#bluetooth,
+#battery,
 #tray {
-  margin-right: 16px;
-}
-
-#bluetooth {
-  margin-right: 17px;
-}
-
-#network {
-  margin-right: 13px;
-}
-
-#custom-expand-icon {
-  margin-right: 18px;
-}
-
-tooltip {
-  padding: 2px;
-}
-
-#custom-update {
-  font-size: 10px;
+    padding: 0 12px;
+    margin: 4px 2px;
+    border-radius: 4px;
+    background: #3d484d;
 }
 
 #clock {
-  margin-left: 8.75px;
+    background: #a7c080;
+    color: #2d353b;
+    font-weight: bold;
 }
 
-.hidden {
-  opacity: 0;
+#pulseaudio.muted {
+    background: #e67e80;
+    color: #2d353b;
 }
 
-#custom-screenrecording-indicator {
-  min-width: 12px;
-  margin-left: 8.75px;
-  font-size: 10px;
+#battery.charging {
+    background: #a7c080;
+    color: #2d353b;
 }
 
-#custom-screenrecording-indicator.active {
-  color: #a55555;
+#battery.warning:not(.charging) {
+    background: #dbbc7f;
+    color: #2d353b;
+}
+
+#battery.critical:not(.charging) {
+    background: #e67e80;
+    color: #2d353b;
 }

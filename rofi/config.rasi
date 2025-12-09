@@ -1,0 +1,104 @@
+@import "everforest"
+
+* {
+    lightfg:                     @text;
+    lightbg:                     @mantle;
+    background-color:            transparent;
+    background:                  @base;
+    foreground:                  @text;
+    selected-normal-background:  @green;
+    selected-normal-foreground:  @base;
+}
+
+configuration {
+    font:                        "JetBrainsMono Nerd Font 10";
+    modi:                        "drun,run";
+    show-icons:                  true;
+    display-drun:                "";
+    display-run:                 "";
+    drun-display-format:         "{name}";
+}
+
+window {
+    width:                       600px;
+    border-radius:               10px;
+    background-color:            @background;
+}
+
+mainbox {
+    spacing:                     0px;
+    background-color:            transparent;
+    children:                    [ "inputbar", "listbox" ];
+}
+
+listbox {
+    spacing:                     15px;
+    padding:                     15px;
+    background-color:            transparent;
+    children:                    [ "listview" ];
+}
+
+inputbar {
+    padding:                     15px 20px;
+    background-color:            @mantle;
+    children:                    [ "entry", "dummy", "mode-switcher" ];
+}
+
+entry {
+    padding:                     12px 16px;
+    border-radius:               12px;
+    background-color:            @background;
+    text-color:                  @foreground;
+    placeholder:                 "Search...";
+    placeholder-color:           @text;
+}
+
+dummy {
+    expand:                      true;
+    background-color:            transparent;
+}
+
+mode-switcher {
+    spacing:                     10px;
+    background-color:            transparent;
+}
+
+button {
+    padding:                     12px;
+    border-radius:               12px;
+    background-color:            @background;
+    text-color:                  @foreground;
+}
+
+button selected {
+    background-color:            @green;
+    text-color:                  @base;
+}
+
+listview {
+    columns:                     1;
+    lines:                       5;
+    spacing:                     10px;
+    background-color:            transparent;
+}
+
+element {
+    spacing:                     10px;
+    padding:                     6px;
+    border-radius:               10px;
+    background-color:            transparent;
+    text-color:                  @foreground;
+}
+
+element selected.normal {
+    background-color:            @green;
+    text-color:                  @base;
+}
+
+element-icon {
+    size:                        24px;
+}
+
+element-text {
+    vertical-align:              0.5;
+}
