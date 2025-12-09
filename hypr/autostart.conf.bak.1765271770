@@ -1,0 +1,4 @@
+# Extra autostart processes
+# exec-once = uwsm-app -- my-service
+# Set cursor to workspace 1 on main monitor at startup
+exec-once = hyprctl dispatch workspace 1
