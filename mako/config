@@ -1,1 +1,17 @@
-/home/gav/.config/gavinos/current/theme/mako.ini
+font=JetBrainsMono Nerd Font 10
+anchor=top-center
+background-color=#2d353b
+text-color=#d3c6aa
+border-color=#a7c080
+border-size=2
+border-radius=8
+padding=15
+margin=10
+width=350
+default-timeout=5000
+
+[urgency=high]
+background-color=#e67e80
+text-color=#2d353b
+border-color=#e67e80
+default-timeout=0
