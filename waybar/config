@@ -3,10 +3,9 @@
     "position": "top",
     "height": 30,
     "spacing": 4,
-
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "bluetooth", "battery", "tray"],
+    "modules-right": ["mpris", "pulseaudio", "bluetooth", "battery", "tray"],
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -26,6 +25,21 @@
         "tooltip-format": "<tt>{calendar}</tt>"
     },
 
+    "mpris": {
+        "format": "{player_icon} {title} - {artist}",
+        "format-paused": "{player_icon} {title} - {artist}",
+        "player-icons": {
+            "default": "󰎆",
+            "tidal-hifi": "󰎆",
+            "spotify": "󰓇",
+            "chromium": "󰎆",
+            "firefox": "󰎆"
+        },
+        "max-length": 35,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next"
+    },
+
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "󰝟 muted",
@@ -33,13 +47,6 @@
             "default": ["󰕿", "󰖀", "󰕾"]
         },
         "on-click": "pavucontrol"
-    },
-
-    "network": {
-        "format-wifi": "󰖩 {signalStrength}%",
-        "format-ethernet": "󰈀 {ipaddr}",
-        "format-disconnected": "󰖪 ",
-        "tooltip-format": "{ifname}: {ipaddr}"
     },
 
     "bluetooth": {
