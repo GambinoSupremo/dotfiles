@@ -1,0 +1,14 @@
+// === Monitors ===
+output "Dell Inc. Dell AW3423DW #tBszGDAYBQUH" {
+    mode "3440x1440@174.963"
+    scale 1
+    position x=0 y=0
+    focus-at-startup
+    variable-refresh-rate on-demand=true
+}
+
+output "Philips Consumer Electronics Company PHL 278E1 0x0000065F" {
+    mode "3840x2160@59.997"
+    scale 1.5
+    position x=3440 y=0
+}

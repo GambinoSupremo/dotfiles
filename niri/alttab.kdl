@@ -1,0 +1,18 @@
+// ============================================================
+// Recent Windows / Alt-Tab Switcher
+// ============================================================
+// Overrides Noctalia's recent-windows block to remove Mod+Tab
+// bindings (freeing them for overview). Must be included AFTER
+// noctalia.kdl in config.kdl.
+
+recent-windows {
+    binds {
+        // Standard Alt+Tab switcher (Mac/Windows convention)
+        Alt+Tab        { next-window; }
+        Alt+Shift+Tab  { previous-window; }
+
+        // Cycle within the current app (Alt+`)
+        Alt+grave        { next-window filter="app-id"; }
+        Alt+Shift+grave  { previous-window filter="app-id"; }
+    }
+}

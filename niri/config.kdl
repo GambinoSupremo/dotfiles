@@ -1,0 +1,211 @@
+// ============================================================
+// Gavin's Niri Config - No DMS dependencies
+// Mirrors ~/.config/mango/ split-file structure
+// ============================================================
+
+config-notification {
+    disable-failed
+}
+
+// === Input ===
+input {
+    keyboard {
+        xkb {
+            options "caps:escape"
+        }
+        numlock
+        repeat-delay 600
+        repeat-rate 25
+    }
+    mouse {
+        accel-profile "flat"
+    }
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+// === Layout ===
+layout {
+    gaps 5
+    background-color "transparent"
+    center-focused-column "never"
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 1.0
+    }
+    default-column-width { proportion 0.5; }
+    border {
+        width 2
+    }
+    focus-ring {
+        width 2
+    }
+    shadow {
+        softness 30
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+    struts {
+        top 2
+        bottom 2
+    }
+}
+
+// === Named Workspaces ===
+// Workspace order matters — declared order determines stack position per monitor
+// Alienware: "main" (1, ad-hoc) → "gaming" (2, Steam lands here)
+// Philips:   "secondary" (1, ad-hoc) → "comms" (2, Vesktop/Signal/Tidal land here)
+
+workspace "main" {
+    open-on-output "Dell Inc. Dell AW3423DW #tBszGDAYBQUH"
+}
+workspace "gaming" {
+    open-on-output "Dell Inc. Dell AW3423DW #tBszGDAYBQUH"
+}
+workspace "secondary" {
+    open-on-output "Philips Consumer Electronics Company PHL 278E1 0x0000065F"
+}
+workspace "comms" {
+    open-on-output "Philips Consumer Electronics Company PHL 278E1 0x0000065F"
+}
+
+// === Environment ===
+environment {
+    XDG_CURRENT_DESKTOP "niri"
+    XDG_SESSION_TYPE "wayland"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    XCURSOR_THEME "Bibata-Modern-Ice"
+    XCURSOR_SIZE "24"
+    TERMINAL "kitty"
+    __GL_VRR_ALLOWED "1"
+    __GL_GSYNC_ALLOWED "1"
+}
+
+// === General ===
+hotkey-overlay {
+    skip-at-startup
+}
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+// === Autostart ===
+spawn-at-startup "qs" "-c" "noctalia-shell"
+spawn-at-startup "mullvad-exclude" "vesktop"
+spawn-at-startup "signal-desktop"
+spawn-at-startup "tidal-hifi"
+
+// === Animations ===
+animations {
+    workspace-switch {
+        spring damping-ratio=0.80 stiffness=500 epsilon=0.0001
+    }
+    window-open {
+        duration-ms 200
+        curve "ease-out-expo"
+    }
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+    horizontal-view-movement {
+        spring damping-ratio=0.85 stiffness=400 epsilon=0.0001
+    }
+    window-movement {
+        spring damping-ratio=0.75 stiffness=350 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=0.85 stiffness=400 epsilon=0.0001
+    }
+    config-notification-open-close {
+        spring damping-ratio=0.65 stiffness=900 epsilon=0.001
+    }
+    screenshot-ui-open {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+    overview-open-close {
+        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+    }
+}
+
+// === Global Window Rules ===
+window-rule {
+    geometry-corner-radius 6
+    clip-to-geometry true
+    draw-border-with-background false
+}
+
+// === Floating Windows ===
+window-rule {
+    match app-id=r#"^gnome-calculator$"#
+    match app-id=r#"^galculator$"#
+    match app-id=r#"^blueman-manager$"#
+    match app-id=r#"^org\.gnome\.Nautilus$"#
+    match app-id=r#"^xdg-desktop-portal$"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"org.quickshell$"#
+    open-floating true
+}
+
+// === Floating Kitty (matches --app-id=floating-kitty) ===
+window-rule {
+    match app-id="floating-kitty"
+    open-floating true
+    default-column-width { proportion 0.4; }
+    default-window-height { proportion 0.5; }
+}
+
+// === Steam Games ===
+window-rule {
+    match app-id=r#"^steam_app_.*$"#
+    variable-refresh-rate true
+    open-fullscreen true
+}
+
+// === Steam Notifications ===
+// open-focused false prevents the toast from stealing keyboard focus
+// (and usually prevents the cursor from being warped to it as well)
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-focused false
+}
+
+// === Steam Sub-windows ===
+window-rule {
+    match app-id="steam"
+    exclude title="Steam"
+    exclude title=r#"^notificationtoasts_\d+_desktop$"#
+    open-floating true
+}
+
+// === Layer Rules ===
+// Place Noctalia's wallpaper inside the overview backdrop
+// so it shows behind the zoomed-out workspaces in overview mode.
+// Matches noctalia-wallpaper-DP-1, noctalia-wallpaper-DP-2, etc.
+layer-rule {
+    match namespace="^noctalia-wallpaper-"
+    place-within-backdrop true
+}
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+// ============================================================
+// Includes - split files for organization
+// ============================================================
+include "./binds.kdl"
+include optional=true "./outputs.kdl"
+include optional=true "./cursor.kdl"
+include optional=true "./noctalia.kdl"
+include optional=true "./alttab.kdl"
+include "./windowrules.kdl"
+
+include "./noctalia.kdl"
+
