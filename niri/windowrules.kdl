@@ -1,0 +1,107 @@
+// ============================================================
+// Niri Window Rules - Per-app opacity + comms pinning + blur
+// Mirrors ~/.config/mango/rule.conf
+// ============================================================
+
+// === Global defaults ===
+window-rule {
+    opacity 0.97
+    background-effect {
+        blur true
+    }
+}
+
+// === Comms (pinned to "comms" workspace on Philips) ===
+window-rule {
+    match app-id="vesktop"
+    default-column-width { proportion 0.5; }
+    open-on-workspace "comms"
+    opacity 0.85
+}
+
+window-rule {
+    match app-id="signal"
+    default-column-width { proportion 0.5; }
+    open-on-workspace "comms"
+    opacity 0.85
+}
+window-rule {
+    match app-id="tidal-hifi"
+    default-column-width { proportion 0.5; }
+    open-on-workspace "comms"
+    opacity 0.85
+}
+
+// === Editors ===
+window-rule {
+    match app-id=r#"^dev\.zed\.Zed$"#
+    match app-id=r#"^zeditor$"#
+    opacity 0.97
+}
+
+// === Browser ===
+window-rule {
+    match app-id=r#"^zen$"#
+    match app-id=r#"^zen-browser$"#
+    match app-id=r#"^app\.zen_browser\.zen$"#
+    opacity 0.97
+}
+
+// === Notes ===
+window-rule {
+    match app-id="obsidian"
+    opacity 0.97
+}
+
+// === File manager ===
+window-rule {
+    match app-id=r#"^org\.gnome\.Nautilus$"#
+    opacity 0.95
+}
+
+// === Steam client (pinned to "gaming" workspace on Alienware) ===
+// Targets only the main Steam window, not games (steam_app_*).
+// Excludes toast notifications which should remain floating popups.
+window-rule {
+    match app-id="^steam$"
+    default-column-width { proportion 1.0; }
+    exclude title=r#"^notificationtoasts_\d+_desktop$"#
+    open-on-workspace "gaming"
+    opacity 0.95
+}
+
+// === Background blur (xray) ===
+// Apps below have lowered opacity (0.85) so blur is visible through them.
+// Xray is implicit when blur is true — only the wallpaper is blurred,
+// not other windows behind. See niri docs: Window Effects.
+window-rule {
+    match app-id="vesktop"
+    background-effect {
+        blur true
+    }
+}
+window-rule {
+    match app-id="signal"
+    background-effect {
+        blur true
+    }
+}
+window-rule {
+    match app-id="tidal-hifi"
+    background-effect {
+        blur true
+    }
+}
+window-rule {
+    match app-id=r#"^zen-browser$"#
+    match app-id=r#"^app\.zen_browser\.zen$"#
+    background-effect {
+        blur true
+    }
+}
+
+// === Floating terminal ===
+window-rule {
+    match app-id="com.ghostty.floating"
+    open-floating true
+}
