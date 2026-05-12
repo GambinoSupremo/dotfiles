@@ -1,63 +1,56 @@
 #!/bin/bash
 # Install key apps on CachyOS MacBook
 
-# Update system first
+echo "Updating system..."
 sudo pacman -Syu --noconfirm
 
-# Core apps you likely use
-APPS="
-base-devel
-git
-github-cli
-zsh
-zoxide
-starship
-kitty
-ghostty
-zed
-neovim
-ripgrep
-fd
-fzf
-bat
-eza
-btop
-fastfetch
-niri
-mangowm
-noctalia-shell
-noctalia-qs
-brightnessctl
-slurp
-grim
-wl-clipboard
-wtype
-wlr-randr
-imagemagick
-ffmpeg
-mpv
-vlc
-qbittorrent
-obs-studio-browser
-signal-desktop
-vesktop
-element-desktop
-firefox
-zen-browser-bin
-steam
-lutris
-gamemode
-gamescope
-mangohud
-pokemon-colorscripts-git
-papirus-icon-theme
-bibata-cursor-theme-bin
-ttf-meslo-nerd
-noto-fonts-emoji
-"
-
 echo "Installing essential apps..."
-sudo pacman -S --noconfirm $APPS
+
+# Apps that definitely exist in CachyOS repos
+sudo pacman -S --noconfirm \
+  base-devel \
+  git \
+  github-cli \
+  zsh \
+  zoxide \
+  starship \
+  kitty \
+  ghostty \
+  neovim \
+  ripgrep \
+  fd \
+  fzf \
+  bat \
+  eza \
+  btop \
+  fastfetch \
+  niri \
+  mangowm \
+  noctalia-shell \
+  brightnessctl \
+  slurp \
+  grim \
+  wl-clipboard \
+  wtype \
+  wlr-randr \
+  imagemagick \
+  ffmpeg \
+  mpv \
+  vlc \
+  firefox \
+  ttf-meslo-nerd \
+  noto-fonts-emoji \
+  papirus-icon-theme
+
+# Try to install from AUR (if paru/yay available)
+if command -v paru &> /dev/null; then
+  echo "Installing AUR packages with paru..."
+  paru -S --noconfirm zed bibata-cursor-theme-bin || true
+elif command -v yay &> /dev/null; then
+  echo "Installing AUR packages with yay..."
+  yay -S --noconfirm zed bibata-cursor-theme-bin || true
+else
+  echo "paru/yay not found. Install zed/bibata manually with: paru -S zed bibata-cursor-theme-bin"
+fi
 
 echo "Done! Your apps are installed."
-echo "To use Niri/MangoWM, set your session at login."
