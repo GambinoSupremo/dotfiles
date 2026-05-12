@@ -1,0 +1,24 @@
+# Font
+font-family = MesloLGS Nerd Font
+font-size = 12
+
+# Window
+background-opacity = 0.7
+window-decoration = none
+window-padding-x = 12
+window-padding-y = 12
+confirm-close-surface = false
+
+# Cursor
+cursor-style = block
+cursor-style-blink = true
+
+# Scrollback
+scrollback-limit = 3023
+
+keybind = ctrl+c=copy_to_clipboard
+keybind = ctrl+v=paste_from_clipboard
+
+# Shell
+command = /usr/bin/zsh -c '/usr/local/bin/pokemon-colorscripts -r --no-title; exec /usr/bin/zsh'
+theme = noctalia
