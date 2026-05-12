@@ -1,0 +1,18 @@
+# AUR / foreign packages
+# Regenerate: pacman -Qqem > packages/aur.txt
+# Note: paru itself is bootstrapped by install.sh — do not list it here.
+
+bibata-cursor-theme-bin
+fluxer-bin
+input-remapper
+lunatask
+millennium
+moondeckbuddy-appimage
+nordzy-icon-theme
+opencode-bin
+openrazer-meta-git
+polychromatic
+python-pywalfox
+tela-icon-theme
+tidal-hifi-tidaluna
+xdg-terminal-exec
