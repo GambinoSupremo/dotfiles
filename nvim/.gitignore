@@ -1,0 +1,17 @@
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+spell/
+shada/
+/data/
+/.netrwhist
+/sessions/
+/undo/
+/swap/
+/backup/
+/view/
