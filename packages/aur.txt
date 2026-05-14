@@ -17,4 +17,3 @@ tela-icon-theme
 tidal-hifi-tidaluna
 xdg-terminal-exec
 pokemon-colorscripts-git
-pokemon-colorscripts-git
