@@ -1,0 +1,17 @@
+# Noctalia v5 user config (TOML schema).
+# Newer v5 builds (incl. the NixOS pin) merge every *.toml in
+# ~/.config/noctalia/ and never read the legacy settings.json — that file is
+# kept in this directory only for pre-TOML v5 builds like the May 2026
+# CachyOS install. Runtime changes made in the Settings UI are persisted
+# separately (state dir settings.toml) and override these values.
+
+[wallpaper]
+enabled   = true
+fill_mode = "crop"
+directory = "/home/gav/Pictures/backgrounds"
+
+[wallpaper.automation]
+enabled          = true
+interval_minutes = 45        # CachyOS settings.json: randomIntervalSec = 2700
+order            = "random"  # CachyOS settings.json: wallpaperChangeMode = "random"
+recursive        = true      # pick from subfolders (abstract/, gruvbox/, ...)
