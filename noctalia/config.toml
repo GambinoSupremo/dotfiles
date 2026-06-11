@@ -1,17 +1,134 @@
-# Noctalia v5 user config (TOML schema).
-# Newer v5 builds (incl. the NixOS pin) merge every *.toml in
-# ~/.config/noctalia/ and never read the legacy settings.json — that file is
-# kept in this directory only for pre-TOML v5 builds like the May 2026
-# CachyOS install. Runtime changes made in the Settings UI are persisted
-# separately (state dir settings.toml) and override these values.
+[bar.default]
+background_opacity = 0.97999997809529305
+border = "secondary"
+capsule = true
+center = [ "clock", "media" ]
+color = "primary"
+end = [ "tray", "notifications", "clipboard", "volume", "control-center", "session" ]
+font_weight = 400
+margin_edge = 0.0
+margin_ends = 0.0
+scale = 0.90000000596046448
+thickness = 32
+
+[config]
+
+[[control_center.shortcuts]]
+type = "bluetooth"
+
+[[control_center.shortcuts]]
+type = "caffeine"
+
+[[control_center.shortcuts]]
+type = "nightlight"
+
+[[control_center.shortcuts]]
+type = "notification"
+
+[osd]
+background_opacity = 0.89999997988343239
+offset_x = 8.0
+scale = 0.85000000521540642
+
+[shell]
+avatar_path = "/home/gav/Downloads/p.kagi.jpg"
+settings_show_advanced = true
+telemetry_enabled = false
+
+    [shell.panel]
+    open_near_click_control_center = true
+    open_near_click_session = true
+    open_near_click_wallpaper = true
+
+[templates.vivaldi]
+input_path = "~/.config/noctalia/templates/vivaldi.css"
+output_path = "~/.cache/noctalia/vivaldi/vivaldi.css"
+
+[theme]
+builtin = "Gruvbox"
+community_palette = "Tokyo Night Moon"
+source = "wallpaper"
+
+    [theme.templates]
+    builtin_ids = [
+        "alacritty",
+        "btop",
+        "cava",
+        "emacs",
+        "foot",
+        "gtk3",
+        "gtk4",
+        "ghostty",
+        "helix",
+        "hyprland",
+        "kcolorscheme",
+        "kitty",
+        "labwc",
+        "mango",
+        "niri",
+        "qt",
+        "scroll",
+        "starship",
+        "sway",
+        "wezterm"
+    ]
+    community_ids = [
+        "pi-agent",
+        "spicetify",
+        "tauon",
+        "pywalfox",
+        "zen-browser",
+        "neovim",
+        "obsidian",
+        "vscode",
+        "zed",
+        "fuzzel",
+        "vicinae",
+        "walker",
+        "discord",
+        "steam",
+        "telegram",
+        "yazi",
+        "zathura",
+        "hyprtoolkit"
+    ]
 
 [wallpaper]
-enabled   = true
-fill_mode = "crop"
 directory = "/home/gav/Pictures/backgrounds"
 
-[wallpaper.automation]
-enabled          = true
-interval_minutes = 45        # CachyOS settings.json: randomIntervalSec = 2700
-order            = "random"  # CachyOS settings.json: wallpaperChangeMode = "random"
-recursive        = true      # pick from subfolders (abstract/, gruvbox/, ...)
+    [wallpaper.automation]
+    enabled = true
+    interval_minutes = 55
+
+    [wallpaper.default]
+    path = "/home/gav/Pictures/backgrounds/abstract/a_painting_of_a_man_with_a_dripping_face.jpg"
+
+    [wallpaper.last]
+    path = "/home/gav/Pictures/backgrounds/abstract/a_painting_of_a_man_with_a_dripping_face.jpg"
+
+    [wallpaper.monitors.DP-1]
+    path = "/home/gav/Pictures/backgrounds/abstract/a_painting_of_a_man_with_a_dripping_face.jpg"
+
+    [wallpaper.monitors.DP-2]
+    path = "/home/gav/Pictures/backgrounds/abstract/a_painting_of_a_man_with_a_dripping_face.jpg"
+
+    [wallpaper.monitors.WAYLAND-1]
+    path = "/home/gav/Pictures/backgrounds/dreamcore/a_building_on_a_foggy_day.jpg"
+
+[weather]
+address = "Kirkland, WA"
+unit = "imperial"
+
+[widget.clock]
+color = "secondary"
+format = "{:%a %I:%M %p}"
+scale = 1.2000000000000002
+
+[widget.notifications]
+hide_when_no_unread = true
+
+[widget.tray]
+drawer = true
+
+[widget.workspaces]
+hide_when_empty = true
