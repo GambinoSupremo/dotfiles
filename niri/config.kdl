@@ -78,7 +78,7 @@ environment {
     QT_QPA_PLATFORMTHEME "qt6ct"
     XCURSOR_THEME "Bibata-Modern-Ice"
     XCURSOR_SIZE "24"
-    TERMINAL "kitty"
+    TERMINAL "ghostty"
     __GL_VRR_ALLOWED "1"
     __GL_GSYNC_ALLOWED "1"
 }
@@ -91,7 +91,13 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // === Autostart ===
-spawn-at-startup "qs" "-c" "noctalia-shell"
+spawn-at-startup "noctalia"
+// stack-comms.sh watches the niri event stream and merges Signal + Tidal into
+// one shared column on "comms", then exits. Niri-only — MangoWM's master
+// layout does this natively. Spawned before the apps so it is already
+// subscribed when their windows map. Spawn order below (Discord → Signal →
+// Tidal) determines column order on the workspace.
+spawn-at-startup "/home/gav/dotfiles/niri/scripts/stack-comms.sh"
 spawn-at-startup "mullvad-exclude" "vesktop"
 spawn-at-startup "signal-desktop"
 spawn-at-startup "tidal-hifi"
@@ -206,6 +212,3 @@ include optional=true "./cursor.kdl"
 include optional=true "./noctalia.kdl"
 include optional=true "./alttab.kdl"
 include "./windowrules.kdl"
-
-include "./noctalia.kdl"
-

@@ -13,20 +13,20 @@ window-rule {
 
 // === Comms (pinned to "comms" workspace on Philips) ===
 window-rule {
-    match app-id="vesktop"
+    match app-id=r#"^vesktop$"#
     default-column-width { proportion 0.5; }
     open-on-workspace "comms"
     opacity 0.85
 }
 
 window-rule {
-    match app-id="signal"
+    match app-id=r#"^signal$"#
     default-column-width { proportion 0.5; }
     open-on-workspace "comms"
     opacity 0.85
 }
 window-rule {
-    match app-id="tidal-hifi"
+    match app-id=r#"^tidal-hifi$"#
     default-column-width { proportion 0.5; }
     open-on-workspace "comms"
     opacity 0.85
@@ -75,19 +75,19 @@ window-rule {
 // Xray is implicit when blur is true — only the wallpaper is blurred,
 // not other windows behind. See niri docs: Window Effects.
 window-rule {
-    match app-id="vesktop"
+    match app-id=r#"^vesktop$"#
     background-effect {
         blur true
     }
 }
 window-rule {
-    match app-id="signal"
+    match app-id=r#"^signal$"#
     background-effect {
         blur true
     }
 }
 window-rule {
-    match app-id="tidal-hifi"
+    match app-id=r#"^tidal-hifi$"#
     background-effect {
         blur true
     }
