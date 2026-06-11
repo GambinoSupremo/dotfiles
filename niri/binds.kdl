@@ -22,20 +22,21 @@ binds {
     Mod+Ctrl+Return { spawn "ghostty" "--gtk-single-instance=false" "--class=com.ghostty.floating"; }
 
     // === App Launcher ===
-    Mod+Space { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
 
     // === App Spawns ===
     Mod+Shift+B { spawn "zen-browser"; }
     Mod+Shift+E { spawn "nautilus"; }
     Mod+Shift+D { spawn "mullvad-exclude" "vesktop"; }
-    Mod+Shift+S { spawn "signal-desktop"; }
+    Mod+Shift+G { spawn "signal-desktop"; }
     Mod+Shift+O { spawn "obsidian"; }
-    Mod+Shift+N { spawn "ghostty" "-e" "nvim"; }
     Mod+Shift+M { spawn "tidal-hifi"; }
     Mod+Shift+Alt+B { spawn "zen-browser" "--private-window"; }
     Mod+Shift+Z { spawn "zeditor"; }
 
     // === Noctalia ===
+    Mod+Escape { spawn "noctalia" "msg" "panel-toggle" "session"; }
+
     Mod+Alt+E { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "emoji"; }
     Mod+Alt+W { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
     Mod+Alt+R { spawn-sh "killall qs && qs -c noctalia-shell &"; }
@@ -144,10 +145,8 @@ binds {
     Mod+Ctrl+R      { reset-window-height; }
 
     // === Screenshots ===
-    // Mod+S         full screen   -> file
-    // Alt+Shift+S   region select -> Niri interactive overlay (clipboard)
-    Mod+S       { screenshot-screen; }
-    Alt+Shift+S { screenshot; }
+    Alt+Shift+S { screenshot; }  // region to clipboard (Niri's built-in overlay)
+    Mod+Shift+S { spawn "bash" "-c" "grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +%s).png"; }
 
     // === Media Keys ===
     XF86AudioPlay        allow-when-locked=true { spawn "playerctl" "play-pause"; }
