@@ -25,10 +25,11 @@ hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("mullvad-exclude vesktop"))
 hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("signal-desktop"))
 hl.bind(mod .. " + SHIFT + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("tidal-hifi"))
-hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-browser --d-window"))
+hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-browser --private-window"))
 hl.bind(mod .. " + SHIFT + Z", hl.dsp.exec_cmd("zeditor"))
 
 -- Noctalia
+hl.bind(mod .. " + backslash", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center audio"))
 hl.bind(mod .. " + ALT + E", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call launcher emoji"))
 hl.bind(mod .. " + ALT + W", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call wallpaper toggle"))
 hl.bind(mod .. " + ALT + R", hl.dsp.exec_cmd([[bash -lc "pkill -f 'qs.*noctalia' && sleep 1 && qs -c noctalia-shell"]]))

@@ -35,7 +35,8 @@ binds {
     Mod+Shift+Z { spawn "zeditor"; }
 
     // === Noctalia ===
-    Mod+Escape { spawn "noctalia" "msg" "panel-toggle" "session"; }
+    Mod+Escape    { spawn "noctalia" "msg" "panel-toggle" "session"; }
+    Mod+Backslash { spawn "noctalia" "msg" "panel-toggle" "control-center" "audio"; }
 
     Mod+Alt+E { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "emoji"; }
     Mod+Alt+W { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
