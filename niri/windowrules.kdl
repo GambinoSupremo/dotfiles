@@ -70,6 +70,22 @@ window-rule {
     opacity 0.95
 }
 
+// === Steam games — restore primary-plane direct scanout ===
+// The global rule in config.kdl sets clip-to-geometry=true +
+// geometry-corner-radius=6 for rounded corners on every window.
+// clip-to-geometry prevents niri from scanning a surface directly
+// to the primary DRM plane (the surface isn't fully visible once
+// clipped), forcing all game frames through the compositor pipeline.
+// opacity < 1.0 (inherited from the global 0.97 rule above) also
+// blocks direct scanout. Both are reverted here so fullscreen game
+// frames bypass the compositor entirely, matching KWin behaviour.
+window-rule {
+    match app-id=r#"^steam_app_.*$"#
+    geometry-corner-radius 0
+    clip-to-geometry false
+    opacity 1.0
+}
+
 // === Background blur (xray) ===
 // Apps below have lowered opacity (0.85) so blur is visible through them.
 // Xray is implicit when blur is true — only the wallpaper is blurred,

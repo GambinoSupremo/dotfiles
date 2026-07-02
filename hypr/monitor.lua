@@ -17,7 +17,15 @@ hl.monitor({
 
 	bitdepth = 10,
 
-	cm = "srgb",
+	cm = "hdr",
+
+	supports_wide_color = 1,
+	supports_hdr = 1,
+
+	-- SDR content inside the HDR signal: brightness boost so the desktop
+	-- doesn't look dim next to HDR highlights.
+	sdrbrightness = 1.4,
+	sdrsaturation = 1.0,
 })
 
 hl.monitor({

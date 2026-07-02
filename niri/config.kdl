@@ -75,7 +75,7 @@ workspace "comms" {
 environment {
     XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_TYPE "wayland"
-    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_QPA_PLATFORMTHEME "kde"
     XCURSOR_THEME "Bibata-Modern-Ice"
     XCURSOR_SIZE "24"
     TERMINAL "ghostty"
