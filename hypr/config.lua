@@ -58,6 +58,10 @@ hl.config({
         focus_on_activate       = false, -- mango focus_on_activate = 0
     },
 
+    render = {
+        cm_auto_hdr = true,
+    },
+
     dwindle = {
         preserve_split = true,
     },

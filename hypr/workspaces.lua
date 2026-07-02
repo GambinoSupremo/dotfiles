@@ -12,7 +12,8 @@ hl.workspace_rule({
     workspace = "2",
     monitor = "DP-2",
     persistent = true,
-    layout = "dwindle",
+    layout = "scrolling",
+    layout_opts = { direction = "right" },
 })
 
 hl.workspace_rule({
@@ -30,24 +31,21 @@ hl.workspace_rule({
     monitor = "DP-1",
     default = true,
     persistent = true,
-    layout = "master",
-    layout_opts = { orientation = "left" },
+    layout = "dwindle",
 })
 
 hl.workspace_rule({
     workspace = "5",
     monitor = "DP-1",
     persistent = true,
-    layout = "master",
-    layout_opts = { orientation = "left" },
+    layout = "dwindle",
 })
 
 hl.workspace_rule({
     workspace = "6",
     monitor = "DP-1",
     persistent = true,
-    layout = "master",
-    layout_opts = { orientation = "left" },
+    layout = "dwindle",
 })
 
 -- Scratchpad / special workspace
