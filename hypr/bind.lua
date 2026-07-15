@@ -106,10 +106,14 @@ hl.bind(mod .. " + minus", hl.dsp.window.resize({ x = -50, y = 0, relative = tru
 hl.bind(mod .. " + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
 hl.bind(mod .. " + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
 
--- Clipboard
--- NOTE: your Mango config uses SUPER+C twice. Here, SUPER+C/V are reserved for clipboard.
-hl.bind(mod .. " + C", hl.dsp.exec_cmd("wtype -d 100 -M ctrl -k Insert -m ctrl"))
-hl.bind(mod .. " + V", hl.dsp.exec_cmd("wtype -d 100 -M shift -k Insert -m shift"))
+-- Clipboard — Omarchy-style universal copy/paste: SUPER+C/X/V everywhere.
+-- CTRL+Insert (copy) and SHIFT+Insert (paste) are honored by terminals AND
+-- regular apps alike, so no window-class detection is needed. SUPER+CTRL+V
+-- opens the noctalia clipboard-history panel.
+hl.bind(mod .. " + C", hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" }))
+hl.bind(mod .. " + V", hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert" }))
+hl.bind(mod .. " + X", hl.dsp.send_shortcut({ mods = "CTRL", key = "X" }))
+hl.bind(mod .. " + CTRL + V", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"))
 
 -- Scratchpad
 hl.bind("ALT + Z", hl.dsp.workspace.toggle_special("scratchpad"))
