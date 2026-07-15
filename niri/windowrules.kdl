@@ -81,6 +81,7 @@ window-rule {
 // frames bypass the compositor entirely, matching KWin behaviour.
 window-rule {
     match app-id=r#"^steam_app_.*$"#
+    open-on-workspace "gaming"
     geometry-corner-radius 0
     clip-to-geometry false
     opacity 1.0
