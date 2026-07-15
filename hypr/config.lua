@@ -66,6 +66,19 @@ hl.config({
         cm_auto_hdr = true,
     },
 
+    -- NVIDIA hardware-cursor bug: the cursor image freezes on screen while
+    -- the pointer keeps working invisibly (worse with the HDR/10-bit
+    -- pipeline). Software cursors fix it — same reason mango/env.conf sets
+    -- WLR_NO_HARDWARE_CURSORS=1.
+    cursor = {
+        no_hardware_cursors = true,
+        -- With software cursors + VRR, static screens render no frames, so
+        -- the cursor icon freezes while the pointer still works (seen with
+        -- the Steam Controller trackpad on an idle workspace). Force frames
+        -- while the cursor moves.
+        min_refresh_rate = 60,
+    },
+
     dwindle = {
         preserve_split = true,
     },
