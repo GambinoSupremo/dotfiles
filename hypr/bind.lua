@@ -49,16 +49,21 @@ hl.bind(mod .. " + L", hl.dsp.focus({ direction = "r" }))
 hl.bind(mod .. " + K", hl.dsp.focus({ direction = "u" }))
 hl.bind(mod .. " + J", hl.dsp.focus({ direction = "d" }))
 
--- Window movement/swapping
-hl.bind(mod .. " + SHIFT + Left", hl.dsp.window.swap({ direction = "l" }))
-hl.bind(mod .. " + SHIFT + Right", hl.dsp.window.swap({ direction = "r" }))
-hl.bind(mod .. " + SHIFT + Up", hl.dsp.window.swap({ direction = "u" }))
-hl.bind(mod .. " + SHIFT + Down", hl.dsp.window.swap({ direction = "d" }))
+-- Window movement — window.move re-inserts into the layout (movewindow),
+-- so pushing the right window Down stacks it under the left one. window.swap
+-- only exchanges two existing windows and can't restructure the tree.
+hl.bind(mod .. " + SHIFT + Left", hl.dsp.window.move({ direction = "l" }))
+hl.bind(mod .. " + SHIFT + Right", hl.dsp.window.move({ direction = "r" }))
+hl.bind(mod .. " + SHIFT + Up", hl.dsp.window.move({ direction = "u" }))
+hl.bind(mod .. " + SHIFT + Down", hl.dsp.window.move({ direction = "d" }))
 
-hl.bind(mod .. " + SHIFT + H", hl.dsp.window.swap({ direction = "l" }))
-hl.bind(mod .. " + SHIFT + L", hl.dsp.window.swap({ direction = "r" }))
-hl.bind(mod .. " + SHIFT + K", hl.dsp.window.swap({ direction = "u" }))
-hl.bind(mod .. " + SHIFT + J", hl.dsp.window.swap({ direction = "d" }))
+hl.bind(mod .. " + SHIFT + H", hl.dsp.window.move({ direction = "l" }))
+hl.bind(mod .. " + SHIFT + L", hl.dsp.window.move({ direction = "r" }))
+hl.bind(mod .. " + SHIFT + K", hl.dsp.window.move({ direction = "u" }))
+hl.bind(mod .. " + SHIFT + J", hl.dsp.window.move({ direction = "d" }))
+
+-- Flip the focused split between side-by-side and stacked (dwindle)
+hl.bind(mod .. " + T", hl.dsp.layout("togglesplit"))
 
 -- Monitor focus
 hl.bind(mod .. " + CTRL + Left", hl.dsp.focus({ monitor = "l" }))
