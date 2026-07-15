@@ -1,3 +1,10 @@
+-- Keybinds — mirrors mango/bind.conf and niri/binds.kdl.
+--
+-- NOTE: NixOS deploys a patched copy (nixos-config home/dotfiles.nix):
+-- v4-era Noctalia IPC calls, zen-browser, and the signal-desktop spawn are
+-- rewritten by seds that match the exact line text below. Rewording a
+-- matched line fails the NixOS build on purpose. Edit both places together.
+
 local mod = "SUPER"
 
 -- System

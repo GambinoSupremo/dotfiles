@@ -1,6 +1,12 @@
 // ============================================================
 // Gavin's Niri Config - No DMS dependencies
 // Mirrors ~/.config/mango/ split-file structure
+//
+// NOTE: NixOS deploys a patched copy (nixos-config home/dotfiles.nix):
+// the stack-comms.sh path and signal-desktop spawns are rewritten, and
+// per-app opacity window-rules are appended after the includes. The seds
+// match exact line text below — rewording a matched line fails the NixOS
+// build on purpose. Edit both places together.
 // ============================================================
 
 config-notification {

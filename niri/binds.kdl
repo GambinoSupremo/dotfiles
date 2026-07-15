@@ -3,6 +3,11 @@ binds {
     // Gavin's Unified Keybinds - Niri
     // Mirrors ~/.config/mango/bind.conf
     //
+    // NOTE: NixOS deploys a patched copy (nixos-config home/dotfiles.nix):
+    // v4-era Noctalia IPC spawns and zen-browser are rewritten by seds that
+    // match the exact line text below. Rewording a matched line fails the
+    // NixOS build on purpose. Edit both places together.
+    //
     // Modifier rule:
     //   Mod              = focus (within workspace)
     //   Mod+Shift        = move focused window (within workspace)
