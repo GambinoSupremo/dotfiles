@@ -1,4 +1,7 @@
 // === Monitors ===
+// Outputs are addressed by identity string (make/model/serial), NOT port
+// name — NVIDIA's DP-N index flips with GPU probe order on this box.
+// Never switch these to DP-N names.
 output "Dell Inc. Dell AW3423DW #tBszGDAYBQUH" {
     mode "3440x1440@174.963"
     scale 1
