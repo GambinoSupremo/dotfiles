@@ -13,7 +13,10 @@ hl.monitor({
 	position = "0x0",
 	scale = 1,
 
-	vrr = 1,
+	-- 2 = fullscreen only: games keep VRR, but the desktop stays locked at
+	-- 175 Hz — fluctuating refresh on this QD-OLED causes visible gamma
+	-- flicker on dark backgrounds.
+	vrr = 2,
 
 	bitdepth = 10,
 
