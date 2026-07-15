@@ -55,7 +55,11 @@ hl.config({
     misc = {
         force_default_wallpaper = -1,
         disable_hyprland_logo   = true,
-        focus_on_activate       = false, -- mango focus_on_activate = 0
+        focus_on_activate       = false, -- keep OFF globally: Steam etc. steal
+                                         -- focus on launch when true. Apps that
+                                         -- SHOULD grab focus (Vesktop notification
+                                         -- clicks) get a per-window rule with
+                                         -- focus_on_activate in rule.lua instead.
     },
 
     render = {
