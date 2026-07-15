@@ -29,7 +29,9 @@ hl.bind(mod .. " + space", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher")
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("zen-browser"))
 hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd("nautilus"))
 hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("mullvad-exclude vesktop"))
-hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("signal-desktop"))
+-- No signal-desktop spawn bind: SUPER+SHIFT+S is the screenshot bind below
+-- (this line used to bind both — the duplicate silently shadowed one of
+-- them). Signal autostarts on workspace 5; use the launcher to respawn it.
 hl.bind(mod .. " + SHIFT + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("tidal-hifi"))
 hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-browser --private-window"))
@@ -117,6 +119,12 @@ hl.bind(mod .. " + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -50, relati
 -- CTRL+Insert (copy) and SHIFT+Insert (paste) are honored by terminals AND
 -- regular apps alike, so no window-class detection is needed. SUPER+CTRL+V
 -- opens the noctalia clipboard-history panel.
+--
+-- On NixOS, keyd (base/services.nix; verified active) already remaps plain
+-- super+c/super+v to C-/S-Insert at the kernel level, so the SUPER+C and
+-- SUPER+V binds below never fire there — they exist for non-keyd installs.
+-- SUPER+X and SUPER+CTRL+V are NOT remapped by keyd (extra key/modifier
+-- means keyd passes the chord through), so those two do the work on NixOS.
 hl.bind(mod .. " + C", hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" }))
 hl.bind(mod .. " + V", hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert" }))
 hl.bind(mod .. " + X", hl.dsp.send_shortcut({ mods = "CTRL", key = "X" }))
