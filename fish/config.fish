@@ -1,3 +1,7 @@
+# Standalone fish config for non-NixOS machines.
+# On NixOS this directory is NOT deployed — home-manager owns fish there
+# (nixos-config home/shell.nix) and replicates these aliases/inits.
+
 if status is-interactive
 # Commands to run in interactive sessions can go here
 end

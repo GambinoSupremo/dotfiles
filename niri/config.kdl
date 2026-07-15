@@ -1,6 +1,12 @@
 // ============================================================
 // Gavin's Niri Config - No DMS dependencies
 // Mirrors ~/.config/mango/ split-file structure
+//
+// NOTE: NixOS deploys a patched copy (nixos-config home/dotfiles.nix):
+// the stack-comms.sh path and signal-desktop spawns are rewritten, and
+// per-app opacity window-rules are appended after the includes. The seds
+// match exact line text below — rewording a matched line fails the NixOS
+// build on purpose. Edit both places together.
 // ============================================================
 
 config-notification {
@@ -79,8 +85,8 @@ environment {
     XCURSOR_THEME "Bibata-Modern-Ice"
     XCURSOR_SIZE "24"
     TERMINAL "ghostty"
-    __GL_VRR_ALLOWED "1"
-    __GL_GSYNC_ALLOWED "1"
+    // __GL_VRR_ALLOWED / __GL_GSYNC_ALLOWED are set session-wide on NixOS
+    // (nixos/features/nvidia.nix environment.sessionVariables) — not here.
 }
 
 // === General ===

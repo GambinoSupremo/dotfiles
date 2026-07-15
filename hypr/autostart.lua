@@ -1,3 +1,11 @@
+-- Autostart — mirrors mango/autostart.conf.
+--
+-- NOTE: NixOS deploys a patched copy (nixos-config home/dotfiles.nix): the
+-- two env-import lines are replaced by a session-bootstrap script, the raw
+-- noctalia spawn is dropped (it races noctalia.service there), and
+-- signal-desktop gains --password-store. The seds match exact line text
+-- below — rewording a matched line fails the NixOS build on purpose.
+
 hl.on("hyprland.start", function()
     -- Import env for portals and user services
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
