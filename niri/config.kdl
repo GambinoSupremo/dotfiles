@@ -98,11 +98,11 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // === Autostart ===
 spawn-at-startup "noctalia"
-// stack-comms.sh watches the niri event stream and merges Signal + Tidal into
-// one shared column on "comms", then exits. Niri-only — MangoWM's master
-// layout does this natively. Spawned before the apps so it is already
-// subscribed when their windows map. Spawn order below (Discord → Signal →
-// Tidal) determines column order on the workspace.
+// stack-comms.sh watches the niri event stream and arranges "comms": Vesktop
+// leftmost column, Signal + Tidal merged into one column to its right, then
+// exits. Niri-only — MangoWM's master layout does this natively. Spawned
+// before the apps so it is already subscribed when their windows map; the
+// script forces column order itself (Electron map order is racy). Requires jq.
 spawn-at-startup "/home/gav/dotfiles/niri/scripts/stack-comms.sh"
 spawn-at-startup "mullvad-exclude" "vesktop"
 spawn-at-startup "signal-desktop"
@@ -199,9 +199,10 @@ window-rule {
 // === Layer Rules ===
 // Place Noctalia's wallpaper inside the overview backdrop
 // so it shows behind the zoomed-out workspaces in overview mode.
-// Matches noctalia-wallpaper-DP-1, noctalia-wallpaper-DP-2, etc.
+// The namespace is exactly "noctalia-wallpaper" on every output
+// (verified with `niri msg layers` — no per-output suffix).
 layer-rule {
-    match namespace="^noctalia-wallpaper-"
+    match namespace="^noctalia-wallpaper$"
     place-within-backdrop true
 }
 
