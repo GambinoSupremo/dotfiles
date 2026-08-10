@@ -1,13 +1,6 @@
-// ============================================================
-// Gavin's Niri Config - No DMS dependencies
-// Mirrors ~/.config/mango/ split-file structure
-//
-// NOTE: NixOS deploys a patched copy (nixos-config home/dotfiles.nix):
-// the stack-comms.sh path and signal-desktop spawns are rewritten, and
-// per-app opacity window-rules are appended after the includes. The seds
-// match exact line text below — rewording a matched line fails the NixOS
-// build on purpose. Edit both places together.
-// ============================================================
+// Gavin's Niri config — mirrors the mango split-file structure.
+// NixOS deploys a patched copy (nixos-config home/dotfiles.nix) whose seds match
+// exact line text here — rewording a matched line fails the build on purpose.
 
 config-notification {
     disable-failed
@@ -26,7 +19,9 @@ input {
     mouse {
         accel-profile "flat"
     }
-    focus-follows-mouse max-scroll-amount="0%"
+    // 10%, not 0%: 0% swallowed hover-focus on the leftmost comms column at
+    // monitor crossings (2026-07-16); a small clamp still blocks edge steals.
+    focus-follows-mouse max-scroll-amount="10%"
 }
 
 // === Layout ===
@@ -60,9 +55,8 @@ layout {
 }
 
 // === Named Workspaces ===
-// Workspace order matters — declared order determines stack position per monitor
-// Alienware: "main" (1, ad-hoc) → "gaming" (2, Steam lands here)
-// Philips:   "secondary" (1, ad-hoc) → "comms" (2, Vesktop/Signal/Tidal land here)
+// Declared order = stack position per monitor:
+// Alienware main → gaming (Steam); Philips secondary → comms (Vesktop/Signal/Tidal).
 
 workspace "main" {
     open-on-output "Dell Inc. Dell AW3423DW #tBszGDAYBQUH"
@@ -98,11 +92,8 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // === Autostart ===
 spawn-at-startup "noctalia"
-// stack-comms.sh watches the niri event stream and arranges "comms": Vesktop
-// leftmost column, Signal + Tidal merged into one column to its right, then
-// exits. Niri-only — MangoWM's master layout does this natively. Spawned
-// before the apps so it is already subscribed when their windows map; the
-// script forces column order itself (Electron map order is racy). Requires jq.
+// Arranges comms (Vesktop left, Signal+Tidal stacked right) then exits; spawned
+// before the apps so it's already subscribed when they map. Requires jq.
 spawn-at-startup "/home/gav/dotfiles/niri/scripts/stack-comms.sh"
 spawn-at-startup "mullvad-exclude" "vesktop"
 spawn-at-startup "signal-desktop"
@@ -197,10 +188,8 @@ window-rule {
 }
 
 // === Layer Rules ===
-// Place Noctalia's wallpaper inside the overview backdrop
-// so it shows behind the zoomed-out workspaces in overview mode.
-// The namespace is exactly "noctalia-wallpaper" on every output
-// (verified with `niri msg layers` — no per-output suffix).
+// Wallpaper inside the overview backdrop, behind the zoomed-out workspaces.
+// Namespace verified with `niri msg layers` — no per-output suffix.
 layer-rule {
     match namespace="^noctalia-wallpaper$"
     place-within-backdrop true

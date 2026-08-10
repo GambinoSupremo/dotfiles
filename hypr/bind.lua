@@ -1,9 +1,5 @@
--- Keybinds — mirrors mango/bind.conf and niri/binds.kdl.
---
--- NOTE: NixOS deploys a patched copy (nixos-config home/dotfiles.nix):
--- v4-era Noctalia IPC calls, zen-browser, and the signal-desktop spawn are
--- rewritten by seds that match the exact line text below. Rewording a
--- matched line fails the NixOS build on purpose. Edit both places together.
+-- Keybinds — mirrors mango/bind.conf and niri/binds.kdl. NixOS patches this file
+-- (home/dotfiles.nix seds match exact lines; rewording a matched line breaks the build).
 
 local mod = "SUPER"
 
@@ -29,9 +25,8 @@ hl.bind(mod .. " + space", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher")
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("zen-browser"))
 hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd("nautilus"))
 hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("mullvad-exclude vesktop"))
--- No signal-desktop spawn bind: SUPER+SHIFT+S is the screenshot bind below
--- (this line used to bind both — the duplicate silently shadowed one of
--- them). Signal autostarts on workspace 5; use the launcher to respawn it.
+-- No signal-desktop spawn bind — it double-bound SUPER+SHIFT+S with the
+-- screenshot; Signal autostarts, respawn via launcher.
 hl.bind(mod .. " + SHIFT + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("tidal-hifi"))
 hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-browser --private-window"))
@@ -58,9 +53,8 @@ hl.bind(mod .. " + L", hl.dsp.focus({ direction = "r" }))
 hl.bind(mod .. " + K", hl.dsp.focus({ direction = "u" }))
 hl.bind(mod .. " + J", hl.dsp.focus({ direction = "d" }))
 
--- Window movement — window.move re-inserts into the layout (movewindow),
--- so pushing the right window Down stacks it under the left one. window.swap
--- only exchanges two existing windows and can't restructure the tree.
+-- window.move re-inserts into the layout (can restructure the tree);
+-- window.swap only exchanges two windows.
 hl.bind(mod .. " + SHIFT + Left", hl.dsp.window.move({ direction = "l" }))
 hl.bind(mod .. " + SHIFT + Right", hl.dsp.window.move({ direction = "r" }))
 hl.bind(mod .. " + SHIFT + Up", hl.dsp.window.move({ direction = "u" }))
@@ -115,16 +109,9 @@ hl.bind(mod .. " + minus", hl.dsp.window.resize({ x = -50, y = 0, relative = tru
 hl.bind(mod .. " + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
 hl.bind(mod .. " + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
 
--- Clipboard — Omarchy-style universal copy/paste: SUPER+C/X/V everywhere.
--- CTRL+Insert (copy) and SHIFT+Insert (paste) are honored by terminals AND
--- regular apps alike, so no window-class detection is needed. SUPER+CTRL+V
--- opens the noctalia clipboard-history panel.
---
--- On NixOS, keyd (base/services.nix; verified active) already remaps plain
--- super+c/super+v to C-/S-Insert at the kernel level, so the SUPER+C and
--- SUPER+V binds below never fire there — they exist for non-keyd installs.
--- SUPER+X and SUPER+CTRL+V are NOT remapped by keyd (extra key/modifier
--- means keyd passes the chord through), so those two do the work on NixOS.
+-- Universal copy/paste via CTRL/SHIFT+Insert (works in terminals and apps alike).
+-- On NixOS keyd remaps plain SUPER+C/V at the kernel level, so those two binds
+-- only matter on non-keyd installs; SUPER+X and SUPER+CTRL+V pass through keyd.
 hl.bind(mod .. " + C", hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" }))
 hl.bind(mod .. " + V", hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert" }))
 hl.bind(mod .. " + X", hl.dsp.send_shortcut({ mods = "CTRL", key = "X" }))
@@ -156,15 +143,8 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
 
--- Optional Mango-like layout controls you can enable later:
--- On scrolling workspaces:
+-- Optional Mango-like layout controls (scrolling + master) — enable later:
 -- hl.bind(mod .. " + R", hl.dsp.layout("colresize +conf"))
--- hl.bind("ALT + E", hl.dsp.layout("colresize 1.0"))
 -- hl.bind(mod .. " + comma", hl.dsp.layout("swapcol l"))
--- hl.bind(mod .. " + period", hl.dsp.layout("move +col"))
-
--- On master workspaces:
 -- hl.bind(mod .. " + CTRL + A", hl.dsp.layout("orientationleft"))
--- hl.bind(mod .. " + CTRL + D", hl.dsp.layout("orientationcenter"))
--- hl.bind(mod .. " + CTRL + T", hl.dsp.layout("orientationright"))
 -- hl.bind(mod .. " + CTRL + M", hl.dsp.layout("mfact exact 0.50"))

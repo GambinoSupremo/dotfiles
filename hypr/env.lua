@@ -1,9 +1,5 @@
--- Environment variables
--- Mirrors mango/env.conf
---
--- NOTE: If you run Hyprland under uwsm, the upstream Arch wiki recommends
--- ~/.config/uwsm/env-hyprland instead of setting these here. Keeping them
--- inline for parity with Mango (which uses env= in env.conf).
+-- Environment variables — mirrors mango/env.conf (kept inline for parity;
+-- under uwsm these would live in ~/.config/uwsm/env-hyprland).
 
 hl.env("TERMINAL", "ghostty")
 hl.env("QT_QPA_PLATFORMTHEME", "kde")

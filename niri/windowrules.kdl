@@ -1,7 +1,4 @@
-// ============================================================
-// Niri Window Rules - Per-app opacity + comms pinning + blur
-// Mirrors ~/.config/mango/rule.conf
-// ============================================================
+// Niri window rules — per-app opacity, comms pinning, blur. Mirrors mango/rule.conf.
 
 // === Global defaults ===
 window-rule {
@@ -59,9 +56,8 @@ window-rule {
     opacity 0.95
 }
 
-// === Steam client (pinned to "gaming" workspace on Alienware) ===
-// Targets only the main Steam window, not games (steam_app_*).
-// Excludes toast notifications which should remain floating popups.
+// === Steam client (pinned to "gaming" on Alienware) ===
+// Main window only — not games (steam_app_*) or floating toasts.
 window-rule {
     match app-id="^steam$"
     default-column-width { proportion 1.0; }
@@ -71,26 +67,20 @@ window-rule {
 }
 
 // === Steam games — restore primary-plane direct scanout ===
-// The global rule in config.kdl sets clip-to-geometry=true +
-// geometry-corner-radius=6 for rounded corners on every window.
-// clip-to-geometry prevents niri from scanning a surface directly
-// to the primary DRM plane (the surface isn't fully visible once
-// clipped), forcing all game frames through the compositor pipeline.
-// opacity < 1.0 (inherited from the global 0.97 rule above) also
-// blocks direct scanout. Both are reverted here so fullscreen game
-// frames bypass the compositor entirely, matching KWin behaviour.
+// The global clip-to-geometry + sub-1.0 opacity both block direct scanout;
+// revert them so fullscreen game frames bypass the compositor entirely.
 window-rule {
     match app-id=r#"^steam_app_.*$"#
     open-on-workspace "gaming"
     geometry-corner-radius 0
     clip-to-geometry false
     opacity 1.0
+    variable-refresh-rate true
 }
 
 // === Background blur (xray) ===
-// Apps below have lowered opacity (0.85) so blur is visible through them.
-// Xray is implicit when blur is true — only the wallpaper is blurred,
-// not other windows behind. See niri docs: Window Effects.
+// These run at 0.85 opacity so the blur shows; xray is implicit with blur —
+// only the wallpaper is blurred, not windows behind.
 window-rule {
     match app-id=r#"^vesktop$"#
     background-effect {
