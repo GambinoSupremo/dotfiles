@@ -1,8 +1,5 @@
--- Workspace-to-monitor pinning + per-workspace layouts.
--- NOTE: NixOS patches the /usr/bin/ghostty path below (home/dotfiles.nix).
--- Monitor names here are DP-2/DP-1 only; if NVIDIA probe order flips them
--- to DP-4/DP-3 these rules silently stop matching (same caveat as
--- mango/tag.conf).
+-- Workspace pinning + layouts. NixOS patches the /usr/bin/ghostty path below.
+-- DP-2/DP-1 only: an NVIDIA probe-order flip to DP-4/DP-3 silently unmatches these.
 
 -- DP-2 / Alienware
 

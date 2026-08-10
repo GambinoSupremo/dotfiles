@@ -1,21 +1,7 @@
 binds {
-    // ============================================================
-    // Gavin's Unified Keybinds - Niri
-    // Mirrors ~/.config/mango/bind.conf
-    //
-    // NOTE: NixOS deploys a patched copy (nixos-config home/dotfiles.nix):
-    // v4-era Noctalia IPC spawns and zen-browser are rewritten by seds that
-    // match the exact line text below. Rewording a matched line fails the
-    // NixOS build on purpose. Edit both places together.
-    //
-    // Modifier rule:
-    //   Mod              = focus (within workspace)
-    //   Mod+Shift        = move focused window (within workspace)
-    //   Mod+Ctrl         = focus across boundary (workspace/monitor)
-    //   Mod+Ctrl+Alt     = move focused window across boundary
-    //
-    // Each navigation block groups arrows + vim + mouse wheel together.
-    // ============================================================
+    // Unified keybinds — mirrors mango/bind.conf. NixOS patches this file
+    // (home/dotfiles.nix seds match exact lines; rewording breaks the build).
+    // Tiers: Mod=focus · +Shift=move window · +Ctrl=cross boundary · +Ctrl+Alt=move across.
 
     // === System ===
     Mod+Q { close-window; }
@@ -47,9 +33,7 @@ binds {
     Mod+Alt+W { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
     Mod+Alt+R { spawn-sh "killall qs && qs -c noctalia-shell &"; }
 
-    // ============================================================
-    // Navigation: Focus
-    // ============================================================
+    // === Navigation: Focus ===
 
     // Focus column L/R (within workspace)
     Mod+Left  { focus-column-left; }
@@ -79,9 +63,7 @@ binds {
     Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
     Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
 
-    // ============================================================
-    // Navigation: Move focused window
-    // ============================================================
+    // === Navigation: Move focused window ===
 
     // Move column L/R (within workspace)
     Mod+Shift+Left  { move-column-left; }

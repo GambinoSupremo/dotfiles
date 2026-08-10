@@ -8,9 +8,7 @@ hl.window_rule({
     size = { 900, 600 },
 })
 
--- Steam and games go to workspace 2 (Alienware).
--- "silent" opens them there WITHOUT switching workspace / stealing focus
--- (if you're already on workspace 2, the new window focuses normally).
+-- Steam + games → workspace 2 (Alienware); "silent" = no workspace switch or focus steal.
 hl.window_rule({
     name = "steam-main",
     match = { class = "steam" },
@@ -25,10 +23,8 @@ hl.window_rule({
     scrolling_width = 1.0,
 })
 
--- Steam secondary windows (Friends List, Settings, dialogs) float; the main
--- client window tiles. Hyprland's regex engine (RE2) has no lookahead, so
--- "title != Steam" can't be matched directly — instead float everything and
--- un-float the main window below (later rules win).
+-- Secondary Steam windows float, main window tiles. RE2 has no lookahead, so
+-- float everything and un-float the main window below (later rules win).
 hl.window_rule({
     name = "steam-secondary-float",
     match = { class = "steam" },
@@ -49,10 +45,8 @@ hl.window_rule({
     workspace = "5 silent",
 })
 
--- Notification-click focus: comms apps may yank focus when they ask for it —
--- that's what makes clicking a notification jump to the app's workspace. The
--- global misc.focus_on_activate stays false so Steam/games can't steal focus
--- on launch. Add a rule here whenever a new app should behave this way.
+-- Comms apps may yank focus on request (notification clicks jump to them);
+-- global focus_on_activate stays false so Steam can't. Add new apps here.
 hl.window_rule({
     name = "vesktop-focus-on-activate",
     match = { class = "vesktop" },
@@ -64,14 +58,6 @@ hl.window_rule({
     match = { class = "signal|Signal" },
     focus_on_activate = true,
 })
-
--- Uncomment if the Proton Mail desktop app ever gets installed
--- (pkgs.protonmail-desktop; verify class with: hyprctl clients)
--- hl.window_rule({
---     name = "protonmail-focus-on-activate",
---     match = { class = "proton-mail|Proton Mail" },
---     focus_on_activate = true,
--- })
 
 hl.window_rule({
     name = "signal-secondary",
@@ -85,11 +71,5 @@ hl.window_rule({
     workspace = "5 silent",
 })
 
--- Optional layer blur for bars/shells.
--- Run `hyprctl layers` and replace the namespace once you know your Noctalia shell namespace.
--- Example:
--- hl.layer_rule({
---   match = { namespace = "waybar" },
---   blur = true,
---   blur_popups = true,
--- })
+-- Optional layer blur for bars/shells: hl.layer_rule({ match = { namespace = ... }, blur = true })
+-- (find the namespace with `hyprctl layers`).

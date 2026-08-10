@@ -1,9 +1,5 @@
-// ============================================================
-// Recent Windows / Alt-Tab Switcher
-// ============================================================
-// Overrides Noctalia's recent-windows block to remove Mod+Tab
-// bindings (freeing them for overview). Must be included AFTER
-// noctalia.kdl in config.kdl.
+// Alt-Tab switcher — overrides Noctalia's recent-windows block to free Mod+Tab
+// for overview. Must be included AFTER noctalia.kdl in config.kdl.
 
 recent-windows {
     binds {

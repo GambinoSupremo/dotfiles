@@ -1,9 +1,5 @@
--- Monitor config
--- IMPORTANT:
--- 1) Position uses logical/scaled coordinates.
--- 2) DP-2 is the HDR-capable Alienware.
--- 3) Always-on HDR means SDR desktop content is tone-mapped into HDR.
--- 4) If screen sharing breaks, test bitdepth = 8 or keep_unmodified_copy = 1/2.
+-- Monitors — positions are logical/scaled; DP-2 is the HDR Alienware (SDR is
+-- tone-mapped). If screen sharing breaks, try bitdepth 8 or keep_unmodified_copy.
 
 local BAR_TOP = 0
 
@@ -13,9 +9,8 @@ hl.monitor({
 	position = "0x0",
 	scale = 1,
 
-	-- 2 = fullscreen only: games keep VRR, but the desktop stays locked at
-	-- 175 Hz — fluctuating refresh on this QD-OLED causes visible gamma
-	-- flicker on dark backgrounds.
+	-- 2 = fullscreen-only VRR: games keep it, desktop stays locked —
+	-- fluctuating refresh gamma-flickers this QD-OLED on dark backgrounds.
 	vrr = 2,
 
 	bitdepth = 10,

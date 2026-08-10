@@ -1,21 +1,5 @@
--- General config: look & feel, input, animations
--- Mirrors the non-include portion of mango/config.conf
---
--- Mango key → Hyprland key mapping (only the non-obvious ones noted):
---   borderpx              → general.border_size
---   gappih/gappiv         → general.gaps_in
---   gappoh/gappov         → general.gaps_out
---   border_radius         → decoration.rounding
---   focused_opacity       → decoration.active_opacity
---   unfocused_opacity     → decoration.inactive_opacity
---   blur_params_*         → decoration.blur.{size,passes,...}
---   shadows_*             → decoration.shadow.*
---   repeat_rate/_delay    → input.repeat_rate / repeat_delay
---   xkb_rules_layout      → input.kb_layout
---   tap_to_click etc      → input.touchpad.*
---
--- Note: Hyprland's `decoration.shadow.range` ≈ Mango's `shadows_size`.
---       `render_power` ≈ Mango's `shadows_blur` (rough analog, not 1:1).
+-- General config: look & feel, input, animations. Mirrors the non-include
+-- portion of mango/config.conf (mango-key equivalents noted inline).
 
 hl.config({
     general = {
@@ -55,27 +39,20 @@ hl.config({
     misc = {
         force_default_wallpaper = -1,
         disable_hyprland_logo   = true,
-        focus_on_activate       = false, -- keep OFF globally: Steam etc. steal
-                                         -- focus on launch when true. Apps that
-                                         -- SHOULD grab focus (Vesktop notification
-                                         -- clicks) get a per-window rule with
-                                         -- focus_on_activate in rule.lua instead.
+        focus_on_activate       = false, -- OFF globally (Steam steals focus);
+                                         -- per-app exceptions live in rule.lua.
     },
 
     render = {
         cm_auto_hdr = true,
     },
 
-    -- NVIDIA hardware-cursor bug: the cursor image freezes on screen while
-    -- the pointer keeps working invisibly (worse with the HDR/10-bit
-    -- pipeline). Software cursors fix it — same reason mango/env.conf sets
-    -- WLR_NO_HARDWARE_CURSORS=1.
+    -- NVIDIA hardware cursors freeze on screen (worse under HDR/10-bit) —
+    -- software cursors fix it, same as WLR_NO_HARDWARE_CURSORS in mango/env.conf.
     cursor = {
         no_hardware_cursors = true,
-        -- With software cursors + VRR, static screens render no frames, so
-        -- the cursor icon freezes while the pointer still works (seen with
-        -- the Steam Controller trackpad on an idle workspace). Force frames
-        -- while the cursor moves.
+        -- Software cursors + VRR render no frames on static screens, freezing
+        -- the cursor icon; force frames while it moves.
         min_refresh_rate = 60,
     },
 
