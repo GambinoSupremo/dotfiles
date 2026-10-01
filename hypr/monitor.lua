@@ -1,6 +1,6 @@
 -- Monitors — matched by EDID description so connector renumbering can't unmatch them.
--- Positions are logical/scaled; the Alienware is HDR (SDR is
--- tone-mapped). If screen sharing breaks, try bitdepth 8 or keep_unmodified_copy.
+-- Positions are logical/scaled; the Alienware desktop is SDR (fullscreen HDR
+-- games auto-switch via render.cm_auto_hdr). If screen sharing breaks, try bitdepth 8 or keep_unmodified_copy.
 
 local BAR_TOP = 0
 
@@ -16,13 +16,15 @@ hl.monitor({
 
 	bitdepth = 10,
 
-	cm = "hdr",
+	-- SDR desktop: always-HDR greyed out Wayland-native games (PROTON_ENABLE_WAYLAND).
+	-- dcip3 maps sRGB into the panel's P3 gamut (accurate, not oversaturated).
+	cm = "dcip3",
+	sdr_eotf = "gamma22",
 
 	supports_wide_color = 1,
 	supports_hdr = 1,
 
-	-- SDR content inside the HDR signal: brightness boost so the desktop
-	-- doesn't look dim next to HDR highlights.
+	-- Only apply while auto-HDR is active: SDR content inside the HDR signal.
 	sdrbrightness = 1.4,
 	sdrsaturation = 1.0,
 	-- 0.2 default lifts OLED blacks to grey in SDR games/apps.
