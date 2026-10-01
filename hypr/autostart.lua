@@ -13,7 +13,8 @@ hl.on("hyprland.start", function()
     hl.exec_cmd([[gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark']])
 
     -- Set X11 primary output for older XWayland fullscreen apps / some Steam titles
-    hl.exec_cmd([[bash -lc "sleep 2 && xrandr --output DP-2 --primary"]])
+    -- xrandr needs the connector name, so resolve the Alienware's at runtime.
+    hl.exec_cmd([[bash -lc 'sleep 2 && out=$(hyprctl monitors -j | jq -r --arg m "Dell AW3423DW" ".[] | select(.model == \$m) | .name") && xrandr --output "$out" --primary']])
 
     -- Shell / clipboard
     hl.exec_cmd("noctalia")

@@ -8,32 +8,55 @@ hl.window_rule({
     size = { 900, 600 },
 })
 
+-- Satty screenshot editor (Super+Shift+S) floats centered
+hl.window_rule({
+    name = "satty-floating",
+    match = { class = "^com\\.gabm\\.satty$" },
+    float = true,
+    center = true,
+    size = "monitor_w*0.7 monitor_h*0.7",
+})
+
 -- Steam + games → workspace 2 (Alienware); "silent" = no workspace switch or focus steal.
+-- Anchored (^...$) to match niri/windowrules.kdl — unanchored "steam" also
+-- substring-matches "steam_app_NNNNNN", which was letting steam-secondary-float
+-- below force-float actual game windows.
 hl.window_rule({
     name = "steam-main",
-    match = { class = "steam" },
+    match = { class = "^steam$" },
     workspace = "2 silent",
     scrolling_width = 1.0,
 })
 
 hl.window_rule({
     name = "steam-games",
-    match = { class = "steam_app_.*" },
+    match = { class = "^steam_app_.*$" },
     workspace = "2 silent",
     scrolling_width = 1.0,
+})
+
+-- Pre-launch "Launcher" windows (updaters, EAC/BattlEye prompts, etc.) share
+-- the steam_app_ class with the actual game, so the rule above was tiling
+-- them too. Float them back to their own requested size (later rules win).
+-- Confirmed via Marvel Rivals (class steam_app_2767030): title starts as
+-- "broken" (Proton placeholder) then flips to "Launcher".
+hl.window_rule({
+    name = "steam-games-launcher-float",
+    match = { class = "^steam_app_.*$", title = "^(Launcher|broken)$" },
+    float = true,
 })
 
 -- Secondary Steam windows float, main window tiles. RE2 has no lookahead, so
 -- float everything and un-float the main window below (later rules win).
 hl.window_rule({
     name = "steam-secondary-float",
-    match = { class = "steam" },
+    match = { class = "^steam$" },
     float = true,
 })
 
 hl.window_rule({
     name = "steam-main-tile",
-    match = { class = "steam", title = "Steam" },
+    match = { class = "^steam$", title = "Steam" },
     tile = true,
 })
 

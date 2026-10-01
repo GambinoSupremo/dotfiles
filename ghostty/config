@@ -9,7 +9,14 @@ font-family = JetBrainsMono Nerd Font
 font-size = 12
 
 # Window
-background-opacity = 0.7
+background-opacity = 0.8
+# Requests blur on KWin/KineticWE; Hyprland ignores it (blurs via its own config).
+background-blur = true
+# Single-instance mode reuses one GTK app/process for every Mod+Return spawn;
+# only the window that initializes the app gets background-opacity applied
+# correctly, so later windows come out opaque. Disabled to match the floating
+# terminal bind, which already worked around this per-window.
+gtk-single-instance = false
 window-decoration = none
 window-padding-x = 12
 window-padding-y = 12

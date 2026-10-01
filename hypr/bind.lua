@@ -40,7 +40,9 @@ hl.bind(mod .. " + ALT + R", hl.dsp.exec_cmd([[bash -lc "pkill -f 'qs.*noctalia'
 
 -- Screenshots
 hl.bind("ALT + SHIFT + S", hl.dsp.exec_cmd([[bash -lc 'grim -g "$(slurp)" - | wl-copy']]))
-hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd([[bash -lc 'grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%s).png']]))
+-- Noctalia region capture (freezes screen) → Satty annotate; Enter copies, Ctrl+S saves.
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("noctalia msg screenshot-region"))
+hl.bind("Print", hl.dsp.exec_cmd("noctalia msg screenshot-region"))
 
 -- Window focus (arrows + vim)
 hl.bind(mod .. " + Left", hl.dsp.focus({ direction = "l" }))
@@ -127,9 +129,10 @@ for i = 1, 6 do
     hl.bind(mod .. " + CTRL + " .. tostring(i), hl.dsp.window.move({ workspace = tostring(i), follow = false }))
 end
 
--- Mouse wheel workspace cycling
-hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "m+1" }))
-hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "m-1" }))
+-- Mouse wheel workspace cycling (matches Hyprland's own default example:
+-- mouse_down -> next, mouse_up -> previous; this repo previously had it swapped)
+hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "m+1" }))
+hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "m-1" }))
 
 -- Mouse move / resize
 hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })

@@ -1,11 +1,11 @@
 -- Workspace pinning + layouts. NixOS patches the /usr/bin/ghostty path below.
--- DP-2/DP-1 only: an NVIDIA probe-order flip to DP-4/DP-3 silently unmatches these.
+-- Monitors matched by EDID description (same strings as monitor.lua).
 
--- DP-2 / Alienware
+-- Alienware
 
 hl.workspace_rule({
     workspace = "1",
-    monitor = "DP-2",
+    monitor = "desc:Dell Inc. Dell AW3423DW #tBszGDAYBQUH",
     default = true,
     persistent = true,
     layout = "dwindle",
@@ -13,7 +13,7 @@ hl.workspace_rule({
 
 hl.workspace_rule({
     workspace = "2",
-    monitor = "DP-2",
+    monitor = "desc:Dell Inc. Dell AW3423DW #tBszGDAYBQUH",
     persistent = true,
     layout = "scrolling",
     layout_opts = { direction = "right" },
@@ -21,17 +21,17 @@ hl.workspace_rule({
 
 hl.workspace_rule({
     workspace = "3",
-    monitor = "DP-2",
+    monitor = "desc:Dell Inc. Dell AW3423DW #tBszGDAYBQUH",
     persistent = true,
     layout = "scrolling",
     layout_opts = { direction = "right" },
 })
 
--- DP-1 / Philips
+-- Philips
 
 hl.workspace_rule({
     workspace = "4",
-    monitor = "DP-1",
+    monitor = "desc:Philips Consumer Electronics Company PHL 278E1 0x0000065F",
     default = true,
     persistent = true,
     layout = "dwindle",
@@ -39,14 +39,14 @@ hl.workspace_rule({
 
 hl.workspace_rule({
     workspace = "5",
-    monitor = "DP-1",
+    monitor = "desc:Philips Consumer Electronics Company PHL 278E1 0x0000065F",
     persistent = true,
     layout = "dwindle",
 })
 
 hl.workspace_rule({
     workspace = "6",
-    monitor = "DP-1",
+    monitor = "desc:Philips Consumer Electronics Company PHL 278E1 0x0000065F",
     persistent = true,
     layout = "dwindle",
 })

@@ -45,6 +45,8 @@ hl.config({
 
     render = {
         cm_auto_hdr = true,
+        -- Decode SDR as gamma 2.2 (what games are mastered for), not piecewise sRGB.
+        cm_sdr_eotf = "gamma22force",
     },
 
     -- NVIDIA hardware cursors freeze on screen (worse under HDR/10-bit) —
@@ -66,6 +68,7 @@ hl.config({
         repeat_delay       = 600,  -- mango repeat_delay
         follow_mouse       = 1,
         sensitivity        = 0,
+        accel_profile      = "flat", -- 1:1 raw input, no accel curve
         numlock_by_default = false,       -- mango numlockon = 0
         touchpad           = {
             natural_scroll       = false, -- mango trackpad_natural_scrolling = 0

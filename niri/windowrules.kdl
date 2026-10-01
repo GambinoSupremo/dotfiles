@@ -78,6 +78,16 @@ window-rule {
     variable-refresh-rate true
 }
 
+// Pre-launch "Launcher" windows (updaters, EAC/BattlEye prompts, etc.) share
+// the steam_app_ appid with the actual game, so the rule above was tiling
+// them too. Float them back to their own requested size. Confirmed via
+// Marvel Rivals (appid steam_app_2767030): title starts as "broken" (Proton
+// placeholder) then flips to "Launcher".
+window-rule {
+    match app-id=r#"^steam_app_.*$"# title=r#"^(Launcher|broken)$"#
+    open-floating true
+}
+
 // === Background blur (xray) ===
 // These run at 0.85 opacity so the blur shows; xray is implicit with blur —
 // only the wallpaper is blurred, not windows behind.
@@ -111,4 +121,12 @@ window-rule {
 window-rule {
     match app-id="com.ghostty.floating"
     open-floating true
+}
+
+// === Satty screenshot editor (Super+Shift+S) ===
+window-rule {
+    match app-id=r#"^com\.gabm\.satty$"#
+    open-floating true
+    default-column-width { proportion 0.7; }
+    default-window-height { proportion 0.7; }
 }
