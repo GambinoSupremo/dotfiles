@@ -134,7 +134,9 @@ binds {
 
     // === Screenshots ===
     Alt+Shift+S { screenshot; }  // region to clipboard (Niri's built-in overlay)
-    Mod+Shift+S { spawn "bash" "-c" "grim -g \"$(slurp)\" ~/Pictures/Screenshots/$(date +%s).png"; }
+    // Noctalia region capture (freezes screen) → Satty annotate; Enter copies, Ctrl+S saves.
+    Mod+Shift+S { spawn "noctalia" "msg" "screenshot-region"; }
+    Print       { spawn "noctalia" "msg" "screenshot-region"; }
 
     // === Media Keys ===
     XF86AudioPlay        allow-when-locked=true { spawn "playerctl" "play-pause"; }

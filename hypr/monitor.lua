@@ -1,10 +1,11 @@
--- Monitors — positions are logical/scaled; DP-2 is the HDR Alienware (SDR is
+-- Monitors — matched by EDID description so connector renumbering can't unmatch them.
+-- Positions are logical/scaled; the Alienware is HDR (SDR is
 -- tone-mapped). If screen sharing breaks, try bitdepth 8 or keep_unmodified_copy.
 
 local BAR_TOP = 0
 
 hl.monitor({
-	output = "DP-2",
+	output = "desc:Dell Inc. Dell AW3423DW #tBszGDAYBQUH",
 	mode = "3440x1440@174",
 	position = "0x0",
 	scale = 1,
@@ -24,10 +25,12 @@ hl.monitor({
 	-- doesn't look dim next to HDR highlights.
 	sdrbrightness = 1.4,
 	sdrsaturation = 1.0,
+	-- 0.2 default lifts OLED blacks to grey in SDR games/apps.
+	sdr_min_luminance = 0,
 })
 
 hl.monitor({
-	output = "DP-1",
+	output = "desc:Philips Consumer Electronics Company PHL 278E1 0x0000065F",
 	mode = "3840x2160@60",
 	position = "3440x0",
 	scale = 1.5,
