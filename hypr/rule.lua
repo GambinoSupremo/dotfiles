@@ -94,5 +94,12 @@ hl.window_rule({
     workspace = "5 silent",
 })
 
+-- Per-app opacity (focused / unfocused), same values as niri/windowrules.kdl.
+hl.window_rule({
+    name = "app-opacity",
+    match = { class = "^(signal|vesktop|tidal-hifi|cider|zen-beta|obsidian)$" },
+    opacity = "0.95 0.85",
+})
+
 -- Optional layer blur for bars/shells: hl.layer_rule({ match = { namespace = ... }, blur = true })
 -- (find the namespace with `hyprctl layers`).
