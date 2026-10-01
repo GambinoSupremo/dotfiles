@@ -97,8 +97,15 @@ hl.window_rule({
 -- Per-app opacity (focused / unfocused), same values as niri/windowrules.kdl.
 hl.window_rule({
     name = "app-opacity",
-    match = { class = "^(signal|vesktop|tidal-hifi|cider|zen-beta|obsidian)$" },
+    match = { class = "^(signal|vesktop|tidal-hifi|cider|obsidian)$" },
     opacity = "0.95 0.90",
+})
+
+-- Zen fully opaque (overrides global inactive_opacity): translucent video looks wrong on the HDR monitor.
+hl.window_rule({
+    name = "zen-opaque",
+    match = { class = "^zen-beta$" },
+    opacity = "1.0 override 1.0 override",
 })
 
 -- Optional layer blur for bars/shells: hl.layer_rule({ match = { namespace = ... }, blur = true })
