@@ -98,7 +98,7 @@ hl.window_rule({
 hl.window_rule({
     name = "app-opacity",
     match = { class = "^(signal|vesktop|tidal-hifi|cider|zen-beta|obsidian)$" },
-    opacity = "0.95 0.85",
+    opacity = "0.95 0.90",
 })
 
 -- Optional layer blur for bars/shells: hl.layer_rule({ match = { namespace = ... }, blur = true })
