@@ -22,7 +22,7 @@ hl.monitor({
 	sdr_eotf = "gamma22",
 
 	supports_wide_color = 1,
-	supports_hdr = 1,
+	supports_hdr = 0,
 
 	-- Only apply while auto-HDR is active: SDR content inside the HDR signal.
 	sdrbrightness = 1.4,

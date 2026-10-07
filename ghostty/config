@@ -27,9 +27,9 @@ cursor-style = block
 cursor-style-blink = true
 
 # Scrollback
-scrollback-limit = 3023
+scrollback-limit = 10000000
 
-keybind = ctrl+c=copy_to_clipboard
+keybind = performable:ctrl+c=copy_to_clipboard
 keybind = ctrl+v=paste_from_clipboard
 
 # Shell
