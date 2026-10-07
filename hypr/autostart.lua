@@ -16,8 +16,8 @@ hl.on("hyprland.start", function()
     -- xrandr needs the connector name, so resolve the Alienware's at runtime.
     hl.exec_cmd([[bash -lc 'sleep 2 && out=$(hyprctl monitors -j | jq -r --arg m "Dell AW3423DW" ".[] | select(.model == \$m) | .name") && xrandr --output "$out" --primary']])
 
-    -- Shell / clipboard
-    hl.exec_cmd("noctalia")
+    -- Shell / clipboard. Noctalia is started by its systemd user service
+    -- (noctalia.service); launching it here too raced the service into start-limit-hit.
     hl.exec_cmd("wl-paste --watch cliphist store")
 
     -- Startup apps, placed directly onto desired workspaces
