@@ -120,3 +120,35 @@ window-rule {
     default-column-width { proportion 0.7; }
     default-window-height { proportion 0.7; }
 }
+
+// === Per-app opacity: focused 0.95, unfocused 0.90 ===
+window-rule {
+    match app-id="signal"
+    match is-focused=true
+    opacity 0.95
+}
+window-rule {
+    match app-id="signal"
+    match is-focused=false
+    opacity 0.90
+}
+window-rule {
+    match app-id="vesktop"
+    match is-focused=true
+    opacity 0.95
+}
+window-rule {
+    match app-id="vesktop"
+    match is-focused=false
+    opacity 0.90
+}
+window-rule {
+    match app-id="obsidian"
+    match is-focused=true
+    opacity 0.95
+}
+window-rule {
+    match app-id="obsidian"
+    match is-focused=false
+    opacity 0.90
+}
