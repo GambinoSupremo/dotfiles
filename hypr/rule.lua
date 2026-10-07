@@ -108,5 +108,15 @@ hl.window_rule({
     opacity = "1.0 override 1.0 override",
 })
 
+-- xdph screen-share picker: tiling + popin resized it under the cursor, eating the first clicks.
+hl.window_rule({
+    name = "share-picker-float",
+    match = { class = "^hyprland-share-picker$" },
+    float = true,
+    center = true,
+    pin = true,
+    no_anim = true,
+})
+
 -- Optional layer blur for bars/shells: hl.layer_rule({ match = { namespace = ... }, blur = true })
 -- (find the namespace with `hyprctl layers`).
