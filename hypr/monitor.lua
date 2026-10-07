@@ -1,6 +1,6 @@
 -- Monitors — matched by EDID description so connector renumbering can't unmatch them.
--- Positions are logical/scaled; the Alienware desktop is SDR (fullscreen HDR
--- games auto-switch via render.cm_auto_hdr). If screen sharing breaks, try bitdepth 8 or keep_unmodified_copy.
+-- Positions are logical/scaled; the Alienware runs SDR. HDR is deliberately off (supports_hdr = 0,
+-- cm_auto_hdr = false) until desktop HDR works with Moonlight/Sunshine streaming. If screen sharing breaks, try bitdepth 8 or keep_unmodified_copy.
 
 local BAR_TOP = 0
 
@@ -24,7 +24,7 @@ hl.monitor({
 	supports_wide_color = 1,
 	supports_hdr = 0,
 
-	-- Only apply while auto-HDR is active: SDR content inside the HDR signal.
+	-- Only apply in HDR mode (SDR content inside an HDR signal); inert while HDR is off.
 	sdrbrightness = 1.4,
 	sdrsaturation = 1.0,
 	-- 0.2 default lifts OLED blacks to grey in SDR games/apps.
