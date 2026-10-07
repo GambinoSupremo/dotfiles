@@ -34,9 +34,9 @@ hl.bind(mod .. " + SHIFT + Z", hl.dsp.exec_cmd("zeditor"))
 
 -- Noctalia
 hl.bind(mod .. " + backslash", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center audio"))
-hl.bind(mod .. " + ALT + E", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call launcher emoji"))
-hl.bind(mod .. " + ALT + W", hl.dsp.exec_cmd("qs -c noctalia-shell ipc call wallpaper toggle"))
-hl.bind(mod .. " + ALT + R", hl.dsp.exec_cmd([[bash -lc "pkill -f 'qs.*noctalia' && sleep 1 && qs -c noctalia-shell"]]))
+hl.bind(mod .. " + ALT + E", hl.dsp.exec_cmd("noctalia msg panel-open launcher /emo"))
+hl.bind(mod .. " + ALT + W", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
+hl.bind(mod .. " + ALT + R", hl.dsp.exec_cmd("systemctl --user restart noctalia.service"))
 
 -- Screenshots
 hl.bind("ALT + SHIFT + S", hl.dsp.exec_cmd([[bash -lc 'grim -g "$(slurp)" - | wl-copy']]))
