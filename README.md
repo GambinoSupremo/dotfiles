@@ -1,7 +1,7 @@
 # dotfiles
 
-Configs for a Wayland desktop: MangoWM (primary), Niri (secondary),
-Hyprland (tertiary/HDR), Noctalia shell, Ghostty. Consumed two ways:
+Configs for a Wayland desktop: Hyprland (primary), Niri (secondary),
+MangoWM (not deployed by NixOS), Noctalia shell, Ghostty. Consumed two ways:
 standalone on any Linux, or as a flake input of
 [nixos-config](https://github.com/GambinoSupremo/nixos-config), which
 patches and deploys parts of it at build time.
@@ -9,14 +9,13 @@ patches and deploys parts of it at build time.
 ## What is deployed where
 
 - **Deployed by NixOS** (patched by nixos-config `home/dotfiles.nix`,
-  symlinked into `~/.config`): `mango/`, `niri/`, `hypr/`, `ghostty/`.
-  Also consumed by NixOS (wallpapers moved to the separate wallpapers repo):
-  `starship/` (merged, not symlinked), `noctalia/` (seeded once, then
-  runtime-owned; config.toml comes from nixos-config instead).
+  symlinked into `~/.config`): `niri/`, `hypr/`, `ghostty/`.
+  Also consumed by NixOS: `starship/` (merged, not symlinked). Wallpapers
+  live in the separate wallpapers repo.
 - **Standalone / portable** (NOT deployed by NixOS): `fish/`, `zsh/`,
   `packages/` (Arch package lists), `nvim/` (LazyVim tree; on NixOS,
   home-manager currently runs a minimal programs.neovim instead).
-- **Not deployed, reference only**: none.
+- **Not deployed, reference only**: `mango/` (MangoWM is not deployed by NixOS).
 
 ## Ground rules
 
