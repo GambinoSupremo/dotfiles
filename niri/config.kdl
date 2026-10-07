@@ -5,6 +5,11 @@ config-notification {
     disable-failed
 }
 
+// The 1.5 default oversaturates what shows through translucent windows.
+blur {
+    saturation 1.0
+}
+
 // === Input ===
 input {
     keyboard {
