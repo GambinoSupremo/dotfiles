@@ -19,7 +19,7 @@ binds {
     Mod+Shift+B { spawn "zen-beta"; }
     Mod+Shift+E { spawn "nautilus"; }
     Mod+Shift+D { spawn "mullvad-exclude" "vesktop"; }
-    Mod+Shift+G { spawn "signal-desktop"; }
+    Mod+Shift+G { spawn "signal-desktop" "--password-store=gnome-libsecret"; }
     Mod+Shift+O { spawn "obsidian"; }
     Mod+Shift+M { spawn "tidal-hifi"; }
     Mod+Shift+Alt+B { spawn "zen-beta" "--private-window"; }
