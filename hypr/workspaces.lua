@@ -1,4 +1,4 @@
--- Workspace pinning + layouts. NixOS patches the /usr/bin/ghostty path below.
+-- Workspace pinning + layouts.
 -- Monitors matched by EDID description (same strings as monitor.lua).
 
 -- Alienware
@@ -56,5 +56,5 @@ hl.workspace_rule({
     workspace = "special:scratchpad",
     persistent = true,
     animation = "slidevert",
-    on_created_empty = "/usr/bin/ghostty --gtk-single-instance=false --class=com.ghostty.floating",
+    on_created_empty = "ghostty --gtk-single-instance=false --class=com.ghostty.floating",
 })
