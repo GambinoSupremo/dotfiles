@@ -10,7 +10,7 @@ patches and deploys parts of it at build time.
 
 - **Deployed by NixOS** (patched by nixos-config `home/dotfiles.nix`,
   symlinked into `~/.config`): `mango/`, `niri/`, `hypr/`, `ghostty/`.
-  Also consumed by NixOS: `backgrounds/` (→ ~/Pictures/backgrounds),
+  Also consumed by NixOS (wallpapers moved to the separate wallpapers repo):
   `starship/` (merged, not symlinked), `noctalia/` (seeded once, then
   runtime-owned; config.toml comes from nixos-config instead).
 - **Standalone / portable** (NOT deployed by NixOS): `fish/`, `zsh/`,
