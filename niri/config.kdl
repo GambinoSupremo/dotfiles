@@ -96,7 +96,7 @@ spawn-at-startup "noctalia"
 // before the apps so it's already subscribed when they map. Requires jq.
 spawn-at-startup "/home/gav/dotfiles/niri/scripts/stack-comms.sh"
 spawn-at-startup "mullvad-exclude" "vesktop"
-spawn-at-startup "signal-desktop"
+spawn-at-startup "signal-desktop" "--password-store=gnome-libsecret"
 spawn-at-startup "tidal-hifi"
 
 // === Animations ===
