@@ -16,13 +16,13 @@ binds {
     Mod+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
 
     // === App Spawns ===
-    Mod+Shift+B { spawn "zen-browser"; }
+    Mod+Shift+B { spawn "zen-beta"; }
     Mod+Shift+E { spawn "nautilus"; }
     Mod+Shift+D { spawn "mullvad-exclude" "vesktop"; }
     Mod+Shift+G { spawn "signal-desktop"; }
     Mod+Shift+O { spawn "obsidian"; }
     Mod+Shift+M { spawn "tidal-hifi"; }
-    Mod+Shift+Alt+B { spawn "zen-browser" "--private-window"; }
+    Mod+Shift+Alt+B { spawn "zen-beta" "--private-window"; }
     Mod+Shift+Z { spawn "zeditor"; }
 
     // === Noctalia ===
