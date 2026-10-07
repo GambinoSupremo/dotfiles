@@ -151,23 +151,8 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"org.quickshell$"#
+    match app-id=r#"org\.quickshell$"#
     open-floating true
-}
-
-// === Floating Kitty (matches --app-id=floating-kitty) ===
-window-rule {
-    match app-id="floating-kitty"
-    open-floating true
-    default-column-width { proportion 0.4; }
-    default-window-height { proportion 0.5; }
-}
-
-// === Steam Games ===
-window-rule {
-    match app-id=r#"^steam_app_.*$"#
-    variable-refresh-rate true
-    open-fullscreen true
 }
 
 // === Steam Notifications ===
@@ -204,7 +189,6 @@ debug {
 // ============================================================
 include "./binds.kdl"
 include optional=true "./outputs.kdl"
-include optional=true "./cursor.kdl"
 include optional=true "./noctalia.kdl"
 include optional=true "./alttab.kdl"
 include "./windowrules.kdl"
