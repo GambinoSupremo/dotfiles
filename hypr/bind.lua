@@ -1,5 +1,4 @@
--- Keybinds — mirrors mango/bind.conf and niri/binds.kdl. NixOS patches this file
--- (home/dotfiles.nix seds match exact lines; rewording a matched line breaks the build).
+-- Keybinds — mirrors niri/binds.kdl. NixOS deploys this file unchanged.
 
 local mod = "SUPER"
 

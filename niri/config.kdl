@@ -1,6 +1,5 @@
 // Gavin's Niri config — mirrors the mango split-file structure.
-// NixOS deploys a patched copy (nixos-config home/dotfiles.nix) whose seds match
-// exact line text here — rewording a matched line fails the build on purpose.
+// NixOS deploys this file unchanged (nixos-config home/dotfiles.nix).
 
 config-notification {
     disable-failed

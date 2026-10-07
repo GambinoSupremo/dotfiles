@@ -1,6 +1,5 @@
 binds {
-    // Unified keybinds — mirrors mango/bind.conf. NixOS patches this file
-    // (home/dotfiles.nix seds match exact lines; rewording breaks the build).
+    // Unified keybinds — mirrors hypr/bind.lua. NixOS deploys this file unchanged.
     // Tiers: Mod=focus · +Shift=move window · +Ctrl=cross boundary · +Ctrl+Alt=move across.
 
     // === System ===
