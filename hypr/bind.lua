@@ -22,14 +22,14 @@ hl.bind(mod .. " + CTRL + Return",
 hl.bind(mod .. " + space", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"))
 
 -- App spawns
-hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("zen-browser"))
+hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("zen-beta"))
 hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd("nautilus"))
 hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("mullvad-exclude vesktop"))
 -- No signal-desktop spawn bind — it double-bound SUPER+SHIFT+S with the
 -- screenshot; Signal autostarts, respawn via launcher.
 hl.bind(mod .. " + SHIFT + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("tidal-hifi"))
-hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-browser --private-window"))
+hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-beta --private-window"))
 hl.bind(mod .. " + SHIFT + Z", hl.dsp.exec_cmd("zeditor"))
 
 -- Noctalia
