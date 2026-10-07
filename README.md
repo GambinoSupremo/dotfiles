@@ -23,15 +23,18 @@ patches and deploys parts of it at build time.
   **exact line text** in them. Rewording a matched line fails that build on
   purpose — edit both repos together, then `nix flake update dotfiles` +
   rebuild (dotfile edits are never live until then).
-- Keybinds are one scheme in three dialects: `mango/bind.conf`,
-  `niri/binds.kdl`, `hypr/bind.lua` mirror each other (Mod=focus,
-  +Shift=move window, +Ctrl=workspace/monitor, +Ctrl+Alt=move across).
-  Change all three or note the divergence in the file.
+- Keybinds are one scheme: `niri/binds.kdl` and `hypr/bind.lua` mirror
+  each other (Mod=focus, +Shift=move window, +Ctrl=workspace/monitor,
+  +Ctrl+Alt=move across). Change both or note the divergence in the file.
+  `mango/bind.conf` is not deployed by NixOS.
 - `nvim/lua/plugins/dankcolors.lua` is hand-curated — never regenerate.
 - Monitor identity: niri uses identity strings (never port names — the
   NVIDIA DP-N index flips with probe order). Mango/hypr port-name configs
   carry caveat comments; monitor.conf gets both names on NixOS.
-- HDR lives in `hypr/monitor.lua` only (cm=hdr, 10-bit, vrr=2). Mango has
+- HDR is deliberately off: `hypr/monitor.lua` runs the AW3423DW in SDR
+  (`cm = "dcip3"`, `supports_hdr = 0`; `cm_auto_hdr = false` in
+  `hypr/config.lua`) until desktop HDR works with Moonlight/Sunshine
+  streaming. Mango has
   no working HDR (scenefx/GLES lacks input_color_transform; works on the
   wl-only vulkan branch) — don't re-test it casually.
 - VRR is fullscreen-games-only everywhere (QD-OLED gamma flicker):
