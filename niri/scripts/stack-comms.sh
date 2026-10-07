@@ -42,8 +42,8 @@ is_tiled() {
 # the same app_id first, which never tiles at all, and a later event carrying
 # the real window's id will retrigger this — no point camping on a dead one.
 wait_tiled() {
-    local id="$1" attempt
-    for attempt in $(seq 1 3); do
+    local id="$1"
+    for _ in $(seq 1 3); do
         is_tiled "$id" && return 0
         sleep 0.1
     done

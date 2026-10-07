@@ -11,18 +11,7 @@ window-rule {
 // === Comms (pinned to "comms" workspace on Philips) ===
 window-rule {
     match app-id=r#"^vesktop$"#
-    default-column-width { proportion 0.5; }
-    open-on-workspace "comms"
-    opacity 0.85
-}
-
-window-rule {
     match app-id=r#"^signal$"#
-    default-column-width { proportion 0.5; }
-    open-on-workspace "comms"
-    opacity 0.85
-}
-window-rule {
     match app-id=r#"^tidal-hifi$"#
     default-column-width { proportion 0.5; }
     open-on-workspace "comms"
@@ -40,6 +29,7 @@ window-rule {
 window-rule {
     match app-id=r#"^zen$"#
     match app-id=r#"^zen-browser$"#
+    match app-id=r#"^zen-beta$"#
     match app-id=r#"^app\.zen_browser\.zen$"#
     opacity 0.97
 }
@@ -76,6 +66,7 @@ window-rule {
     clip-to-geometry false
     opacity 1.0
     variable-refresh-rate true
+    open-fullscreen true
 }
 
 // Pre-launch "Launcher" windows (updaters, EAC/BattlEye prompts, etc.) share
@@ -93,17 +84,7 @@ window-rule {
 // only the wallpaper is blurred, not windows behind.
 window-rule {
     match app-id=r#"^vesktop$"#
-    background-effect {
-        blur true
-    }
-}
-window-rule {
     match app-id=r#"^signal$"#
-    background-effect {
-        blur true
-    }
-}
-window-rule {
     match app-id=r#"^tidal-hifi$"#
     background-effect {
         blur true
@@ -111,6 +92,7 @@ window-rule {
 }
 window-rule {
     match app-id=r#"^zen-browser$"#
+    match app-id=r#"^zen-beta$"#
     match app-id=r#"^app\.zen_browser\.zen$"#
     background-effect {
         blur true
@@ -121,6 +103,14 @@ window-rule {
 window-rule {
     match app-id="com.ghostty.floating"
     open-floating true
+}
+
+// === Floating Kitty (matches --app-id=floating-kitty) ===
+window-rule {
+    match app-id="floating-kitty"
+    open-floating true
+    default-column-width { proportion 0.4; }
+    default-window-height { proportion 0.5; }
 }
 
 // === Satty screenshot editor (Super+Shift+S) ===

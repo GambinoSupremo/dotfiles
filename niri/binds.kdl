@@ -115,7 +115,7 @@ binds {
     Mod+Shift+W { switch-focus-between-floating-and-tiling; }
     Mod+F       { fullscreen-window; }
     Mod+M       { maximize-column; }
-    Mod+C       { center-column; }
+    Mod+Z       { center-column; } // not Mod+C: keyd turns Super+C into Ctrl+Insert
     Mod+X       { toggle-overview; }
     Mod+Tab     { toggle-overview; }
 
