@@ -94,7 +94,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 spawn-at-startup "noctalia"
 // Arranges comms (Vesktop left, Signal+Tidal stacked right) then exits; spawned
 // before the apps so it's already subscribed when they map. Requires jq.
-spawn-at-startup "/home/gav/dotfiles/niri/scripts/stack-comms.sh"
+spawn-at-startup "/home/gav/.config/niri/scripts/stack-comms.sh"
 spawn-at-startup "mullvad-exclude" "vesktop"
 spawn-at-startup "signal-desktop" "--password-store=gnome-libsecret"
 spawn-at-startup "tidal-hifi"
