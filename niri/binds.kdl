@@ -29,9 +29,9 @@ binds {
     Mod+Escape    { spawn "noctalia" "msg" "panel-toggle" "session"; }
     Mod+Backslash { spawn "noctalia" "msg" "panel-toggle" "control-center" "audio"; }
 
-    Mod+Alt+E { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "launcher" "emoji"; }
-    Mod+Alt+W { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "toggle"; }
-    Mod+Alt+R { spawn-sh "killall qs && qs -c noctalia-shell &"; }
+    Mod+Alt+E { spawn "noctalia" "msg" "panel-open" "launcher" "/emo"; }
+    Mod+Alt+W { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
+    Mod+Alt+R { spawn-sh "systemctl --user restart noctalia.service"; }
 
     // === Navigation: Focus ===
 
