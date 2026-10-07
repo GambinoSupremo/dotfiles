@@ -32,10 +32,12 @@ deploys parts of it at build time.
 - Monitor identity: niri uses identity strings, hypr EDID descriptions, mango
   monitor models — never port names (the NVIDIA DP-N index flips with probe
   order).
-- HDR is deliberately off: `hypr/monitor.lua` runs the AW3423DW in SDR
-  (`cm = "dcip3"`, `supports_hdr = 0`; `cm_auto_hdr = false` in
-  `hypr/config.lua`) until desktop HDR works with Moonlight/Sunshine
-  streaming. Mango has native HDR since 0.15.0, but mango isn't deployed.
+- Colour: the AW3423DW runs in its own Creator mode with the sRGB colour
+  space (gamma 2.2), so it does the sRGB clamp itself. The compositors send
+  plain sRGB (`cm = "srgb"` in `hypr/monitor.lua`; niri has no colour
+  management to set). HDR is deliberately off (`supports_hdr = 0`;
+  `cm_auto_hdr = false` in `hypr/config.lua`) until desktop HDR works with
+  Moonlight/Sunshine streaming. Mango has native HDR since 0.15.0, but mango isn't deployed.
 - VRR is fullscreen-games-only everywhere (QD-OLED gamma flicker):
   hypr `vrr=2`, niri `on-demand` + steam_app rule, mango `vrr:0` +
   `vrr_only_fullscreen:1`.

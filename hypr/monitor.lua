@@ -1,6 +1,7 @@
 -- Monitors — matched by EDID description so connector renumbering can't unmatch them.
--- Positions are logical/scaled; the Alienware runs SDR. HDR is deliberately off (supports_hdr = 0,
--- cm_auto_hdr = false) until desktop HDR works with Moonlight/Sunshine streaming. If screen sharing breaks, try bitdepth 8 or keep_unmodified_copy.
+-- Positions are logical/scaled. The Alienware is in its own Creator mode (sRGB, gamma 2.2), so Hyprland
+-- sends plain sRGB. HDR is deliberately off (supports_hdr = 0, cm_auto_hdr = false) until desktop HDR
+-- works with Moonlight/Sunshine streaming. If screen sharing breaks, try bitdepth 8 or keep_unmodified_copy.
 
 local BAR_TOP = 0
 
@@ -17,8 +18,8 @@ hl.monitor({
 	bitdepth = 10,
 
 	-- SDR desktop: always-HDR greyed out Wayland-native games (PROTON_ENABLE_WAYLAND).
-	-- dcip3 maps sRGB into the panel's P3 gamut (accurate, not oversaturated).
-	cm = "dcip3",
+	-- Plain sRGB: the monitor's Creator/sRGB mode does the gamut clamp; dcip3 here would convert twice.
+	cm = "srgb",
 	sdr_eotf = "gamma22",
 
 	supports_wide_color = 1,
