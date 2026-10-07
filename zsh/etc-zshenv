@@ -1,5 +1,0 @@
-# /etc/zsh/zshenv
-# Sets ZDOTDIR so ZSH reads its config from ~/.config/zsh/ instead of $HOME.
-# Deploy with: sudo cp ~/dotfiles/zsh/etc-zshenv /etc/zsh/zshenv
-
-export ZDOTDIR="$HOME/.config/zsh"
