@@ -13,8 +13,9 @@ deploys parts of it at build time.
   writes `hypr/hyprland.conf` (fallback) and `hypr/nixos.lua` (desktop only).
   Also consumed by NixOS: `starship/` (merged, not symlinked). Wallpapers
   live in the separate wallpapers repo.
-- **Not deployed by NixOS**: `nvim/` (LazyVim tree; on NixOS, home-manager
-  currently runs a minimal programs.neovim instead).
+- **Linked live by NixOS**: `nvim/` (LazyVim). nixos-config links
+  `~/.config/nvim` straight to this checkout (not the pinned input), so edits
+  apply at once and lazy.nvim can update `lazy-lock.json`; commit that file.
 - **Not deployed, reference only**: `mango/` (MangoWM is not deployed by NixOS).
 
 ## Ground rules
