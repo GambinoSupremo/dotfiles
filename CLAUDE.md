@@ -22,6 +22,8 @@ shell, Ghostty. nixos-config (~/nixos-config) consumes this repo as a pinned
   sRGB (`cm = "srgb"` in hypr/monitor.lua). HDR is deliberately off
   (`cm_auto_hdr = false`) until desktop HDR works with Moonlight/Sunshine.
 - `mango/` is kept for reference only. NixOS doesn't deploy it.
+- keyd owns Super+Z/X/C/V (undo/cut/copy/paste), including with Shift, Ctrl
+  or Alt held. Never bind Super with Z, X, C or V in niri or Hyprland.
 
 ## Getting a change onto the system
 

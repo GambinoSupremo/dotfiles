@@ -29,5 +29,10 @@ scrollback-limit = 10000000
 
 keybind = performable:ctrl+c=copy_to_clipboard
 keybind = ctrl+v=paste_from_clipboard
+# keyd's Super+C/V/X arrive as Ctrl+Insert / Shift+Insert / Shift+Delete. Ctrl+Insert
+# already copies; Shift+Insert defaults to the primary selection; a terminal can't
+# cut, so Shift+Delete copies.
+keybind = shift+insert=paste_from_clipboard
+keybind = shift+delete=copy_to_clipboard
 
 theme = noctalia
