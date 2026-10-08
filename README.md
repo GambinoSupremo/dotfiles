@@ -29,6 +29,9 @@ deploys parts of it at build time.
   each other (Mod=focus, +Shift=move window, +Ctrl=workspace/monitor,
   +Ctrl+Alt=move across). Change both or note the divergence in the file.
   `mango/bind.conf` is not deployed by NixOS.
+- Mac-style editing keys: keyd (nixos-config) turns Super+Z/X/C/V into
+  Ctrl+Z / Shift+Delete / Ctrl+Insert / Shift+Insert before any compositor
+  sees them, even with Shift/Ctrl/Alt held. Never bind Super with Z, X, C or V.
 - `nvim/lua/plugins/dankcolors.lua` is hand-curated — never regenerate.
 - Monitor identity: niri uses identity strings, hypr EDID descriptions, mango
   monitor models — never port names (the NVIDIA DP-N index flips with probe

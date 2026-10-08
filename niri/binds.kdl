@@ -1,6 +1,7 @@
 binds {
     // Unified keybinds — mirrors hypr/bind.lua. NixOS deploys this file unchanged.
     // Tiers: Mod=focus · +Shift=move window · +Ctrl=cross boundary · +Ctrl+Alt=move across.
+    // Never bind Mod with Z/X/C/V: keyd turns them into undo/cut/copy/paste (any extra modifiers too).
 
     // === System ===
     Mod+Q { close-window; }
@@ -22,7 +23,7 @@ binds {
     Mod+Shift+O { spawn "obsidian"; }
     Mod+Shift+M { spawn "tidal-hifi"; }
     Mod+Shift+Alt+B { spawn "zen-beta" "--private-window"; }
-    Mod+Shift+Z { spawn "zeditor"; }
+    Mod+Shift+I { spawn "zeditor"; }
 
     // === Noctalia ===
     Mod+Escape    { spawn "noctalia" "msg" "panel-toggle" "session"; }
@@ -30,6 +31,7 @@ binds {
 
     Mod+Alt+E { spawn "noctalia" "msg" "panel-open" "launcher" "/emo"; }
     Mod+Alt+W { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
+    Mod+Alt+P { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
     Mod+Alt+R { spawn-sh "systemctl --user restart noctalia.service"; }
 
     // === Navigation: Focus ===
@@ -114,8 +116,7 @@ binds {
     Mod+Shift+W { switch-focus-between-floating-and-tiling; }
     Mod+F       { fullscreen-window; }
     Mod+M       { maximize-column; }
-    Mod+Z       { center-column; } // not Mod+C: keyd turns Super+C into Ctrl+Insert
-    Mod+X       { toggle-overview; }
+    Mod+N       { center-column; }
     Mod+Tab     { toggle-overview; }
 
     // === Column Management (Niri-specific, no Mango equivalent) ===

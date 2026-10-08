@@ -29,12 +29,13 @@ hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("mullvad-exclude vesktop"))
 hl.bind(mod .. " + SHIFT + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("tidal-hifi"))
 hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-beta --private-window"))
-hl.bind(mod .. " + SHIFT + Z", hl.dsp.exec_cmd("zeditor"))
+hl.bind(mod .. " + SHIFT + I", hl.dsp.exec_cmd("zeditor"))
 
 -- Noctalia
 hl.bind(mod .. " + backslash", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center audio"))
 hl.bind(mod .. " + ALT + E", hl.dsp.exec_cmd("noctalia msg panel-open launcher /emo"))
 hl.bind(mod .. " + ALT + W", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"))
+hl.bind(mod .. " + ALT + P", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"))
 hl.bind(mod .. " + ALT + R", hl.dsp.exec_cmd("systemctl --user restart noctalia.service"))
 
 -- Screenshots
@@ -110,13 +111,8 @@ hl.bind(mod .. " + minus", hl.dsp.window.resize({ x = -50, y = 0, relative = tru
 hl.bind(mod .. " + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
 hl.bind(mod .. " + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
 
--- Universal copy/paste via CTRL/SHIFT+Insert (works in terminals and apps alike).
--- On NixOS keyd remaps plain SUPER+C/V at the kernel level, so those two binds
--- only matter on non-keyd installs; SUPER+X and SUPER+CTRL+V pass through keyd.
-hl.bind(mod .. " + C", hl.dsp.send_shortcut({ mods = "CTRL", key = "Insert" }))
-hl.bind(mod .. " + V", hl.dsp.send_shortcut({ mods = "SHIFT", key = "Insert" }))
-hl.bind(mod .. " + X", hl.dsp.send_shortcut({ mods = "CTRL", key = "X" }))
-hl.bind(mod .. " + CTRL + V", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"))
+-- SUPER+Z/X/C/V (with any extra modifiers) never reach Hyprland: keyd turns them
+-- into undo/cut/copy/paste (Ctrl+Z, Shift+Delete, Ctrl+Insert, Shift+Insert).
 
 -- Scratchpad
 hl.bind("ALT + Z", hl.dsp.workspace.toggle_special("scratchpad"))
