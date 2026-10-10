@@ -21,7 +21,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("wl-paste --watch cliphist store")
 
     -- Startup apps, placed directly onto desired workspaces
-    hl.exec_cmd([[bash -lc "sleep 5 && mullvad-exclude vesktop"]], { workspace = "5" })
-    hl.exec_cmd([[bash -lc "sleep 5 && signal-desktop --password-store=gnome-libsecret"]], { workspace = "5" })
-    --hl.exec_cmd([[bash -lc "sleep 5 && tidal-hifi"]], { workspace = "5" })
+    hl.exec_cmd([[bash -lc "sleep 5 && mullvad-exclude vesktop"]], { workspace = "12" })
+    hl.exec_cmd([[bash -lc "sleep 5 && signal-desktop --password-store=gnome-libsecret"]], { workspace = "12" })
+    --hl.exec_cmd([[bash -lc "sleep 5 && tidal-hifi"]], { workspace = "12" })
 end)

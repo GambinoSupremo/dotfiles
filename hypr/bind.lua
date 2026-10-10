@@ -118,11 +118,30 @@ hl.bind(mod .. " + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -50, relati
 hl.bind("ALT + Z", hl.dsp.workspace.toggle_special("scratchpad"))
 hl.bind("ALT + SHIFT + Z", hl.dsp.window.move({ workspace = "special:scratchpad", follow = false }))
 
--- Workspace numbers
-for i = 1, 6 do
-    hl.bind(mod .. " + " .. tostring(i), hl.dsp.focus({ workspace = tostring(i) }))
-    hl.bind(mod .. " + CTRL + " .. tostring(i), hl.dsp.window.move({ workspace = tostring(i), follow = false }))
+-- Workspace numbers act on the focused monitor, like niri: the Alienware has 1-6,
+-- the Philips 11-16 (named 1-6, see workspaces.lua).
+local function onMonitor(i)
+    local m = hl.get_active_monitor()
+    local philips = m and m.description and m.description:find("PHL 278E1", 1, true)
+    return tostring((philips and 10 or 0) + i)
 end
+
+for i = 1, 6 do
+    hl.bind(mod .. " + " .. tostring(i), function()
+        hl.dispatch(hl.dsp.focus({ workspace = onMonitor(i) }))
+    end)
+    hl.bind(mod .. " + CTRL + " .. tostring(i), function()
+        hl.dispatch(hl.dsp.window.move({ workspace = onMonitor(i), follow = false }))
+    end)
+end
+
+-- Layouts (layouts.lua): cycle, or jump to tile / scroller / dwindle like Mango.
+local layouts = require("layouts")
+hl.bind(mod .. " + N", function() layouts.cycle(1) end)
+hl.bind(mod .. " + SHIFT + N", function() layouts.cycle(-1) end)
+hl.bind(mod .. " + CTRL + A", function() layouts.set("tile") end)
+hl.bind(mod .. " + CTRL + S", function() layouts.set("scroller") end)
+hl.bind(mod .. " + CTRL + D", function() layouts.set("dwindle") end)
 
 -- Mouse wheel workspace cycling (matches Hyprland's own default example:
 -- mouse_down -> next, mouse_up -> previous; this repo previously had it swapped)
@@ -141,8 +160,3 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
 
--- Optional Mango-like layout controls (scrolling + master) — enable later:
--- hl.bind(mod .. " + R", hl.dsp.layout("colresize +conf"))
--- hl.bind(mod .. " + comma", hl.dsp.layout("swapcol l"))
--- hl.bind(mod .. " + CTRL + A", hl.dsp.layout("orientationleft"))
--- hl.bind(mod .. " + CTRL + M", hl.dsp.layout("mfact exact 0.50"))
