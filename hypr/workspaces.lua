@@ -11,20 +11,20 @@ hl.workspace_rule({
     layout = "dwindle",
 })
 
+-- Games. No scrolling on this monitor: in 0.56 a hidden scrolling workspace
+-- drops a fullscreen game's pointer lock (hyprwm/Hyprland#16326).
 hl.workspace_rule({
     workspace = "2",
     monitor = "desc:Dell Inc. Dell AW3423DW #tBszGDAYBQUH",
     persistent = true,
-    layout = "scrolling",
-    layout_opts = { direction = "right" },
+    layout = "dwindle",
 })
 
 hl.workspace_rule({
     workspace = "3",
     monitor = "desc:Dell Inc. Dell AW3423DW #tBszGDAYBQUH",
     persistent = true,
-    layout = "scrolling",
-    layout_opts = { direction = "right" },
+    layout = "dwindle",
 })
 
 -- Philips: workspaces 11-16, named 1-6 for the bar (bind.lua's Mod+N is per monitor).
