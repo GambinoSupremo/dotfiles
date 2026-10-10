@@ -1,6 +1,6 @@
 # dotfiles
 
-Configs for Gavin's NixOS desktop: Hyprland (primary), Niri (backup), Noctalia
+Configs for Gavin's NixOS desktop: Hyprland (primary), Mango and Niri, Noctalia
 shell, Ghostty. nixos-config (~/nixos-config) consumes this repo as a pinned
 `github:` flake input; see README.md for what gets deployed where.
 
@@ -21,9 +21,11 @@ shell, Ghostty. nixos-config (~/nixos-config) consumes this repo as a pinned
 - The AW3423DW is in its own Creator/sRGB mode, so the compositors send plain
   sRGB (`cm = "srgb"` in hypr/monitor.lua). HDR is deliberately off
   (`cm_auto_hdr = false`) until desktop HDR works with Moonlight/Sunshine.
-- `mango/` is kept for reference only. NixOS doesn't deploy it.
+- `mango/` mirrors Hyprland (binds, rules, monitors). Check it with
+  `mango -c mango/config.conf -p` and grep the output for ERROR (the exit code
+  stays 0). Mango truncates config values at 255 chars.
 - keyd owns Super+Z/X/C/V (undo/cut/copy/paste), including with Shift, Ctrl
-  or Alt held. Never bind Super with Z, X, C or V in niri or Hyprland.
+  or Alt held. Never bind Super with Z, X, C or V in niri, Hyprland or Mango.
 
 ## Getting a change onto the system
 
@@ -52,7 +54,11 @@ Push with a fast-forward of `main` only, after checking
 - Noctalia rewrites `niri/noctalia.kdl` and `ghostty/themes/noctalia` at
   runtime; the repo copies are only seeds. `hypr/noctalia.lua` isn't in the
   repo (nixos-config seeds an empty stub).
-- Keybinds mirror each other in niri/binds.kdl and hypr/bind.lua. Change both
-  or note the difference in the file.
+- Keybinds mirror each other in niri/binds.kdl, hypr/bind.lua and
+  mango/bind.conf. Change all of them or note the difference in the file.
+- mango/autostart.conf: nixos-config replaces the `import-environment` line
+  with its session bootstrap by exact text, same as hypr/autostart.lua.
+- mango/monitor.conf: the `SUNSHINE` rule is the Moonlight stream's virtual
+  output (nixos-config sunshine.nix). Keep it first.
 - Noctalia is started by its systemd user service. Don't add another launch
   in Hyprland autostart (it races the service).
