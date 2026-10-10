@@ -1,14 +1,8 @@
 -- Mango-style layouts per workspace. Super+N / Super+Shift+N cycle, Super+Ctrl+A/S/D jump.
 -- Choices are saved to ~/.local/state/hypr/layouts.lua so config reloads (Noctalia's
--- wallpaper theme) keep them. Grid and deck are Lua layouts; the rest are built in.
+-- wallpaper theme) keep them. Grid is a Lua layout; the rest are built in.
 
 local M = {}
-
-local GAP = 5 -- matches general.gaps_in
-
-local function inset(b)
-    return { x = b.x + GAP / 2, y = b.y + GAP / 2, w = b.w - GAP, h = b.h - GAP }
-end
 
 -- Grid: near-square, the last row stretches to fill the width.
 hl.layout.register("grid", {
@@ -21,28 +15,13 @@ hl.layout.register("grid", {
             local row = (i - 1) // cols
             local inRow = (row == rows - 1) and (n - row * cols) or cols
             local col = (i - 1) % cols
-            t:place(inset({
+            -- Boxes must touch: Hyprland adds gaps itself, and directional focus needs shared edges.
+            t:place({
                 x = a.x + a.w * col / inRow,
                 y = a.y + a.h * row / rows,
                 w = a.w / inRow,
                 h = a.h / rows,
-            }))
-        end
-    end,
-})
-
--- Deck: master on the left, every other window stacked full-size on the right.
-hl.layout.register("deck", {
-    recalculate = function(ctx)
-        local a = ctx.area
-        if #ctx.targets == 1 then
-            ctx.targets[1]:place(inset(a))
-            return
-        end
-        local master = ctx:split(a, "left", 0.55)
-        local stack = ctx:split(a, "right", 0.45)
-        for i, t in ipairs(ctx.targets) do
-            t:place(inset(i == 1 and master or stack))
+            })
         end
     end,
 })
@@ -55,9 +34,7 @@ local LAYOUTS = {
     { key = "scroller", label = "Scroller", layout = "scrolling", opts = { direction = "right" } },
     { key = "vscroller", label = "Vertical scroller", layout = "scrolling", opts = { direction = "down" } },
     { key = "dwindle", label = "Dwindle", layout = "dwindle" },
-    { key = "monocle", label = "Monocle", layout = "monocle" },
     { key = "grid", label = "Grid", layout = "lua:grid" },
-    { key = "deck", label = "Deck", layout = "lua:deck" },
 }
 local BY_KEY = {}
 for i, l in ipairs(LAYOUTS) do
