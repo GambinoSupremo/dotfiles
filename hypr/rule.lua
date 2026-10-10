@@ -32,7 +32,8 @@ hl.window_rule({
 
 -- Proton with PROTON_ENABLE_WAYLAND=1 names the window after the exe instead
 -- (Deadlock is deadlock.exe), so match both. Games open fullscreen; Super+F
--- drops one to a full-width column you can scroll past, and back.
+-- drops one to a full-width column you can scroll past, and back. The game's own
+-- fullscreen requests are ignored so losing focus can't knock it out of fullscreen.
 hl.window_rule({
     name = "steam-games",
     match = { class = "^(steam_app_.*|.*\\.exe)$" },
@@ -40,7 +41,17 @@ hl.window_rule({
     no_follow_mouse = true,
     tile = true, -- Wayland games can ask to float
     fullscreen = true,
+    suppress_event = "fullscreen",
     scrolling_width = 1.0,
+})
+
+-- Hyprland holds the cursor inside a fullscreen game even when the game's own
+-- lock slips (the Hyprland FAQ fix). Super+F to a column, or Super+number /
+-- Super+Ctrl+arrow to another monitor, lets go.
+hl.window_rule({
+    name = "steam-games-confine",
+    match = { class = "^(steam_app_.*|.*\\.exe)$", fullscreen = true },
+    confine_pointer = true,
 })
 
 -- Pre-launch "Launcher" windows (updaters, EAC/BattlEye prompts, etc.) share
