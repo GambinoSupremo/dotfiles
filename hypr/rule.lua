@@ -31,13 +31,15 @@ hl.window_rule({
 })
 
 -- Proton with PROTON_ENABLE_WAYLAND=1 names the window after the exe instead
--- (Deadlock is deadlock.exe), so match both.
+-- (Deadlock is deadlock.exe), so match both. Games open fullscreen; Super+F
+-- drops one to a full-width column you can scroll past, and back.
 hl.window_rule({
     name = "steam-games",
     match = { class = "^(steam_app_.*|.*\\.exe)$" },
     workspace = "2 silent",
     no_follow_mouse = true,
     tile = true, -- Wayland games can ask to float
+    fullscreen = true,
     scrolling_width = 1.0,
 })
 
@@ -50,15 +52,7 @@ hl.window_rule({
     name = "steam-games-launcher-float",
     match = { class = "^(steam_app_.*|.*\\.exe)$", title = "^(Launcher|broken)$" },
     float = true,
-})
-
--- Deadlock stays a full-width column you can scroll past instead of taking
--- over the workspace (its launch options turn VRR off, so fullscreen gains
--- nothing). Super+F still fullscreens it.
-hl.window_rule({
-    name = "deadlock-no-fullscreen",
-    match = { class = "^deadlock\\.exe$" },
-    suppress_event = "fullscreen",
+    fullscreen = false,
 })
 
 -- Secondary Steam windows float, main window tiles. RE2 has no lookahead, so
