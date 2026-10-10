@@ -12,6 +12,7 @@ if ok and type(noctalia) == "table" and noctalia.apply_theme then
     noctalia.apply_theme()
 end
 require("workspaces")
+require("layouts")
 require("rule")
 require("bind")
 require("autostart")

@@ -1,4 +1,4 @@
--- Workspace pinning + layouts.
+-- Workspace pinning + default layouts (layouts.lua switches them at runtime).
 -- Monitors matched by EDID description (same strings as monitor.lua).
 
 -- Alienware
@@ -27,29 +27,26 @@ hl.workspace_rule({
     layout_opts = { direction = "right" },
 })
 
--- Philips
+-- Philips: workspaces 11-16, named 1-6 for the bar (bind.lua's Mod+N is per monitor).
 
-hl.workspace_rule({
-    workspace = "4",
-    monitor = "desc:Philips Consumer Electronics Company PHL 278E1 0x0000065F",
-    default = true,
-    persistent = true,
-    layout = "dwindle",
-})
+for i = 1, 6 do
+    hl.workspace_rule({
+        workspace = tostring(10 + i),
+        monitor = "desc:Philips Consumer Electronics Company PHL 278E1 0x0000065F",
+        default_name = tostring(i),
+        default = i == 1 or nil,
+        persistent = i <= 3 or nil,
+        layout = "dwindle",
+    })
+end
 
-hl.workspace_rule({
-    workspace = "5",
-    monitor = "desc:Philips Consumer Electronics Company PHL 278E1 0x0000065F",
-    persistent = true,
-    layout = "dwindle",
-})
-
-hl.workspace_rule({
-    workspace = "6",
-    monitor = "desc:Philips Consumer Electronics Company PHL 278E1 0x0000065F",
-    persistent = true,
-    layout = "dwindle",
-})
+-- Alienware 4-6 exist on demand only.
+for i = 4, 6 do
+    hl.workspace_rule({
+        workspace = tostring(i),
+        monitor = "desc:Dell Inc. Dell AW3423DW #tBszGDAYBQUH",
+    })
+end
 
 -- Scratchpad / special workspace
 hl.workspace_rule({

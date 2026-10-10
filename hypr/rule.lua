@@ -60,12 +60,12 @@ hl.window_rule({
     tile = true,
 })
 
--- Comms / media on secondary monitor workspaces
+-- Comms / media on the Philips (workspace 12 = its "2")
 -- Verify final classes with: hyprctl clients -j | jq '.[].class'
 hl.window_rule({
     name = "vesktop-secondary",
     match = { class = "vesktop" },
-    workspace = "5 silent",
+    workspace = "12 silent",
 })
 
 -- Comms apps may yank focus on request (notification clicks jump to them);
@@ -85,13 +85,13 @@ hl.window_rule({
 hl.window_rule({
     name = "signal-secondary",
     match = { class = "signal|Signal" },
-    workspace = "5 silent",
+    workspace = "12 silent",
 })
 
 hl.window_rule({
     name = "tidal-secondary",
     match = { class = "tidal-hifi|TIDAL HiFi" },
-    workspace = "5 silent",
+    workspace = "12 silent",
 })
 
 -- Per-app opacity (focused / unfocused), same values as niri/windowrules.kdl.
