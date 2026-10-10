@@ -18,6 +18,7 @@ hl.window_rule({
 })
 
 -- Steam + games → workspace 2 (Alienware); "silent" = no workspace switch or focus steal.
+-- no_follow_mouse: hovering them doesn't grab focus (and scroll the view back); click instead.
 -- Anchored (^...$) to match niri/windowrules.kdl — unanchored "steam" also
 -- substring-matches "steam_app_NNNNNN", which was letting steam-secondary-float
 -- below force-float actual game windows.
@@ -25,6 +26,7 @@ hl.window_rule({
     name = "steam-main",
     match = { class = "^steam$" },
     workspace = "2 silent",
+    no_follow_mouse = true,
     scrolling_width = 1.0,
 })
 
@@ -32,6 +34,7 @@ hl.window_rule({
     name = "steam-games",
     match = { class = "^steam_app_.*$" },
     workspace = "2 silent",
+    no_follow_mouse = true,
     scrolling_width = 1.0,
 })
 
