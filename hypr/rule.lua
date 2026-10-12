@@ -40,6 +40,8 @@ hl.window_rule({
     no_follow_mouse = true,
     tile = true, -- Wayland games can ask to float
     fullscreen = true,
+    -- Their fullscreen requests name a monitor, which would pull them to whatever workspace it shows.
+    suppress_event = "fullscreenoutput",
 })
 
 -- Hyprland holds the cursor inside a fullscreen game even when the game's own
