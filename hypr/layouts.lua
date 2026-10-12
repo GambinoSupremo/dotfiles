@@ -1,30 +1,9 @@
 -- Mango-style layouts per workspace. Super+N / Super+Shift+N cycle, Super+Ctrl+A/S/D jump.
 -- Choices are saved to ~/.local/state/hypr/layouts.lua so config reloads (Noctalia's
--- wallpaper theme) keep them. Grid is a Lua layout; the rest are built in.
+-- wallpaper theme) keep them. Built-in layouts only: registering a Lua layout makes every
+-- reload rebuild non-default workspaces, which drops fullscreen windows.
 
 local M = {}
-
--- Grid: near-square, the last row stretches to fill the width.
-hl.layout.register("grid", {
-    recalculate = function(ctx)
-        local n = #ctx.targets
-        local cols = math.ceil(math.sqrt(n))
-        local rows = math.ceil(n / cols)
-        local a = ctx.area
-        for i, t in ipairs(ctx.targets) do
-            local row = (i - 1) // cols
-            local inRow = (row == rows - 1) and (n - row * cols) or cols
-            local col = (i - 1) % cols
-            -- Boxes must touch: Hyprland adds gaps itself, and directional focus needs shared edges.
-            t:place({
-                x = a.x + a.w * col / inRow,
-                y = a.y + a.h * row / rows,
-                w = a.w / inRow,
-                h = a.h / rows,
-            })
-        end
-    end,
-})
 
 -- msg = master orientation, sent after the layout switch (and again on revisit).
 local LAYOUTS = {
@@ -34,7 +13,6 @@ local LAYOUTS = {
     { key = "scroller", label = "Scroller", layout = "scrolling", opts = { direction = "right" } },
     { key = "vscroller", label = "Vertical scroller", layout = "scrolling", opts = { direction = "down" } },
     { key = "dwindle", label = "Dwindle", layout = "dwindle" },
-    { key = "grid", label = "Grid", layout = "lua:grid" },
 }
 local BY_KEY = {}
 for i, l in ipairs(LAYOUTS) do
@@ -71,7 +49,7 @@ local function rule(ws, l)
 end
 
 -- Saved layouts become workspace rules at load; they merge into workspaces.lua's.
--- Workspace 2 (games) stays dwindle: a reload rebuilds any other layout and drops fullscreen.
+-- Workspace 2 (games) stays dwindle: on 0.56 a scroller there breaks the cursor lock (Hyprland#16326).
 local LOCKED = { ["2"] = true }
 
 for ws, key in pairs(state) do
