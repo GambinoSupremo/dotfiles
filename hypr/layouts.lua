@@ -71,8 +71,11 @@ local function rule(ws, l)
 end
 
 -- Saved layouts become workspace rules at load; they merge into workspaces.lua's.
+-- Workspace 2 (games) stays dwindle: a reload rebuilds any other layout and drops fullscreen.
+local LOCKED = { ["2"] = true }
+
 for ws, key in pairs(state) do
-    if BY_KEY[key] then
+    if BY_KEY[key] and not LOCKED[ws] then
         rule(ws, BY_KEY[key])
     end
 end
@@ -92,6 +95,10 @@ function M.set(key)
         return
     end
     local ws = tostring(w.id)
+    if LOCKED[ws] then
+        hl.notification.create({ text = "Workspace " .. ws .. " stays dwindle (games)", duration = 1500, icon = "info" })
+        return
+    end
     rule(ws, l)
     -- Re-setting general.layout is what makes Hyprland re-match workspace layouts.
     hl.config({ general = { layout = "dwindle" } })
