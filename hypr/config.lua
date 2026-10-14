@@ -69,7 +69,7 @@ hl.config({
         follow_mouse       = 1,
         sensitivity        = 0,
         accel_profile      = "flat", -- 1:1 raw input, no accel curve
-        numlock_by_default = false,       -- mango numlockon = 0
+        numlock_by_default = true, -- mango numlockon = 1; keeps numpad game binds stable
         touchpad           = {
             natural_scroll       = false, -- mango trackpad_natural_scrolling = 0
             tap_to_click         = true,
