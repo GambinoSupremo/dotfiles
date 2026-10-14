@@ -23,9 +23,12 @@ hl.window_rule({
 -- substring-matches "steam_app_NNNNNN", which was letting steam-secondary-float
 -- below force-float actual game windows.
 -- Steam toggles its own maximize on start, which would knock a fullscreen game out.
+-- The monitor line matters: the Philips "2" (ws 12) shares the name, and launching
+-- from it would match the rule as "already there".
 hl.window_rule({
     name = "steam-main",
     match = { class = "^steam$" },
+    monitor = "desc:Dell Inc. Dell AW3423DW #tBszGDAYBQUH silent",
     workspace = "2 silent",
     no_follow_mouse = true,
     suppress_event = "maximize",
@@ -36,6 +39,7 @@ hl.window_rule({
 hl.window_rule({
     name = "steam-games",
     match = { class = "^(steam_app_.*|.*\\.exe)$" },
+    monitor = "desc:Dell Inc. Dell AW3423DW #tBszGDAYBQUH silent",
     workspace = "2 silent",
     no_follow_mouse = true,
     tile = true, -- Wayland games can ask to float
