@@ -160,3 +160,7 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
 
+-- Numpad 3 (Basilisk button behind the wheel) toggles Discord mute, even in games.
+-- code:89 matches with NumLock on or off. Hyprland only: niri/Mango can't send keys to a window.
+hl.bind("code:89", hl.dsp.send_shortcut({ mods = "CTRL SHIFT", key = "m", window = "class:vesktop" }))
+
