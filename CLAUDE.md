@@ -17,7 +17,7 @@ shell, Ghostty. nixos-config (~/nixos-config) consumes this repo as a pinned
 - Use `rg`. In fish `grep` is aliased to `rg`; use `command grep` for GNU grep.
 - Never edit `nvim/lua/plugins/dankcolors.lua` (hand-curated, never regenerate).
 - Monitors are matched by identity string (EDID description/model), never by
-  port name. The NVIDIA DP-N numbering flips between boots.
+  port name. The DP-N numbering flips between boots.
 - The AW3423DW is in its own Creator/sRGB mode, so the compositors send plain
   sRGB (`cm = "srgb"` in hypr/monitor.lua). HDR is deliberately off
   (`cm_auto_hdr = false`) until desktop HDR works with Moonlight/Sunshine.

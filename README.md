@@ -35,8 +35,7 @@ deploys parts of it at build time.
   sees them, even with Shift/Ctrl/Alt held. Never bind Super with Z, X, C or V.
 - `nvim/lua/plugins/dankcolors.lua` is hand-curated — never regenerate.
 - Monitor identity: niri uses identity strings, hypr EDID descriptions, mango
-  monitor models — never port names (the NVIDIA DP-N index flips with probe
-  order).
+  monitor models — never port names (the DP-N index flips between boots).
 - Colour: the AW3423DW runs in its own Creator mode with the sRGB colour
   space (gamma 2.2), so it does the sRGB clamp itself. The compositors send
   plain sRGB (`cm = "srgb"` in `hypr/monitor.lua`; niri has no colour

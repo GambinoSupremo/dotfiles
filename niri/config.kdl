@@ -83,8 +83,6 @@ environment {
     XCURSOR_THEME "Bibata-Modern-Ice"
     XCURSOR_SIZE "24"
     TERMINAL "ghostty"
-    // __GL_VRR_ALLOWED / __GL_GSYNC_ALLOWED are set session-wide on NixOS
-    // (nixos/features/nvidia.nix environment.sessionVariables) — not here.
 }
 
 // === General ===
