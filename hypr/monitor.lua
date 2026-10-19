@@ -11,9 +11,9 @@ hl.monitor({
 	position = "0x0",
 	scale = 1,
 
-	-- 2 = fullscreen-only VRR: games keep it, desktop stays locked —
-	-- fluctuating refresh gamma-flickers this QD-OLED on dark backgrounds.
-	vrr = 2,
+	-- VRR off: on the RX 9070 XT, fullscreen VRR stutters on this G-SYNC-module monitor
+	-- (smooth windowed, firmware DMCUB errors on each fullscreen switch). Was 2.
+	vrr = 0,
 
 	bitdepth = 10,
 
