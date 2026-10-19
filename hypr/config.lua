@@ -49,15 +49,6 @@ hl.config({
         cm_sdr_eotf = "gamma22force",
     },
 
-    -- NVIDIA hardware cursors freeze on screen (worse under HDR/10-bit) —
-    -- software cursors fix it, same as WLR_NO_HARDWARE_CURSORS in mango/env.conf.
-    cursor = {
-        no_hardware_cursors = true,
-        -- Software cursors + VRR render no frames on static screens, freezing
-        -- the cursor icon; force frames while it moves.
-        min_refresh_rate = 60,
-    },
-
     dwindle = {
         preserve_split = true,
     },
