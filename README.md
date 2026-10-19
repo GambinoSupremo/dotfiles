@@ -42,9 +42,9 @@ deploys parts of it at build time.
   management to set). HDR is deliberately off (`supports_hdr = 0`;
   `cm_auto_hdr = false` in `hypr/config.lua`) until desktop HDR works with
   Moonlight/Sunshine streaming. Mango has native HDR since 0.15.0; it stays off there too.
-- VRR is fullscreen-games-only everywhere (QD-OLED gamma flicker):
-  hypr `vrr=2`, niri `on-demand` + steam_app rule, mango `vrr:0` +
-  `vrr_only_fullscreen:1`.
+- VRR is off on the Alienware in hypr (`vrr=0`): with the RX 9070 XT its
+  G-SYNC module stutters every fullscreen game. niri/mango (off) still have
+  their old fullscreen-only VRR rules.
 - Noctalia runtime files (`mango/noctalia.conf`, `niri/noctalia.kdl`,
   `ghostty/themes/noctalia`, `hypr/noctalia.lua` on NixOS) are generated or
   overwritten by Noctalia — treat repo copies as seeds, not sources of truth.
