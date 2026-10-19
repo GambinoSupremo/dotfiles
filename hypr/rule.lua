@@ -48,6 +48,14 @@ hl.window_rule({
     suppress_event = "fullscreenoutput",
 })
 
+-- Wayland-mode games (Deadlock) un-fullscreen and maximize themselves right after
+-- mapping, landing tiled under the bar. Ignore their requests; Super+F still toggles.
+hl.window_rule({
+    name = "wayland-games-keep-fullscreen",
+    match = { class = "^.*\\.exe$" },
+    suppress_event = "fullscreen maximize fullscreenoutput",
+})
+
 -- Hyprland holds the cursor inside a fullscreen game even when the game's own
 -- lock slips (the Hyprland FAQ fix). Super+F, or Super+number /
 -- Super+Ctrl+arrow to another monitor, lets go.
