@@ -18,9 +18,9 @@ shell, Ghostty. nixos-config (~/nixos-config) consumes this repo as a pinned
 - Never edit `nvim/lua/plugins/dankcolors.lua` (hand-curated, never regenerate).
 - Monitors are matched by identity string (EDID description/model), never by
   port name. The DP-N numbering flips between boots.
-- The AW3423DW is in its own Creator/sRGB mode, so the compositors send plain
-  sRGB (`cm = "srgb"` in hypr/monitor.lua). HDR is deliberately off
-  (`cm_auto_hdr = false`) until desktop HDR works with Moonlight/Sunshine.
+- The AW3423DW runs always-on HDR in hypr (`cm = "hdr"`, monitor in HDR 400
+  True Black, `sdrbrightness = 2.0`). No auto-HDR switching (`cm_auto_hdr =
+  false`): mode switches blank the screen. Stream outputs (SUNSHINE) stay SDR.
 - `mango/` mirrors Hyprland (binds, rules, monitors). Check it with
   `mango -c mango/config.conf -p` and grep the output for ERROR (the exit code
   stays 0). Mango truncates config values at 255 chars.

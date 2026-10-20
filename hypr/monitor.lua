@@ -1,7 +1,6 @@
 -- Monitors — matched by EDID description so connector renumbering can't unmatch them.
--- Positions are logical/scaled. The Alienware is in its own Creator mode (sRGB, gamma 2.2), so Hyprland
--- sends plain sRGB. HDR is deliberately off (supports_hdr = 0, cm_auto_hdr = false) until desktop HDR
--- works with Moonlight/Sunshine streaming. If screen sharing breaks, try bitdepth 8 or keep_unmodified_copy.
+-- Positions are logical/scaled. The Alienware runs HDR all the time (monitor in HDR 400 True Black), so
+-- there's no SDR<->HDR mode switch to blank the screen. Stream outputs (SUNSHINE) stay SDR.
 
 local BAR_TOP = 0
 
@@ -17,16 +16,15 @@ hl.monitor({
 
 	bitdepth = 10,
 
-	-- SDR desktop: always-HDR greyed out Wayland-native games (PROTON_ENABLE_WAYLAND).
-	-- Plain sRGB: the monitor's Creator/sRGB mode does the gamut clamp; dcip3 here would convert twice.
-	cm = "srgb",
+	-- Always-on HDR; SDR apps are mapped in with gamma 2.2.
+	cm = "hdr",
 	sdr_eotf = "gamma22",
 
 	supports_wide_color = 1,
-	supports_hdr = 0,
+	supports_hdr = 1,
 
-	-- Only apply in HDR mode (SDR content inside an HDR signal); inert while HDR is off.
-	sdrbrightness = 1.4,
+	-- SDR content inside the HDR signal: 2.0 matches the old SDR desktop brightness.
+	sdrbrightness = 2.0,
 	sdrsaturation = 1.0,
 	-- 0.2 default lifts OLED blacks to grey in SDR games/apps.
 	sdr_min_luminance = 0,
