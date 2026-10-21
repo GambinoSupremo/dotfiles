@@ -77,6 +77,14 @@ hl.window_rule({
     fullscreen = false,
 })
 
+-- THE FINALS opens an untitled splash before the game; keep it floating at its own size.
+hl.window_rule({
+    name = "finals-splash-float",
+    match = { class = "^steam_app_2073850$", title = "^$" },
+    float = true,
+    fullscreen = false,
+})
+
 -- Secondary Steam windows float, main window tiles. RE2 has no lookahead, so
 -- float everything and un-float the main window below (later rules win).
 hl.window_rule({
