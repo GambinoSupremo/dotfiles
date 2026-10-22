@@ -2,7 +2,7 @@
 -- under uwsm these would live in ~/.config/uwsm/env-hyprland).
 
 hl.env("TERMINAL", "ghostty")
-hl.env("QT_QPA_PLATFORMTHEME", "kde")
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.env("XCURSOR_THEME", "Bibata-Modern-Ice")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24") -- Hypr-specific; XCURSOR_SIZE alone is not enough
