@@ -1,6 +1,6 @@
 # Cleanup decisions — 2026-07-14
 
-Judgment calls from the deep-cleanup pass. Pairs with nixos-config/DECISIONS.md.
+Judgment calls from the deep-cleanup pass. Pairs with nixos-config/docs/decisions.md.
 
 ## Changed
 - Deleted: install.sh, install-apps.sh (Arch installers), mango/theme.conf.bak
