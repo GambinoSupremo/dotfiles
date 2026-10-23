@@ -36,9 +36,29 @@ for i = 1, 6 do
         default_name = tostring(i),
         default = i == 1 or nil,
         persistent = i <= 3 or nil,
-        layout = "dwindle",
+        layout = i == 2 and "master" or "dwindle",
     })
 end
+
+-- Comms on ws 12: Vesktop is the wide master on the left, Signal and Tidal stack on
+-- the right. mfact is per workspace only via layout message, so set it when Vesktop opens.
+hl.on("window.open", function(w)
+    if not (w and w.class == "vesktop" and w.workspace and w.workspace.id == 12) then
+        return
+    end
+    hl.timer(function()
+        if w.workspace.tiled_layout ~= "master" then
+            return
+        end
+        local prev = hl.get_active_window()
+        hl.dispatch(hl.dsp.focus({ window = w }))
+        hl.dispatch(hl.dsp.layout("swapwithmaster ignoremaster"))
+        hl.dispatch(hl.dsp.layout("mfact exact 0.6"))
+        if prev then
+            hl.dispatch(hl.dsp.focus({ window = prev }))
+        end
+    end, { timeout = 200, type = "oneshot" })
+end)
 
 -- Alienware 4-6 exist on demand only.
 for i = 4, 6 do
