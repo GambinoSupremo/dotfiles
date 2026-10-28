@@ -77,6 +77,14 @@ hl.window_rule({
     fullscreen = false,
 })
 
+-- Battle.net (Lutris/umu: steam_app_default) isn't a game; WoW's own window still goes fullscreen.
+hl.window_rule({
+    name = "battlenet-float",
+    match = { class = "^steam_app_default$", title = "^Battle\\.net" },
+    float = true,
+    fullscreen = false,
+})
+
 -- THE FINALS opens an untitled splash before the game; keep it floating at its own size.
 hl.window_rule({
     name = "finals-splash-float",
