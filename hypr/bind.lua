@@ -160,11 +160,11 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"))
 
--- Numpad 3 (Basilisk button behind the wheel) toggles Discord mute, even in games.
+-- Numpad 3 (QK75 knob press, remapped by keyd) toggles Discord mute, even in games.
 -- code:89 matches with NumLock on or off. Hyprland only: niri/Mango can't send keys to a window.
 hl.bind("code:89", hl.dsp.send_shortcut({ mods = "CTRL SHIFT", key = "m", window = "class:vesktop" }))
 
--- Numpad 0 (Basilisk clutch) is in-game push-to-talk. While it's held, mute Discord's copy
+-- Numpad 0 (Caps Lock, remapped by keyd) is in-game push-to-talk. While it's held, mute Discord's copy
 -- of the mic (nixos-config home/vesktop-mic.nix) so friends don't hear you twice. The game still gets the key.
 hl.bind("code:90", hl.dsp.exec_cmd("vesktop-mic mute"), { non_consuming = true })
 hl.bind("code:90", hl.dsp.exec_cmd("vesktop-mic unmute"), { non_consuming = true, release = true })
