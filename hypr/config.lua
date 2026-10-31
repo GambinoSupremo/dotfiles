@@ -22,6 +22,7 @@ hl.config({
             size     = 5, -- mango blur_params_radius
             passes   = 2, -- mango blur_params_num_passes
             vibrancy = 0.1696,
+            variant  = 1, -- frost (0.57+; 0 = kawase)
         },
 
         shadow             = {
