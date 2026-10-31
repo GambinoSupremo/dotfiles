@@ -11,13 +11,13 @@ hl.workspace_rule({
     layout = "dwindle",
 })
 
--- Games. No scrolling on this monitor: in 0.56 a hidden scrolling workspace
--- drops a fullscreen game's pointer lock (hyprwm/Hyprland#16326).
+-- Games. Scroller again on 0.57 (0.56 dropped the cursor lock, Hyprland#16326).
 hl.workspace_rule({
     workspace = "2",
     monitor = "desc:Dell Inc. Dell AW3423DW #tBszGDAYBQUH",
     persistent = true,
-    layout = "dwindle",
+    layout = "scrolling",
+    layout_opts = { direction = "right" },
 })
 
 hl.workspace_rule({
