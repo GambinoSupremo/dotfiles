@@ -93,6 +93,13 @@ hl.window_rule({
     fullscreen = false,
 })
 
+-- Tearing (lower latency, VSync off + cap above 175). Tested 2026-11-02, no visible tears.
+hl.window_rule({
+    name = "finals-tearing",
+    match = { class = "^steam_app_2073850$" },
+    immediate = true,
+})
+
 -- Secondary Steam windows float, main window tiles. RE2 has no lookahead, so
 -- float everything and un-float the main window below (later rules win).
 hl.window_rule({

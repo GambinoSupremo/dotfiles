@@ -8,7 +8,7 @@ hl.config({
         border_size      = 2,         -- mango borderpx = 2
         layout           = "dwindle", -- swap to "scrolling" later if you want per-tag layouts
         resize_on_border = false,
-        allow_tearing    = false,     -- enable per-game via window_rule if needed
+        allow_tearing    = true,      -- only windows with immediate = true (see rule.lua)
     },
 
     decoration = {
