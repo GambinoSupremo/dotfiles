@@ -45,9 +45,9 @@ hl.config({
     },
 
     render = {
-        cm_auto_hdr = false,
-        -- Decode SDR as gamma 2.2 (what games are mastered for), not piecewise sRGB.
-        cm_sdr_eotf = "gamma22force",
+        -- Stay SDR on the desktop; switch to HDR only for fullscreen HDR content.
+        cm_auto_hdr = true,
+        cm_sdr_eotf = "default",
     },
 
     dwindle = {

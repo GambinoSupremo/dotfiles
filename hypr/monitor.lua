@@ -1,6 +1,5 @@
--- Monitors — matched by EDID description so connector renumbering can't unmatch them.
--- Positions are logical/scaled. The Alienware runs HDR all the time (monitor in HDR 400 True Black), so
--- there's no SDR<->HDR mode switch to blank the screen. Stream outputs (SUNSHINE) stay SDR.
+-- Match monitors by EDID; positions are logical pixels after scaling.
+-- The desktop stays SDR; Hyprland switches the Alienware to HDR for fullscreen HDR content.
 
 local BAR_TOP = 0
 
@@ -16,18 +15,11 @@ hl.monitor({
 
 	bitdepth = 10,
 
-	-- Always-on HDR; SDR apps are mapped in with gamma 2.2.
-	cm = "hdr",
-	sdr_eotf = "gamma22",
+	-- Keep desktop colors in sRGB; HDR capability enables fullscreen auto-HDR.
+	cm = "srgb",
 
 	supports_wide_color = 1,
 	supports_hdr = 1,
-
-	-- SDR content inside the HDR signal: 2.0 matches the old SDR desktop brightness.
-	sdrbrightness = 2.0,
-	sdrsaturation = 1.0,
-	-- 0.2 default lifts OLED blacks to grey in SDR games/apps.
-	sdr_min_luminance = 0,
 })
 
 hl.monitor({
