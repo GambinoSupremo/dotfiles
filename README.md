@@ -10,20 +10,41 @@ deploys parts of it at build time.
 
 - **Deployed by NixOS** (copied by nixos-config `home/dotfiles.nix`,
   symlinked into `~/.config`): `mango/`, `niri/`, `hypr/`, `ghostty/`. nixos-config also
-  writes `hypr/hyprland.conf` (fallback) and `hypr/nixos.lua` (desktop only).
+  writes `hypr/hyprland.conf` (fallback) and `hypr/nixos.lua` when the
+  overview plugin is enabled (currently disabled).
   Also consumed by NixOS: `starship/` (merged, not symlinked). Wallpapers
   live in the separate wallpapers repo.
 - **Linked live by NixOS**: `nvim/` (LazyVim). nixos-config links
   `~/.config/nvim` straight to this checkout (not the pinned input), so edits
   apply at once and lazy.nvim can update `lazy-lock.json`; commit that file.
 
+## Where to edit
+
+| Change | File |
+|---|---|
+| Hyprland startup and imports | `hypr/hyprland.lua`, `hypr/autostart.lua` |
+| Monitor resolution, scale, HDR | `hypr/monitor.lua` |
+| Workspace assignments | `hypr/workspaces.lua` |
+| Layout switching | `hypr/layouts.lua` |
+| Shortcuts | `hypr/bind.lua`, `mango/bind.conf`, `niri/binds.kdl` |
+| Window rules | `hypr/rule.lua`, `mango/rule.conf`, `niri/windowrules.kdl` |
+| Terminal | `ghostty/config` |
+| Prompt | `starship/starship.toml` |
+| Neovim options and mappings | `nvim/lua/config/` |
+| Neovim plugins and Nix support | `nvim/lua/plugins/` |
+
+Open the checkout as a folder in Neovim or Zed. `.editorconfig` preserves
+the four-space compositor style and two-space Neovim style. For Nix editing
+tools, see [Neovim setup](nvim/INSTALL.md) and nixos-config's `docs/editing.md`.
+Hyprland's `.luarc.json` points Lua tooling at the installed NixOS API stubs.
+
 ## Ground rules
 
 - `hypr/autostart.lua` carries a header warning: nixos-config patches two of
   its lines by **exact text**. Rewording them fails that build on purpose —
   edit both repos together.
-- Dotfile edits are never live until they're pushed and nixos-config runs
-  `nix flake update dotfiles` + rebuild.
+- Compositor and terminal edits reach the desktop after push and
+  `nix flake update dotfiles` + rebuild. Neovim uses the live checkout above.
 - Keybinds are one scheme: `niri/binds.kdl`, `hypr/bind.lua` and
   `mango/bind.conf` mirror each other (Mod=focus, +Shift=move window, +Ctrl=workspace/monitor,
   +Ctrl+Alt=move across). Change all three or note the divergence in the file.
