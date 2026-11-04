@@ -85,6 +85,18 @@ hl.window_rule({
     fullscreen = false,
 })
 
+-- WoW: still ws 2, but not forced fullscreen and the cursor isn't trapped,
+-- so Alt+Tab / other monitor work. Super+F still fullscreens it.
+for name, m in pairs({ ["wow-by-class"] = { class = "^(?i)wow(classic)?\\.exe$" },
+                       ["wow-by-title"] = { title = "^World of Warcraft$" } }) do
+    hl.window_rule({
+        name = name,
+        match = m,
+        fullscreen = false,
+        confine_pointer = false,
+    })
+end
+
 -- THE FINALS opens an untitled splash before the game; keep it floating at its own size.
 hl.window_rule({
     name = "finals-splash-float",
