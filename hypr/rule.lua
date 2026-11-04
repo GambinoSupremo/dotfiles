@@ -86,7 +86,8 @@ hl.window_rule({
 })
 
 -- WoW: still ws 2, but not forced fullscreen and the cursor isn't trapped,
--- so Alt+Tab / other monitor work. Super+F still fullscreens it.
+-- so Alt+Tab / other monitor work. It maximizes itself (covers the scroller,
+-- blocks resize), so ignore its requests; Super+F/M still work.
 for name, m in pairs({ ["wow-by-class"] = { class = "^(?i)wow(classic)?\\.exe$" },
                        ["wow-by-title"] = { title = "^World of Warcraft$" } }) do
     hl.window_rule({
@@ -94,6 +95,7 @@ for name, m in pairs({ ["wow-by-class"] = { class = "^(?i)wow(classic)?\\.exe$" 
         match = m,
         fullscreen = false,
         confine_pointer = false,
+        suppress_event = "fullscreen maximize fullscreenoutput",
     })
 end
 
