@@ -73,5 +73,13 @@ hl.workspace_rule({
     workspace = "special:scratchpad",
     persistent = true,
     animation = "slidevert",
-    on_created_empty = "ghostty --gtk-single-instance=false --class=com.ghostty.floating",
 })
+
+-- Terminal in the scratchpad when it's created empty (replaces deprecated on_created_empty).
+hl.on("workspace.created", function(w)
+    if w and w.name == "special:scratchpad" and w.is_empty then
+        hl.dispatch(hl.dsp.exec_cmd("ghostty --gtk-single-instance=false --class=com.ghostty.floating", {
+            workspace = "special:scratchpad silent",
+        }))
+    end
+end)
