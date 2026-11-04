@@ -105,11 +105,11 @@ hl.bind(mod .. " + SHIFT + G", hl.dsp.window.pin()) -- closest stock equivalent 
 hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
 hl.bind("ALT + SHIFT + Tab", hl.dsp.window.cycle_next({ next = false }))
 
--- Resize
-hl.bind(mod .. " + equal", hl.dsp.window.resize({ x = 50, y = 0, relative = true }))
-hl.bind(mod .. " + minus", hl.dsp.window.resize({ x = -50, y = 0, relative = true }))
-hl.bind(mod .. " + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
-hl.bind(mod .. " + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
+-- Resize (repeats while held; the Lily58 Lower layer sends these)
+hl.bind(mod .. " + equal", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true })
+hl.bind(mod .. " + minus", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true })
+hl.bind(mod .. " + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true })
+hl.bind(mod .. " + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -50, relative = true }), { repeating = true })
 
 -- Resize mode (easy on the Lily58): SUPER+R, then H/L narrower/wider, K/J shorter/taller
 -- (hold to repeat, arrows too). Esc or Enter exits.
