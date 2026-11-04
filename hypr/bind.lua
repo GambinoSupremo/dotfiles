@@ -111,6 +111,23 @@ hl.bind(mod .. " + minus", hl.dsp.window.resize({ x = -50, y = 0, relative = tru
 hl.bind(mod .. " + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 50, relative = true }))
 hl.bind(mod .. " + SHIFT + minus", hl.dsp.window.resize({ x = 0, y = -50, relative = true }))
 
+-- Resize mode (easy on the Lily58): SUPER+R, then H/L narrower/wider, K/J shorter/taller
+-- (hold to repeat, arrows too). Esc or Enter exits.
+hl.bind(mod .. " + R", hl.dsp.submap("resize"))
+hl.define_submap("resize", function()
+    local steps = {
+        { "H", "Left", -50, 0 }, { "L", "Right", 50, 0 },
+        { "K", "Up", 0, -50 }, { "J", "Down", 0, 50 },
+    }
+    for _, s in ipairs(steps) do
+        for _, key in ipairs({ s[1], s[2] }) do
+            hl.bind(key, hl.dsp.window.resize({ x = s[3], y = s[4], relative = true }), { repeating = true })
+        end
+    end
+    hl.bind("Escape", hl.dsp.submap("reset"))
+    hl.bind("Return", hl.dsp.submap("reset"))
+end)
+
 -- SUPER+Z/X/C/V (with any extra modifiers) never reach Hyprland: keyd turns them
 -- into undo/cut/copy/paste (Ctrl+Z, Shift+Delete, Ctrl+Insert, Shift+Insert).
 
