@@ -157,15 +157,15 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name = "tidal-secondary",
-    match = { class = "tidal-hifi|TIDAL HiFi" },
+    name = "sone-secondary",
+    match = { class = "^sone$" },
     workspace = "12 silent",
 })
 
 -- Per-app opacity (focused / unfocused), same values as niri/windowrules.kdl.
 hl.window_rule({
     name = "app-opacity",
-    match = { class = "^(signal|vesktop|tidal-hifi|cider|obsidian)$" },
+    match = { class = "^(signal|vesktop|sone|cider|obsidian)$" },
     opacity = "0.95 0.90",
 })
 

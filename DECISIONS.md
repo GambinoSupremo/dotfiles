@@ -31,8 +31,6 @@ Judgment calls from the deep-cleanup pass. Pairs with nixos-config/docs/decision
 - Keybind drift left as documented divergence, not fixed: signal spawn key
   (mango S+S+s / niri M+S+G / hypr none), SUPER+X (cut on hypr vs overview
   on mango/niri), zed key, screenshot schemes, 9 mango tags vs 6 elsewhere.
-- hypr/autostart.lua tidal-hifi stays commented out (mango/niri autostart
-  it) — assumed deliberate.
 - niri windowrules.kdl opacity layering (0.97 global, NixOS append
   re-overrides 4 apps) — net effect matches mango; ugly but correct.
 - monitor identity strings, HDR config (hypr/monitor.lua), 255-char-limit

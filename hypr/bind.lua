@@ -27,7 +27,7 @@ hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("mullvad-exclude vesktop"))
 -- No signal-desktop spawn bind — it double-bound SUPER+SHIFT+S with the
 -- screenshot; Signal autostarts, respawn via launcher.
 hl.bind(mod .. " + SHIFT + O", hl.dsp.exec_cmd("obsidian"))
-hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("tidal-hifi"))
+hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("sone"))
 hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-beta --private-window"))
 hl.bind(mod .. " + SHIFT + I", hl.dsp.exec_cmd("zeditor"))
 

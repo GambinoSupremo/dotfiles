@@ -8,7 +8,7 @@ set -euo pipefail
 
 readonly VESKTOP_APP_ID="vesktop"
 readonly SIGNAL_APP_ID="signal"
-readonly TIDAL_APP_ID="tidal-hifi"
+readonly TIDAL_APP_ID="sone"
 readonly TIMEOUT_SECS=30
 readonly SETTLE_SECS=5
 readonly LOG_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/stack-comms.log"

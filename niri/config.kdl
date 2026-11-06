@@ -99,7 +99,7 @@ spawn-at-startup "noctalia"
 spawn-at-startup "/home/gav/.config/niri/scripts/stack-comms.sh"
 spawn-at-startup "mullvad-exclude" "vesktop"
 spawn-at-startup "signal-desktop" "--password-store=gnome-libsecret"
-spawn-at-startup "tidal-hifi"
+spawn-at-startup "sone"
 
 // === Animations ===
 animations {

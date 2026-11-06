@@ -21,7 +21,7 @@ binds {
     Mod+Shift+D { spawn "mullvad-exclude" "vesktop"; }
     Mod+Shift+G { spawn "signal-desktop" "--password-store=gnome-libsecret"; }
     Mod+Shift+O { spawn "obsidian"; }
-    Mod+Shift+M { spawn "tidal-hifi"; }
+    Mod+Shift+M { spawn "sone"; }
     Mod+Shift+Alt+B { spawn "zen-beta" "--private-window"; }
     Mod+Shift+I { spawn "zeditor"; }
 

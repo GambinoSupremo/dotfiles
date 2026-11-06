@@ -12,7 +12,7 @@ window-rule {
 window-rule {
     match app-id=r#"^vesktop$"#
     match app-id=r#"^signal$"#
-    match app-id=r#"^tidal-hifi$"#
+    match app-id=r#"^sone$"#
     default-column-width { proportion 0.5; }
     open-on-workspace "comms"
     opacity 0.85
@@ -85,7 +85,7 @@ window-rule {
 window-rule {
     match app-id=r#"^vesktop$"#
     match app-id=r#"^signal$"#
-    match app-id=r#"^tidal-hifi$"#
+    match app-id=r#"^sone$"#
     background-effect {
         blur true
     }
