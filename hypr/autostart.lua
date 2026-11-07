@@ -23,5 +23,6 @@ hl.on("hyprland.start", function()
     -- Startup apps, placed directly onto desired workspaces
     hl.exec_cmd([[bash -lc "sleep 5 && mullvad-exclude vesktop"]], { workspace = "12" })
     hl.exec_cmd([[bash -lc "sleep 5 && signal-desktop --password-store=gnome-libsecret"]], { workspace = "12" })
-    hl.exec_cmd([[bash -lc "sleep 5 && sone"]], { workspace = "12" })
+    -- Sone starts later so it stacks under Signal (master appends new windows).
+    hl.exec_cmd([[bash -lc "sleep 10 && sone"]], { workspace = "12" })
 end)

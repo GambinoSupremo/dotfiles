@@ -40,7 +40,7 @@ for i = 1, 6 do
     })
 end
 
--- Comms on ws 12: Vesktop is the wide master on the left, Signal and Tidal stack on
+-- Comms on ws 12: Vesktop is the wide master on the left, Signal over Sone stacked on
 -- the right. mfact is per workspace only via layout message, so set it when Vesktop opens.
 hl.on("window.open", function(w)
     if not (w and w.class == "vesktop" and w.workspace and w.workspace.id == 12) then
@@ -53,7 +53,7 @@ hl.on("window.open", function(w)
         local prev = hl.get_active_window()
         hl.dispatch(hl.dsp.focus({ window = w }))
         hl.dispatch(hl.dsp.layout("swapwithmaster ignoremaster"))
-        hl.dispatch(hl.dsp.layout("mfact exact 0.6"))
+        hl.dispatch(hl.dsp.layout("mfact exact 0.54"))
         if prev then
             hl.dispatch(hl.dsp.focus({ window = prev }))
         end
