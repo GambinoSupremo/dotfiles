@@ -20,7 +20,8 @@ hl.bind(mod .. " + CTRL + Return",
 
 -- Launcher, system menu (nixos-config home/menu.nix), keybind list
 hl.bind(mod .. " + space", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"), { description = "App launcher" })
-hl.bind(mod .. " + ALT + space", hl.dsp.exec_cmd("sysmenu"), { description = "System menu" })
+hl.bind(mod .. " + SHIFT + space", hl.dsp.exec_cmd("sysmenu"), { description = "System menu" })
+hl.bind(mod .. " + ALT + space", hl.dsp.exec_cmd("sysmenu"), { description = "System menu (alt)" })
 hl.bind(mod .. " + SHIFT + slash", hl.dsp.exec_cmd("keybinds"), { description = "Keybindings" })
 
 -- App spawns
