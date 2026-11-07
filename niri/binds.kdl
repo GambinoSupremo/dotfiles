@@ -14,6 +14,8 @@ binds {
 
     // === App Launcher ===
     Mod+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    // System menu (nixos-config home/menu.nix); Mod+Shift+Slash stays niri's own hotkey overlay
+    Mod+Alt+Space { spawn "sysmenu"; }
 
     // === App Spawns ===
     Mod+Shift+B { spawn "zen-beta"; }
