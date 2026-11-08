@@ -83,6 +83,9 @@ hl.window_rule({
     match = { class = "^steam_app_default$", title = "^Battle\\.net" },
     float = true,
     fullscreen = false,
+    -- It signs in at login; don't let that pull focus to ws 2.
+    no_initial_focus = true,
+    suppress_event = "activate activatefocus fullscreen maximize fullscreenoutput",
 })
 
 -- The login window gets its title after opening, too late for the rule above.
