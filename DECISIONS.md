@@ -15,7 +15,7 @@ Judgment calls from the deep-cleanup pass. Pairs with nixos-config/docs/decision
   vrr_only_fullscreen:1 on steam_app_ (mango has no vrr:2; monitor vrr is
   clamped to 0/1 in parse_config.h).
 - niri: __GL_VRR_ALLOWED/__GL_GSYNC_ALLOWED removed from environment block
-  (session-wide via nvidia.nix on NixOS).
+  (NVIDIA-only; nothing sets them now that the GPU is an RX 9070 XT).
 - Every NixOS-patched file got a header warning that sed targets match
   exact line text.
 - Stale comment fixes: rule.conf opacity 0.97→0.95; DP probe-order caveats
