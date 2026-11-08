@@ -17,6 +17,8 @@ binds {
     // System menu (nixos-config home/menu.nix); Mod+Shift+Slash stays niri's own hotkey overlay
     Mod+Shift+Space { spawn "sysmenu"; }
     Mod+Alt+Space { spawn "sysmenu"; }
+    Mod+Shift+T hotkey-overlay-title="Theme picker" { spawn "theme"; }
+    Mod+Ctrl+T hotkey-overlay-title="Next theme" { spawn "theme" "next"; }
 
     // === App Spawns ===
     Mod+Shift+B { spawn "zen-beta"; }
