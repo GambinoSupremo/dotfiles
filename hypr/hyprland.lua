@@ -17,3 +17,5 @@ require("rule")
 require("bind")
 require("autostart")
 pcall(require, "nixos")
+-- Binds and rules from a private config repo, when it's there. Hyprland only.
+pcall(require, "private")
