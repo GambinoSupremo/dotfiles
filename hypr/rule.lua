@@ -130,6 +130,17 @@ for name, m in pairs({ ["wow-by-class"] = { class = "^(?i)wow(classic)?\\.exe$" 
     })
 end
 
+-- Card games (The Bazaar, MTG Arena): ws 2, windowed and full width. Add Steam app ids here.
+-- nixos-config's game-fullscreen service skips the "windowed" tag; streams still fullscreen them.
+hl.window_rule({
+    name = "windowed-games",
+    match = { class = "^steam_app_(1617400|2141910)$" },
+    fullscreen = false,
+    scrolling_width = 1.0,
+    tag = "+windowed",
+    suppress_event = "fullscreen maximize fullscreenoutput",
+})
+
 -- THE FINALS opens an untitled splash before the game; keep it floating at its own size.
 hl.window_rule({
     name = "finals-splash-float",
