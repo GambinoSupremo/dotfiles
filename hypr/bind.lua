@@ -82,6 +82,9 @@ hl.bind(mod .. " + CTRL + Right", hl.dsp.focus({ monitor = "r" }))
 hl.bind(mod .. " + CTRL + H", hl.dsp.focus({ monitor = "l" }), { description = "Focus left monitor (or arrows)" })
 hl.bind(mod .. " + CTRL + L", hl.dsp.focus({ monitor = "r" }), { description = "Focus right monitor" })
 
+-- Hyprland only: Mango and Niri don't have this one (nixos-config home/philips-input.nix).
+hl.bind(mod .. " + ALT + I", hl.dsp.exec_cmd("philips-input"), { description = "Switch Philips input (Linux/work Mac)" })
+
 -- Workspace navigation on current monitor
 hl.bind(mod .. " + CTRL + Up", hl.dsp.focus({ workspace = "m-1" }))
 hl.bind(mod .. " + CTRL + Down", hl.dsp.focus({ workspace = "m+1" }))
