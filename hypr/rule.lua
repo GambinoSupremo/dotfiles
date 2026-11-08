@@ -85,6 +85,17 @@ hl.window_rule({
     fullscreen = false,
 })
 
+-- The login window gets its title after opening, too late for the rule above.
+hl.on("window.title", function(w)
+    if not (w and w.class == "steam_app_default" and w.title == "Battle.net Login" and not w.floating) then
+        return
+    end
+    hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 0, window = w }))
+    hl.dispatch(hl.dsp.window.float({ action = "enable", window = w }))
+    hl.dispatch(hl.dsp.window.resize({ x = 600, y = 700, window = w }))
+    hl.dispatch(hl.dsp.window.center({ window = w }))
+end)
+
 -- WoW: still ws 2, but not forced fullscreen and the cursor isn't trapped,
 -- so Alt+Tab / other monitor work. It maximizes itself (covers the scroller,
 -- blocks resize), so ignore its requests; Super+F/M still work.
