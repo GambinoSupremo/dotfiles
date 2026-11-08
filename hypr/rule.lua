@@ -88,9 +88,26 @@ hl.window_rule({
     suppress_event = "activate activatefocus fullscreen maximize fullscreenoutput",
 })
 
--- The login window gets its title after opening, too late for the rule above.
+-- Keep the main Battle.net window out of sight (Super+Alt+B shows it). Hyprland only.
+hl.window_rule({
+    name = "battlenet-hide",
+    match = { class = "^steam_app_default$", title = "^Battle\\.net$" },
+    workspace = "special:battlenet silent",
+})
+
+-- Titles arrive after opening, too late for the rules above. The login window can ask
+-- for a password, so it must never stay hidden.
 hl.on("window.title", function(w)
-    if not (w and w.class == "steam_app_default" and w.title == "Battle.net Login" and not w.floating) then
+    if not (w and w.class == "steam_app_default") then
+        return
+    end
+    local hidden = w.workspace and w.workspace.name == "special:battlenet"
+    if w.title == "Battle.net" and not hidden then
+        hl.dispatch(hl.dsp.window.move({ workspace = "special:battlenet", follow = false, window = w }))
+    elseif w.title == "Battle.net Login" and hidden then
+        hl.dispatch(hl.dsp.window.move({ workspace = "2", follow = false, window = w }))
+    end
+    if w.title ~= "Battle.net Login" or w.floating then
         return
     end
     hl.dispatch(hl.dsp.window.fullscreen_state({ internal = 0, client = 0, window = w }))
