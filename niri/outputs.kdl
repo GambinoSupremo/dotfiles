@@ -7,7 +7,8 @@ output "Dell Inc. Dell AW3423DW #tBszGDAYBQUH" {
     scale 1
     position x=0 y=0
     focus-at-startup
-    variable-refresh-rate on-demand=true
+    // VRR off: on the RX 9070 XT, fullscreen VRR stutters on this G-SYNC-module monitor
+    // (same as hypr/monitor.lua and mango/monitor.conf).
 }
 
 output "Philips Consumer Electronics Company PHL 278E1 0x0000065F" {

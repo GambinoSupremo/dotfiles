@@ -61,8 +61,8 @@ Hyprland's `.luarc.json` points Lua tooling at the installed NixOS API stubs.
   HDR for fullscreen HDR content. The mode switch can briefly blank the screen.
   The SUNSHINE virtual display, Mango, and Niri stay SDR.
 - VRR is off on the Alienware in hypr (`vrr=0`): with the RX 9070 XT its
-  G-SYNC module stutters every fullscreen game. Mango (enabled) has VRR off
-  too. Niri (disabled) still has its old on-demand VRR rules.
+  G-SYNC module stutters every fullscreen game. Mango (enabled) and Niri
+  (disabled) have VRR off too.
 - Noctalia runtime files (`mango/noctalia.conf`, `niri/noctalia.kdl`,
   `ghostty/themes/noctalia`, `hypr/noctalia.lua` on NixOS) are generated or
   overwritten by Noctalia — treat repo copies as seeds, not sources of truth.
