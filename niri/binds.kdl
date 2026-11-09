@@ -19,6 +19,7 @@ binds {
     Mod+Alt+Space { spawn "sysmenu"; }
     Mod+Shift+T hotkey-overlay-title="Theme picker" { spawn "theme"; }
     Mod+Ctrl+T hotkey-overlay-title="Next theme" { spawn "theme" "next"; }
+    Mod+D hotkey-overlay-title="Dictation (start/stop)" { spawn "voxtype" "record" "toggle"; }
 
     // === App Spawns ===
     Mod+Shift+B { spawn "zen-beta"; }

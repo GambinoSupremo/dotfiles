@@ -25,6 +25,7 @@ hl.bind(mod .. " + ALT + space", hl.dsp.exec_cmd("sysmenu"), { description = "Sy
 hl.bind(mod .. " + SHIFT + slash", hl.dsp.exec_cmd("keybinds"), { description = "Keybindings" })
 hl.bind(mod .. " + SHIFT + T", hl.dsp.exec_cmd("theme"), { description = "Theme picker" })
 hl.bind(mod .. " + CTRL + T", hl.dsp.exec_cmd("theme next"), { description = "Next theme" })
+hl.bind(mod .. " + D", hl.dsp.exec_cmd("voxtype record toggle"), { description = "Dictation (start/stop)" })
 
 -- App spawns
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("zen-beta"), { description = "Browser" })
