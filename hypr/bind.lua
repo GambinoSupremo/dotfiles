@@ -33,7 +33,15 @@ hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd("nautilus"), { description = "Fil
 hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("mullvad-exclude vesktop"), { description = "Discord" })
 -- No signal-desktop spawn bind — it double-bound SUPER+SHIFT+S with the
 -- screenshot; Signal autostarts, respawn via launcher.
-hl.bind(mod .. " + SHIFT + O", hl.dsp.exec_cmd("obsidian"), { description = "Obsidian" })
+-- Obsidian starts hidden on special:obsidian (autostart.lua); this pops it over/away, or starts it.
+hl.bind(mod .. " + SHIFT + O", function()
+    for _, w in ipairs(hl.get_windows()) do
+        if w.class == "md.obsidian.Obsidian" and w.workspace and w.workspace.name == "special:obsidian" then
+            return hl.dispatch(hl.dsp.workspace.toggle_special("obsidian"))
+        end
+    end
+    hl.dispatch(hl.dsp.exec_cmd("obsidian"))
+end, { description = "Obsidian (show/hide)" })
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("sone"), { description = "Music" })
 hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-beta --private-window"), { description = "Private browser window" })
 hl.bind(mod .. " + SHIFT + I", hl.dsp.exec_cmd("zeditor"), { description = "Zed" })

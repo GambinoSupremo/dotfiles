@@ -25,4 +25,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd([[bash -lc "sleep 5 && signal-desktop --password-store=gnome-libsecret"]], { workspace = "12" })
     -- Sone starts later so it stacks under Signal (master appends new windows).
     hl.exec_cmd([[bash -lc "sleep 10 && sone"]], { workspace = "12" })
+    -- Obsidian waits out of sight so Sync and the note trackers run all day (Super+Shift+O shows it).
+    hl.exec_cmd([[bash -lc "sleep 5 && obsidian"]], { workspace = "special:obsidian silent" })
 end)
