@@ -1,4 +1,4 @@
--- Mango-style layouts per workspace. Super+N / Super+Shift+N cycle, Super+Ctrl+A/S/D jump.
+-- Mango-style layouts per workspace. Super+Ctrl+A/S/D jump (M.cycle has no key).
 -- Choices are saved to ~/.local/state/hypr/layouts.lua so config reloads (Noctalia's
 -- wallpaper theme) keep them. Built-in layouts only: registering a Lua layout makes every
 -- reload rebuild non-default workspaces, which drops fullscreen windows.

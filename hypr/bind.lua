@@ -62,19 +62,53 @@ hl.bind(mod .. " + L", hl.dsp.focus({ direction = "r" }), { description = "Focus
 hl.bind(mod .. " + K", hl.dsp.focus({ direction = "u" }), { description = "Focus up" })
 hl.bind(mod .. " + J", hl.dsp.focus({ direction = "d" }), { description = "Focus down" })
 
--- window.move re-inserts into the layout (can restructure the tree);
--- window.swap only exchanges two windows.
-hl.bind(mod .. " + SHIFT + Left", hl.dsp.window.move({ direction = "l" }))
-hl.bind(mod .. " + SHIFT + Right", hl.dsp.window.move({ direction = "r" }))
-hl.bind(mod .. " + SHIFT + Up", hl.dsp.window.move({ direction = "u" }))
-hl.bind(mod .. " + SHIFT + Down", hl.dsp.window.move({ direction = "d" }))
+-- Carry (Super+Shift+dir). Dwindle: swap with the window there; if none, re-stack
+-- with the neighbour (J = go under it, L = go beside it); past the edge, next monitor.
+local function carry(dir)
+    local w, ws = hl.get_active_window(), hl.get_active_workspace()
+    if w and not w.floating and ws and ws.tiled_layout == "dwindle" then
+        local ax, ay, aw, ah = w.at.x, w.at.y, w.size.x, w.size.y
+        local function has(d)
+            for _, o in ipairs(hl.get_windows({ workspace = tostring(ws.id) })) do
+                if o.address ~= w.address and not o.floating and not o.hidden then
+                    local ox, oy, ow, oh = o.at.x, o.at.y, o.size.x, o.size.y
+                    local xo = ox < ax + aw - 5 and ax < ox + ow - 5
+                    local yo = oy < ay + ah - 5 and ay < oy + oh - 5
+                    if (d == "l" and yo and ox + ow <= ax + 5) or (d == "r" and yo and ox >= ax + aw - 5)
+                        or (d == "u" and xo and oy + oh <= ay + 5) or (d == "d" and xo and oy >= ay + ah - 5) then
+                        return true
+                    end
+                end
+            end
+            return false
+        end
+        if not has(dir) then
+            local a, b = "u", "d"
+            if dir == "u" or dir == "d" then a, b = "l", "r" end
+            if has(a) or has(b) then
+                local wasFirst = not has(a)
+                hl.dispatch(hl.dsp.layout("togglesplit"))
+                if wasFirst ~= (dir == "u" or dir == "l") then
+                    hl.dispatch(hl.dsp.layout("swapsplit"))
+                end
+                return
+            end
+        end
+    end
+    hl.dispatch(hl.dsp.window.move({ direction = dir }))
+end
 
-hl.bind(mod .. " + SHIFT + H", hl.dsp.window.move({ direction = "l" }), { description = "Move window left (or arrows)" })
-hl.bind(mod .. " + SHIFT + L", hl.dsp.window.move({ direction = "r" }), { description = "Move window right" })
-hl.bind(mod .. " + SHIFT + K", hl.dsp.window.move({ direction = "u" }), { description = "Move window up" })
-hl.bind(mod .. " + SHIFT + J", hl.dsp.window.move({ direction = "d" }), { description = "Move window down" })
+local dirs = {
+    { "H", "Left", "l", "left" }, { "J", "Down", "d", "down" },
+    { "K", "Up", "u", "up" }, { "L", "Right", "r", "right" },
+}
+for _, d in ipairs(dirs) do
+    hl.bind(mod .. " + SHIFT + " .. d[2], function() carry(d[3]) end)
+    hl.bind(mod .. " + SHIFT + " .. d[1], function() carry(d[3]) end,
+        { description = "Carry window " .. d[4] .. " (J under, K over; or arrows)" })
+end
 
--- Flip the focused split between side-by-side and stacked (dwindle)
+-- Flip the focused split between side-by-side and stacked (dwindle); Super+Shift+J/K does it too
 hl.bind(mod .. " + T", hl.dsp.layout("togglesplit"), { description = "Flip split direction" })
 
 -- Monitor focus
@@ -92,17 +126,15 @@ hl.bind(mod .. " + CTRL + Down", hl.dsp.focus({ workspace = "m+1" }))
 hl.bind(mod .. " + CTRL + K", hl.dsp.focus({ workspace = "m-1" }), { description = "Previous workspace (or arrows)" })
 hl.bind(mod .. " + CTRL + J", hl.dsp.focus({ workspace = "m+1" }), { description = "Next workspace" })
 
--- Move window to adjacent monitor
-hl.bind(mod .. " + CTRL + ALT + Left", hl.dsp.window.move({ monitor = "l", follow = true }))
-hl.bind(mod .. " + CTRL + ALT + Right", hl.dsp.window.move({ monitor = "r", follow = true }))
-hl.bind(mod .. " + CTRL + ALT + H", hl.dsp.window.move({ monitor = "l", follow = true }), { description = "Move window to left monitor (or arrows)" })
-hl.bind(mod .. " + CTRL + ALT + L", hl.dsp.window.move({ monitor = "r", follow = true }), { description = "Move window to right monitor" })
-
--- Move window to adjacent workspace on current monitor
-hl.bind(mod .. " + CTRL + ALT + Up", hl.dsp.window.move({ workspace = "m-1", follow = false }))
-hl.bind(mod .. " + CTRL + ALT + Down", hl.dsp.window.move({ workspace = "m+1", follow = false }))
-hl.bind(mod .. " + CTRL + ALT + K", hl.dsp.window.move({ workspace = "m-1", follow = false }), { description = "Send window to previous workspace (or arrows)" })
-hl.bind(mod .. " + CTRL + ALT + J", hl.dsp.window.move({ workspace = "m+1", follow = false }), { description = "Send window to next workspace" })
+-- Carry window to the other monitor (H/L) or workspace (K/J); you go with it
+hl.bind(mod .. " + CTRL + SHIFT + Left", hl.dsp.window.move({ monitor = "l", follow = true }))
+hl.bind(mod .. " + CTRL + SHIFT + Right", hl.dsp.window.move({ monitor = "r", follow = true }))
+hl.bind(mod .. " + CTRL + SHIFT + H", hl.dsp.window.move({ monitor = "l", follow = true }), { description = "Carry window to left monitor (or arrows)" })
+hl.bind(mod .. " + CTRL + SHIFT + L", hl.dsp.window.move({ monitor = "r", follow = true }), { description = "Carry window to right monitor" })
+hl.bind(mod .. " + CTRL + SHIFT + Up", hl.dsp.window.move({ workspace = "m-1", follow = true }))
+hl.bind(mod .. " + CTRL + SHIFT + Down", hl.dsp.window.move({ workspace = "m+1", follow = true }))
+hl.bind(mod .. " + CTRL + SHIFT + K", hl.dsp.window.move({ workspace = "m-1", follow = true }), { description = "Carry window to previous workspace (or arrows)" })
+hl.bind(mod .. " + CTRL + SHIFT + J", hl.dsp.window.move({ workspace = "m+1", follow = true }), { description = "Carry window to next workspace" })
 
 -- Window states
 hl.bind(mod .. " + W", hl.dsp.window.float(), { description = "Toggle floating" })
@@ -160,15 +192,14 @@ for i = 1, 6 do
     hl.bind(mod .. " + " .. tostring(i), function()
         hl.dispatch(hl.dsp.focus({ workspace = onMonitor(i) }))
     end, { description = "Workspace " .. i })
-    hl.bind(mod .. " + CTRL + " .. tostring(i), function()
-        hl.dispatch(hl.dsp.window.move({ workspace = onMonitor(i), follow = false }))
-    end, { description = "Send window to workspace " .. i })
+    hl.bind(mod .. " + SHIFT + " .. tostring(i), function()
+        hl.dispatch(hl.dsp.window.move({ workspace = onMonitor(i), follow = true }))
+    end, { description = "Carry window to workspace " .. i })
 end
 
--- Layouts (layouts.lua): cycle, or jump to tile / scroller / dwindle like Mango.
+-- Layouts (layouts.lua): pick tile / scroller / dwindle like Mango. No cycle key:
+-- it was too easy to hit by accident.
 local layouts = require("layouts")
-hl.bind(mod .. " + N", function() layouts.cycle(1) end, { description = "Next layout" })
-hl.bind(mod .. " + SHIFT + N", function() layouts.cycle(-1) end)
 hl.bind(mod .. " + CTRL + A", function() layouts.set("tile") end, { description = "Tile layout" })
 hl.bind(mod .. " + CTRL + S", function() layouts.set("scroller") end, { description = "Scroller layout" })
 hl.bind(mod .. " + CTRL + D", function() layouts.set("dwindle") end, { description = "Dwindle layout" })
