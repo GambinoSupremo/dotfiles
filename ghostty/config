@@ -34,5 +34,7 @@ keybind = ctrl+v=paste_from_clipboard
 # cut, so Shift+Delete copies.
 keybind = shift+insert=paste_from_clipboard
 keybind = shift+delete=copy_to_clipboard
+# Default is fullscreen; pass Ctrl+Enter through to apps (Super+F fullscreens).
+keybind = ctrl+enter=unbind
 
 theme = noctalia
