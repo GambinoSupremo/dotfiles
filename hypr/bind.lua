@@ -58,6 +58,8 @@ hl.bind("ALT + SHIFT + S", hl.dsp.exec_cmd([[bash -lc 'grim -g "$(slurp)" - | wl
 -- Noctalia region capture (freezes screen) → Satty annotate; Enter copies, Ctrl+S saves.
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("noctalia msg screenshot-region"), { description = "Screenshot region + annotate" })
 hl.bind("Print", hl.dsp.exec_cmd("noctalia msg screenshot-region"), { description = "Screenshot region + annotate" })
+-- Go60 Window+G; the Mac uses the same chord for its markup screenshot.
+hl.bind("CTRL + ALT + SHIFT + S", hl.dsp.exec_cmd("noctalia msg screenshot-region"), { description = "Screenshot region + annotate" })
 
 -- Window focus (arrows + vim)
 hl.bind(mod .. " + Left", hl.dsp.focus({ direction = "l" }))
