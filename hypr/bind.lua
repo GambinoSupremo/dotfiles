@@ -188,6 +188,11 @@ hl.define_submap("resize", function()
     hl.bind("Return", hl.dsp.submap("reset"))
 end)
 
+-- Dictation: voxtype switches here while it types, so a still-held Super can't fire binds.
+hl.define_submap("dictation", function()
+    hl.bind("Escape", hl.dsp.submap("reset"))
+end)
+
 -- SUPER+Z/X/C/V (with any extra modifiers) never reach Hyprland: keyd turns them
 -- into undo/cut/copy/paste (Ctrl+Z, Shift+Delete, Ctrl+Insert, Shift+Insert).
 
