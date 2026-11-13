@@ -237,4 +237,7 @@ hl.bind("code:89", hl.dsp.send_shortcut({ mods = "CTRL SHIFT", key = "m", window
 -- of the mic (nixos-config home/vesktop-mic.nix) so friends don't hear you twice. The game still gets the key.
 hl.bind("code:90", hl.dsp.exec_cmd("vesktop-mic mute"), { non_consuming = true })
 hl.bind("code:90", hl.dsp.exec_cmd("vesktop-mic unmute"), { non_consuming = true, release = true })
+-- Scroll Lock = Go60 push-to-talk (types nothing in chat boxes, unlike Numpad 0).
+hl.bind("code:78", hl.dsp.exec_cmd("vesktop-mic mute"), { non_consuming = true })
+hl.bind("code:78", hl.dsp.exec_cmd("vesktop-mic unmute"), { non_consuming = true, release = true })
 
