@@ -34,17 +34,25 @@ hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("mullvad-exclude vesktop"), { des
 -- No signal-desktop spawn bind — it double-bound SUPER+SHIFT+S with the
 -- screenshot; Signal autostarts, respawn via launcher.
 -- Jump to Obsidian wherever it is (autostart puts it on Philips ws 3), or start it here.
-hl.bind(mod .. " + SHIFT + O", function()
+local function obsidian()
     for _, w in ipairs(hl.get_windows()) do
         if w.class == "md.obsidian.Obsidian" then
             return hl.dispatch(hl.dsp.focus({ window = w }))
         end
     end
     hl.dispatch(hl.dsp.exec_cmd("obsidian"))
-end, { description = "Obsidian" })
+end
+hl.bind(mod .. " + SHIFT + O", obsidian, { description = "Obsidian" })
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("sone"), { description = "Music" })
 hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-beta --private-window"), { description = "Private browser window" })
 hl.bind(mod .. " + SHIFT + I", hl.dsp.exec_cmd("zeditor"), { description = "Zed" })
+-- Go60 △ + letter sends Ctrl+Alt+Shift+letter (no Super, so keyd's Super+Z/X/C/V stays out of it).
+local meh = "CTRL + ALT + SHIFT + "
+hl.bind(meh .. "B", hl.dsp.exec_cmd("zen-beta"), { description = "Browser" })
+hl.bind(meh .. "Z", hl.dsp.exec_cmd("zeditor"), { description = "Zed" })
+hl.bind(meh .. "N", obsidian, { description = "Obsidian" })
+hl.bind(meh .. "C", hl.dsp.exec_cmd("mullvad-exclude vesktop"), { description = "Discord" })
+hl.bind(meh .. "X", hl.dsp.exec_cmd("nautilus"), { description = "Files" })
 
 -- Noctalia
 hl.bind(mod .. " + backslash", hl.dsp.exec_cmd("noctalia msg panel-toggle control-center audio"), { description = "Audio panel" })
