@@ -26,6 +26,10 @@ hl.bind(mod .. " + SHIFT + slash", hl.dsp.exec_cmd("keybinds"), { description = 
 hl.bind(mod .. " + SHIFT + T", hl.dsp.exec_cmd("theme"), { description = "Theme picker" })
 hl.bind(mod .. " + CTRL + T", hl.dsp.exec_cmd("theme next"), { description = "Next theme" })
 hl.bind(mod .. " + D", hl.dsp.exec_cmd("voxtype record toggle"), { description = "Dictation (start/stop)" })
+-- Hold Right Alt to dictate, release to type it (Hyprland only). Using it as a modifier
+-- starts a short recording too.
+hl.bind("Alt_R", hl.dsp.exec_cmd("voxtype record start"), { non_consuming = true, description = "Dictation (hold Right Alt)" })
+hl.bind("Alt_R", hl.dsp.exec_cmd("voxtype record stop"), { non_consuming = true, release = true })
 
 -- App spawns
 hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("zen-beta"), { description = "Browser" })
@@ -60,9 +64,14 @@ hl.bind(mod .. " + ALT + E", hl.dsp.exec_cmd("noctalia msg panel-open launcher /
 hl.bind(mod .. " + ALT + W", hl.dsp.exec_cmd("noctalia msg panel-toggle wallpaper"), { description = "Wallpaper picker" })
 hl.bind(mod .. " + ALT + P", hl.dsp.exec_cmd("noctalia msg panel-toggle clipboard"), { description = "Clipboard history" })
 hl.bind(mod .. " + ALT + R", hl.dsp.exec_cmd("systemctl --user restart noctalia.service"), { description = "Restart Noctalia" })
+-- Notifications (Hyprland only): act on the newest, clear, Do Not Disturb.
+hl.bind(mod .. " + comma", hl.dsp.exec_cmd("noctalia msg notification-invoke-latest"), { description = "Open newest notification" })
+hl.bind(mod .. " + SHIFT + comma", hl.dsp.exec_cmd("noctalia msg notification-clear-active"), { description = "Clear notifications" })
+hl.bind(mod .. " + CTRL + comma", hl.dsp.exec_cmd([[sh -c 'if noctalia msg notification-dnd-status | grep -qx on; then noctalia msg notification-dnd-set off; noctalia msg notification-show "Do not disturb" off; else noctalia msg notification-show "Do not disturb" on; sleep 1.6; noctalia msg notification-dnd-set on; fi']]), { description = "Do not disturb" })
 
 -- Screenshots
-hl.bind("ALT + SHIFT + S", hl.dsp.exec_cmd([[bash -lc 'grim -g "$(slurp)" - | wl-copy']]), { description = "Screenshot region to clipboard" })
+-- sysmenu (nixos-config home/menu.nix) adds an Edit button to the toast.
+hl.bind("ALT + SHIFT + S", hl.dsp.exec_cmd("sysmenu capture 'Region to clipboard'"), { description = "Screenshot region to clipboard" })
 -- Noctalia region capture (freezes screen) → Satty annotate; Enter copies, Ctrl+S saves.
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("noctalia msg screenshot-region"), { description = "Screenshot region + annotate" })
 hl.bind("Print", hl.dsp.exec_cmd("noctalia msg screenshot-region"), { description = "Screenshot region + annotate" })
@@ -226,6 +235,8 @@ local layouts = require("layouts")
 hl.bind(mod .. " + CTRL + A", function() layouts.set("tile") end, { description = "Tile layout" })
 hl.bind(mod .. " + CTRL + S", function() layouts.set("scroller") end, { description = "Scroller layout" })
 hl.bind(mod .. " + CTRL + D", function() layouts.set("dwindle") end, { description = "Dwindle layout" })
+-- Hyprland only (Mango/Niri have no floating layout).
+hl.bind(mod .. " + CTRL + F", function() layouts.set("float") end, { description = "Floating layout" })
 
 -- Mouse wheel workspace cycling (matches Hyprland's own default example:
 -- mouse_down -> next, mouse_up -> previous; this repo previously had it swapped)

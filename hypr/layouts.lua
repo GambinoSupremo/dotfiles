@@ -1,4 +1,4 @@
--- Mango-style layouts per workspace. Super+Ctrl+A/S/D jump (M.cycle has no key).
+-- Mango-style layouts per workspace. Super+Ctrl+A/S/D/F jump (M.cycle has no key).
 -- Choices are saved to ~/.local/state/hypr/layouts.lua so config reloads (Noctalia's
 -- wallpaper theme) keep them. Built-in layouts only: registering a Lua layout makes every
 -- reload rebuild non-default workspaces, which drops fullscreen windows.
@@ -13,6 +13,8 @@ local LAYOUTS = {
     { key = "scroller", label = "Scroller", layout = "scrolling", opts = { direction = "right" } },
     { key = "vscroller", label = "Vertical scroller", layout = "scrolling", opts = { direction = "down" } },
     { key = "dwindle", label = "Dwindle", layout = "dwindle" },
+    -- Floating: dwindle underneath, but every window on the workspace floats.
+    { key = "float", label = "Floating", layout = "dwindle", float = true },
 }
 local BY_KEY = {}
 for i, l in ipairs(LAYOUTS) do
@@ -63,6 +65,22 @@ hl.on("workspace.active", function(w)
     end
 end)
 
+local function floatAll(ws, on)
+    for _, win in ipairs(hl.get_windows({ workspace = ws })) do
+        if win.floating ~= on then
+            hl.dispatch(hl.dsp.window.float({ action = on and "enable" or "disable", window = win }))
+        end
+    end
+end
+
+-- New windows on a floating workspace float too.
+hl.on("window.open", function(win)
+    local w = win and win.workspace
+    if w and state[tostring(w.id)] == "float" and not win.floating then
+        hl.dispatch(hl.dsp.window.float({ action = "enable", window = win }))
+    end
+end)
+
 function M.set(key)
     local w = hl.get_active_workspace()
     local l = BY_KEY[key]
@@ -70,6 +88,9 @@ function M.set(key)
         return
     end
     local ws = tostring(w.id)
+    if l.float or state[ws] == "float" then
+        floatAll(ws, l.float == true)
+    end
     rule(ws, l)
     -- Re-setting general.layout is what makes Hyprland re-match workspace layouts.
     hl.config({ general = { layout = "dwindle" } })
