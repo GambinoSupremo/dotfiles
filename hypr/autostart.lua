@@ -1,5 +1,5 @@
 -- Autostart — mirrors mango/autostart.conf. NixOS patches this file
--- (home/dotfiles.nix seds match exact lines; rewording a matched line breaks the build).
+-- (home/desktop/dotfiles.nix seds match exact lines; rewording a matched line breaks the build).
 
 hl.on("hyprland.start", function()
     -- Import env for portals and user services

@@ -8,7 +8,7 @@ deploys parts of it at build time.
 
 ## What is deployed where
 
-- **Deployed by NixOS** (copied by nixos-config `home/dotfiles.nix`,
+- **Deployed by NixOS** (copied by nixos-config `home/desktop/dotfiles.nix`,
   symlinked into `~/.config`): `mango/`, `niri/`, `hypr/`, `ghostty/`. nixos-config also
   writes `hypr/hyprland.conf` (fallback) and `hypr/nixos.lua` when the
   overview plugin is enabled (currently disabled).

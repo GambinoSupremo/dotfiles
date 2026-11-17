@@ -6,7 +6,7 @@ Judgment calls from the deep-cleanup pass. Pairs with nixos-config/docs/decision
 - Deleted: install.sh, install-apps.sh (Arch installers), mango/theme.conf.bak
   (unsourced, was deployed as a stray), hypr/theme.lua (never require()d and
   contradicted the live config — vrr=0, cm off, qt6ct), noctalia/config.toml
-  (live copy is nixos-config home/noctalia/config.toml), ghostty/config.ghostty
+  (live copy is nixos-config home/desktop/noctalia/config.toml), ghostty/config.ghostty
   (one-line duplicate).
 - hypr/bind.lua: SUPER+SHIFT+S double-bind resolved — screenshot kept,
   signal-desktop spawn dropped (autostarts on ws5 anyway). Coupled
@@ -39,7 +39,7 @@ Judgment calls from the deep-cleanup pass. Pairs with nixos-config/docs/decision
 
 ## Unsure / watch
 - zsh/.zshrc arkenfox-update alias references the old Arch profile path;
-  the NixOS port lives in nixos-config home/shell.nix and is inert (see
+  the NixOS port lives in nixos-config home/terminal/shell.nix and is inert (see
   that repo's DECISIONS.md).
 - mango/tag.conf + rule.conf still match ^DP-2$/^DP-1$ only; if probe order
   ever flips, layouts/comms placement degrade silently (documented, not

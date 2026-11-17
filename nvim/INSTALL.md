@@ -1,7 +1,7 @@
 # Install
 
 On NixOS, nixos-config links `~/.config/nvim` to `~/Projects/dotfiles/nvim`
-(home/editors.nix, mkOutOfStoreSymlink), so there's nothing to do by hand.
+(home/terminal/editors.nix, mkOutOfStoreSymlink), so there's nothing to do by hand.
 Edits here apply without a rebuild.
 
 Launch nvim. LazyVim will install all plugins automatically based on

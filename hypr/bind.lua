@@ -18,7 +18,7 @@ hl.bind(mod .. " + CTRL + Return",
     { description = "Floating terminal" }
 )
 
--- Launcher, system menu (nixos-config home/menu.nix), keybind list
+-- Launcher, system menu (nixos-config home/desktop/menu.nix), keybind list
 hl.bind(mod .. " + space", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"), { description = "App launcher" })
 hl.bind(mod .. " + SHIFT + space", hl.dsp.exec_cmd("sysmenu"), { description = "System menu" })
 hl.bind(mod .. " + ALT + space", hl.dsp.exec_cmd("sysmenu"), { description = "System menu (alt)" })
@@ -70,7 +70,7 @@ hl.bind(mod .. " + SHIFT + comma", hl.dsp.exec_cmd("noctalia msg notification-cl
 hl.bind(mod .. " + CTRL + comma", hl.dsp.exec_cmd([[sh -c 'if noctalia msg notification-dnd-status | grep -qx on; then noctalia msg notification-dnd-set off; noctalia msg notification-show "Do not disturb" off; else noctalia msg notification-show "Do not disturb" on; sleep 1.6; noctalia msg notification-dnd-set on; fi']]), { description = "Do not disturb" })
 
 -- Screenshots
--- sysmenu (nixos-config home/menu.nix) adds an Edit button to the toast.
+-- sysmenu (nixos-config home/desktop/menu.nix) adds an Edit button to the toast.
 hl.bind("ALT + SHIFT + S", hl.dsp.exec_cmd("sysmenu capture 'Region to clipboard'"), { description = "Screenshot region to clipboard" })
 -- Noctalia region capture (freezes screen) → Satty annotate; Enter copies, Ctrl+S saves.
 hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd("noctalia msg screenshot-region"), { description = "Screenshot region + annotate" })
@@ -144,7 +144,7 @@ hl.bind(mod .. " + CTRL + Right", hl.dsp.focus({ monitor = "r" }))
 hl.bind(mod .. " + CTRL + H", hl.dsp.focus({ monitor = "l" }), { description = "Focus left monitor (or arrows)" })
 hl.bind(mod .. " + CTRL + L", hl.dsp.focus({ monitor = "r" }), { description = "Focus right monitor" })
 
--- Hyprland only: Mango and Niri don't have this one (nixos-config home/philips-input.nix).
+-- Hyprland only: Mango and Niri don't have this one (nixos-config home/desktop/philips-input.nix).
 hl.bind(mod .. " + ALT + I", hl.dsp.exec_cmd("philips-input"), { description = "Switch Philips input (Linux/work Mac)" })
 
 -- Workspace navigation on current monitor
@@ -260,7 +260,7 @@ hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ to
 hl.bind("code:89", hl.dsp.send_shortcut({ mods = "CTRL SHIFT", key = "m", window = "class:vesktop" }))
 
 -- Numpad 0 (Caps Lock, remapped by keyd) is in-game push-to-talk. While it's held, mute Discord's copy
--- of the mic (nixos-config home/vesktop-mic.nix) so friends don't hear you twice. The game still gets the key.
+-- of the mic (nixos-config home/gaming/vesktop-mic.nix) so friends don't hear you twice. The game still gets the key.
 hl.bind("code:90", hl.dsp.exec_cmd("vesktop-mic mute"), { non_consuming = true })
 hl.bind("code:90", hl.dsp.exec_cmd("vesktop-mic unmute"), { non_consuming = true, release = true })
 -- Scroll Lock = Go60 push-to-talk (types nothing in chat boxes, unlike Numpad 0).
