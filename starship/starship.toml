@@ -1,6 +1,6 @@
 # Starship prompt layout.
 # On NixOS this file is not symlinked: an activation script (nixos-config
-# home/desktop/dotfiles.nix) merges this layout with the Noctalia-generated palette
+# home/terminal/starship.nix) merges this layout with the Noctalia-generated palette
 # block into a writable ~/.config/starship.toml on every rebuild. The
 # palette block markers (>>> NOCTALIA STARSHIP PALETTE) are load-bearing.
 
