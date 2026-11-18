@@ -22,6 +22,7 @@ hl.bind(mod .. " + CTRL + Return",
 hl.bind(mod .. " + space", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"), { description = "App launcher" })
 hl.bind(mod .. " + SHIFT + space", hl.dsp.exec_cmd("sysmenu"), { description = "System menu" })
 hl.bind(mod .. " + ALT + space", hl.dsp.exec_cmd("sysmenu"), { description = "System menu (alt)" })
+hl.bind(mod .. " + CTRL + SHIFT + space", hl.dsp.exec_cmd("sysmenu style"), { description = "Style menu (theme, font, wallpaper)" })
 hl.bind(mod .. " + SHIFT + slash", hl.dsp.exec_cmd("keybinds"), { description = "Keybindings" })
 hl.bind(mod .. " + SHIFT + T", hl.dsp.exec_cmd("theme"), { description = "Theme picker" })
 hl.bind(mod .. " + CTRL + T", hl.dsp.exec_cmd("theme next"), { description = "Next theme" })
