@@ -5,6 +5,8 @@
 # Font
 font-family = JetBrainsMono Nerd Font
 font-size = 12
+# The `font` command writes its pick here; it loads after this file.
+config-file = ?~/.config/ghostty/font
 
 # Window
 background-opacity = 0.8
