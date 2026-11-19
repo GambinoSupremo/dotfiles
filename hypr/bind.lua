@@ -38,16 +38,26 @@ hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd("nautilus"), { description = "Fil
 hl.bind(mod .. " + SHIFT + D", hl.dsp.exec_cmd("mullvad-exclude vesktop"), { description = "Discord" })
 -- No signal-desktop spawn bind — it double-bound SUPER+SHIFT+S with the
 -- screenshot; Signal autostarts, respawn via launcher.
--- Jump to Obsidian wherever it is (autostart puts it on Philips ws 3), or start it here.
-local function obsidian()
-    for _, w in ipairs(hl.get_windows()) do
-        if w.class == "md.obsidian.Obsidian" then
-            return hl.dispatch(hl.dsp.focus({ window = w }))
+-- Jump to an app's window wherever it is, or start it here.
+local function summon(class, cmd)
+    return function()
+        for _, w in ipairs(hl.get_windows()) do
+            if w.class == class then
+                return hl.dispatch(hl.dsp.focus({ window = w }))
+            end
         end
+        hl.dispatch(hl.dsp.exec_cmd(cmd))
     end
-    hl.dispatch(hl.dsp.exec_cmd("obsidian"))
 end
+-- Autostart puts Obsidian on Philips ws 3.
+local obsidian = summon("md.obsidian.Obsidian", "obsidian")
 hl.bind(mod .. " + SHIFT + O", obsidian, { description = "Obsidian" })
+-- Web apps (nixos-config home/apps/webapps.nix); window class is FFPWA-<id>.
+local function webapp(id) return summon("FFPWA-" .. id, "firefoxpwa site launch " .. id) end
+hl.bind(mod .. " + SHIFT + N", webapp("01M5K770R4RKNSG5FN1DWH0N2M"), { description = "Todoist" })
+hl.bind(mod .. " + SHIFT + Y", webapp("01M5K7BCQEJQ4BGRNA0T8WVXPA"), { description = "YouTube" })
+hl.bind(mod .. " + SHIFT + P", webapp("01M5K770R4K7SGG8XNF738Q2AD"), { description = "Proton Mail" })
+hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("remind"), { description = "Quick reminder (Todoist)" })
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("sone"), { description = "Music" })
 hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-beta --private-window"), { description = "Private browser window" })
 hl.bind(mod .. " + SHIFT + I", hl.dsp.exec_cmd("zeditor"), { description = "Zed" })
