@@ -56,7 +56,7 @@ hl.bind(mod .. " + SHIFT + O", obsidian, { description = "Obsidian" })
 local function webapp(id) return summon("FFPWA-" .. id, "firefoxpwa site launch " .. id) end
 hl.bind(mod .. " + SHIFT + N", webapp("01M5K770R4RKNSG5FN1DWH0N2M"), { description = "Todoist" })
 hl.bind(mod .. " + SHIFT + Y", webapp("01M5K7BCQEJQ4BGRNA0T8WVXPA"), { description = "YouTube" })
-hl.bind(mod .. " + SHIFT + P", webapp("01M5K770R4K7SGG8XNF738Q2AD"), { description = "Proton Mail" })
+hl.bind(mod .. " + SHIFT + P", summon("proton-mail", "proton-mail"), { description = "Proton Mail" })
 hl.bind(mod .. " + SHIFT + R", hl.dsp.exec_cmd("remind"), { description = "Quick reminder (Todoist)" })
 hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("sone"), { description = "Music" })
 hl.bind(mod .. " + SHIFT + ALT + B", hl.dsp.exec_cmd("zen-beta --private-window"), { description = "Private browser window" })
