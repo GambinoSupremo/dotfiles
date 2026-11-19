@@ -64,6 +64,7 @@ hl.bind(mod .. " + SHIFT + I", hl.dsp.exec_cmd("zeditor"), { description = "Zed"
 -- Go60 △ + letter sends Ctrl+Alt+Shift+letter (no Super, so keyd's Super+Z/X/C/V stays out of it).
 local meh = "CTRL + ALT + SHIFT + "
 hl.bind(meh .. "B", hl.dsp.exec_cmd("zen-beta"), { description = "Browser" })
+hl.bind(meh .. "V", hl.dsp.exec_cmd("zen-beta --private-window"), { description = "Private browser window" })
 hl.bind(meh .. "Z", hl.dsp.exec_cmd("zeditor"), { description = "Zed" })
 hl.bind(meh .. "N", obsidian, { description = "Obsidian" })
 hl.bind(meh .. "C", hl.dsp.exec_cmd("mullvad-exclude vesktop"), { description = "Discord" })
