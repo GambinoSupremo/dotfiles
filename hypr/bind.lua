@@ -209,7 +209,15 @@ hl.bind("ALT + Z", hl.dsp.workspace.toggle_special("scratchpad"), { description 
 hl.bind("ALT + SHIFT + Z", hl.dsp.window.move({ workspace = "special:scratchpad", follow = false }), { description = "Send window to scratchpad" })
 
 -- Hyprland only: Mango and Niri don't hide Battle.net.
-hl.bind(mod .. " + ALT + B", hl.dsp.workspace.toggle_special("battlenet"), { description = "Show/hide Battle.net" })
+-- An empty layer would swallow any window opened while it shows, so only toggle when something's there.
+hl.bind(mod .. " + ALT + B", function()
+    for _, w in ipairs(hl.get_windows()) do
+        if w.workspace and w.workspace.name == "special:battlenet" then
+            return hl.dispatch(hl.dsp.workspace.toggle_special("battlenet"))
+        end
+    end
+    hl.dispatch(hl.dsp.exec_cmd("noctalia msg notification-show Battle.net 'Not running, nothing to show.'"))
+end, { description = "Show/hide Battle.net" })
 
 -- Workspace numbers act on the focused monitor, like niri: the Alienware has 1-6,
 -- the Philips 11-16 (named 1-6, see workspaces.lua).
