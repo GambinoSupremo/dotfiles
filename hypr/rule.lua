@@ -228,5 +228,17 @@ hl.window_rule({
     no_anim = true,
 })
 
+-- Webcam bubble (`webcam` toggle): small, on top, bottom-right, never takes focus.
+hl.window_rule({
+    name = "webcam-bubble",
+    match = { class = "^webcam-bubble$" },
+    float = true,
+    pin = true,
+    size = { 320, 180 },
+    move = "(monitor_w-window_w-24) (monitor_h-window_h-24)",
+    no_initial_focus = true,
+    no_anim = true,
+})
+
 -- Optional layer blur for bars/shells: hl.layer_rule({ match = { namespace = ... }, blur = true })
 -- (find the namespace with `hyprctl layers`).

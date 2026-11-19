@@ -79,6 +79,11 @@ hl.bind("Print", hl.dsp.exec_cmd("noctalia msg screenshot-region"), { descriptio
 -- Go60 Window+G; the Mac uses the same chord for its markup screenshot.
 hl.bind("CTRL + ALT + SHIFT + S", hl.dsp.exec_cmd("noctalia msg screenshot-region"), { description = "Screenshot region + annotate" })
 
+-- Screen zoom around the cursor (`zoom` script in nixos-config capture-tools.nix).
+hl.bind(mod .. " + ALT + equal", hl.dsp.exec_cmd("zoom in"), { repeating = true, description = "Zoom in" })
+hl.bind(mod .. " + ALT + minus", hl.dsp.exec_cmd("zoom out"), { repeating = true, description = "Zoom out" })
+hl.bind(mod .. " + ALT + 0", hl.dsp.exec_cmd("zoom reset"), { description = "Zoom reset" })
+
 -- Window focus (arrows + vim)
 hl.bind(mod .. " + Left", hl.dsp.focus({ direction = "l" }))
 hl.bind(mod .. " + Right", hl.dsp.focus({ direction = "r" }))
