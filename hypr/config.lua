@@ -45,8 +45,8 @@ hl.config({
     },
 
     render = {
-        -- Stay SDR on the desktop; switch to HDR only for fullscreen HDR content.
-        cm_auto_hdr = true,
+        -- No HDR switching for fullscreen content; SDR only.
+        cm_auto_hdr = false,
         cm_sdr_eotf = "default",
     },
 

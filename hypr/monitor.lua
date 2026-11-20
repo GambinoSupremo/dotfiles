@@ -1,5 +1,5 @@
 -- Match monitors by EDID; positions are logical pixels after scaling.
--- The desktop stays SDR; Hyprland switches the Alienware to HDR for fullscreen HDR content.
+-- HDR is off everywhere (SDR only).
 
 local BAR_TOP = 0
 
@@ -15,11 +15,10 @@ hl.monitor({
 
 	bitdepth = 10,
 
-	-- Keep desktop colors in sRGB; HDR capability enables fullscreen auto-HDR.
 	cm = "srgb",
 
-	supports_wide_color = 1,
-	supports_hdr = 1,
+	supports_wide_color = 0,
+	supports_hdr = 0,
 })
 
 hl.monitor({

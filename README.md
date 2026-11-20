@@ -57,9 +57,8 @@ Hyprland's `.luarc.json` points Lua tooling at the installed NixOS API stubs.
 - `nvim/lua/plugins/dankcolors.lua` is hand-curated — never regenerate.
 - Monitor identity: niri uses identity strings, hypr EDID descriptions, mango
   monitor models — never port names (the DP-N index flips between boots).
-- Colour: Hyprland keeps the AW3423DW in sRGB for desktop use and switches to
-  HDR for fullscreen HDR content. The mode switch can briefly blank the screen.
-  The SUNSHINE virtual display, Mango, and Niri stay SDR.
+- Colour: everything is SDR (sRGB). HDR is switched off on the AW3423DW,
+  including for fullscreen games.
 - VRR is off on the Alienware in hypr (`vrr=0`): with the RX 9070 XT its
   G-SYNC module stutters every fullscreen game. Mango (enabled) and Niri
   (disabled) have VRR off too.
