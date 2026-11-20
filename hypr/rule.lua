@@ -207,7 +207,7 @@ hl.window_rule({
 -- Per-app opacity (focused / unfocused), same values as niri/windowrules.kdl.
 hl.window_rule({
     name = "app-opacity",
-    match = { class = "^(signal|vesktop|sone|cider|obsidian)$" },
+    match = { class = "^(signal|vesktop|sone|spotify|cider|obsidian)$" },
     opacity = "0.95 0.90",
 })
 
