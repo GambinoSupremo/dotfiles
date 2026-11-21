@@ -54,6 +54,18 @@ hl.config({
         preserve_split = true,
     },
 
+    group = {
+        groupbar = {
+            enabled          = true,
+            height           = 18,
+            font_size        = 11,
+            render_titles    = true,
+            gradients        = true,
+            rounding         = 4,
+            indicator_height = 2,
+        },
+    },
+
     input = {
         kb_layout          = "us", -- mango xkb_rules_layout
         repeat_rate        = 25,   -- mango repeat_rate
