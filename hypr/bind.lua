@@ -187,14 +187,22 @@ hl.bind(mod .. " + M", hl.dsp.window.fullscreen({ mode = "maximized" }), { descr
 hl.bind(mod .. " + P", hl.dsp.window.pseudo(), { description = "Pseudotile" })
 hl.bind(mod .. " + SHIFT + G", hl.dsp.window.pin(), { description = "Pin window on all workspaces" }) -- closest stock equivalent to Mango's global-ish visibility
 
--- Window groups (tabbed stack)
+-- Window groups (tabbed stack): Mod+G toggles, Mod+Alt+HJKL moves in/out.
+local function groupMove(dir)
+    local w = hl.get_active_window()
+    if w and w.group then
+        hl.dispatch(hl.dsp.window.move({ out_of_group = dir }))
+    else
+        hl.dispatch(hl.dsp.window.move({ into_group = dir }))
+    end
+end
 hl.bind(mod .. " + G", hl.dsp.group.toggle(), { description = "Toggle window group (tabs)" })
 hl.bind(mod .. " + Tab", hl.dsp.group.next(), { description = "Next tab in group" })
 hl.bind(mod .. " + SHIFT + Tab", hl.dsp.group.prev(), { description = "Previous tab in group" })
-hl.bind(mod .. " + ALT + H", hl.dsp.group.move_window({ direction = "l" }), { description = "Move window into/out of group left" })
-hl.bind(mod .. " + ALT + L", hl.dsp.group.move_window({ direction = "r" }), { description = "Move window into/out of group right" })
-hl.bind(mod .. " + ALT + K", hl.dsp.group.move_window({ direction = "u" }), { description = "Move window into/out of group up" })
-hl.bind(mod .. " + ALT + J", hl.dsp.group.move_window({ direction = "d" }), { description = "Move window into/out of group down" })
+hl.bind(mod .. " + ALT + H", function() groupMove("l") end, { description = "Move window into/out of group left" })
+hl.bind(mod .. " + ALT + L", function() groupMove("r") end, { description = "Move window into/out of group right" })
+hl.bind(mod .. " + ALT + K", function() groupMove("u") end, { description = "Move window into/out of group up" })
+hl.bind(mod .. " + ALT + J", function() groupMove("d") end, { description = "Move window into/out of group down" })
 
 -- Alt-tab style window cycling
 hl.bind("ALT + Tab", hl.dsp.window.cycle_next(), { description = "Cycle windows" })
