@@ -20,6 +20,7 @@ hl.bind(mod .. " + CTRL + Return",
 
 -- Launcher, system menu (nixos-config home/desktop/menu.nix), keybind list
 hl.bind(mod .. " + space", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"), { description = "App launcher" })
+hl.bind(mod .. " + O", hl.dsp.exec_cmd("noctalia msg panel-toggle omerfuyar/overview:center"), { description = "Workspace overview" })
 hl.bind(mod .. " + SHIFT + space", hl.dsp.exec_cmd("sysmenu"), { description = "System menu" })
 hl.bind(mod .. " + ALT + space", hl.dsp.exec_cmd("sysmenu"), { description = "System menu (alt)" })
 hl.bind(mod .. " + CTRL + SHIFT + space", hl.dsp.exec_cmd("sysmenu style"), { description = "Style menu (theme, font, wallpaper)" })
