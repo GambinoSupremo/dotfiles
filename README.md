@@ -12,7 +12,9 @@ deploys parts of it at build time.
   symlinked into `~/.config`): `mango/`, `niri/`, `hypr/`, `ghostty/`. nixos-config also
   writes `hypr/hyprland.conf` (fallback) and `hypr/nixos.lua` when the
   overview plugin is enabled (currently disabled).
-  Also consumed by NixOS: `starship/` (merged, not symlinked). Wallpapers
+  Also consumed by NixOS: `starship/` (merged, not symlinked) and
+  `fish/conf.d/shared.fish` (symlinked into `~/.config/fish/conf.d/`; on macOS,
+  link the whole `fish/` directory to `~/.config/fish`). Wallpapers
   live in the separate wallpapers repo.
 - **Linked live by NixOS**: `nvim/` (LazyVim). nixos-config links
   `~/.config/nvim` straight to this checkout (not the pinned input), so edits
@@ -29,6 +31,7 @@ deploys parts of it at build time.
 | Shortcuts | `hypr/bind.lua`, `mango/bind.conf`, `niri/binds.kdl` |
 | Window rules | `hypr/rule.lua`, `mango/rule.conf`, `niri/windowrules.kdl` |
 | Terminal | `ghostty/config` |
+| Shell (Fish) | `fish/conf.d/shared.fish`, `fish/config.fish` |
 | Prompt | `starship/starship.toml` |
 | Neovim options and mappings | `nvim/lua/config/` |
 | Neovim plugins and Nix support | `nvim/lua/plugins/` |
