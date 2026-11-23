@@ -211,10 +211,10 @@ hl.window_rule({
     opacity = "0.95 0.90",
 })
 
--- Zen fully opaque (overrides global inactive_opacity): translucent video looks wrong on the OLED.
+-- Browsers fully opaque (overrides global inactive_opacity): translucent video looks wrong on the OLED.
 hl.window_rule({
-    name = "zen-opaque",
-    match = { class = "^zen-beta$" },
+    name = "browser-opaque",
+    match = { class = "^(zen-beta|org\\.ladybird\\.Ladybird)$" },
     opacity = "1.0 override 1.0 override",
 })
 
