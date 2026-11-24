@@ -209,7 +209,7 @@ hl.bind(mod .. " + ALT + J", function() groupMove("d") end, { description = "Mov
 hl.bind("ALT + Tab", hl.dsp.window.cycle_next(), { description = "Cycle windows" })
 hl.bind("ALT + SHIFT + Tab", hl.dsp.window.cycle_next({ next = false }))
 
--- Resize (repeats while held; the Lily58 Lower layer sends these)
+-- Resize (repeats while held)
 hl.bind(mod .. " + equal", hl.dsp.window.resize({ x = 50, y = 0, relative = true }), { repeating = true, description = "Wider" })
 hl.bind(mod .. " + minus", hl.dsp.window.resize({ x = -50, y = 0, relative = true }), { repeating = true, description = "Narrower" })
 hl.bind(mod .. " + SHIFT + equal", hl.dsp.window.resize({ x = 0, y = 50, relative = true }), { repeating = true, description = "Taller" })
